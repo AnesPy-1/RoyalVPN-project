@@ -33,3 +33,6 @@ def get_test(request):
         )
     messages.error(request, "هیچ اکانت تستی در دسترس نیست، لطفا با پشتیبانی در تماس باشید.")
     return redirect('home')
+
+def pricing_view(request):
+    return render(request, 'shop/pricing.html')

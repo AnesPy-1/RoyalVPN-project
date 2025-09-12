@@ -1,0 +1,55 @@
+{% extends '_base.html' %}
+
+{% block page_title %} رویال وی‌پی‌ان - قیمت‌ها {% endblock %}
+
+
+{% block page_content %}
+
+
+  <main class="flex-1">
+    <section class="container mx-auto px-4 pt-12 pb-6 md:pt-16 md:pb-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-extrabold">پلن مناسب خود را انتخاب کنید</h1>
+        <p class="mt-3 text-slate-300">قیمت‌گذاری ساده با امکانات قدرتمند. هر زمان بخواهید قابل لغو.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div class="plan-card">
+          <h3 class="plan-name">پایه</h3>
+          <p class="plan-price">۵<span class="text-sm text-slate-400">/ماه</span></p>
+          <ul class="plan-list">
+            <li><span class="check"></span> ۵۰ گیگابایت ترافیک</li>
+            <li><span class="check"></span> ۱ دستگاه</li>
+            <li><span class="check"></span> سرورهای استاندارد</li>
+          </ul>
+          <button class="btn-primary w-full" data-plan='{"id":"basic","name":"پایه","price":5}'>افزودن به سبد</button>
+        </div>
+        <div class="plan-card featured border-blue-500/60">
+          <div class="ribbon">محبوب</div>
+          <h3 class="plan-name">حرفه‌ای</h3>
+          <p class="plan-price">۱۲<span class="text-sm text-slate-200">/ماه</span></p>
+          <ul class="plan-list">
+            <li><span class="check"></span> ۵۰۰ گیگابایت ترافیک</li>
+            <li><span class="check"></span> ۵ دستگاه</li>
+            <li><span class="check"></span> دسترسی به همه سرورها</li>
+            <li><span class="check"></span> بهینه برای استریم</li>
+          </ul>
+          <button class="btn-primary w-full" data-plan='{"id":"pro","name":"حرفه‌ای","price":12}'>افزودن به سبد</button>
+        </div>
+        <div class="plan-card">
+          <h3 class="plan-name">نامحدود</h3>
+          <p class="plan-price">۲۰<span class="text-sm text-slate-400">/ماه</span></p>
+          <ul class="plan-list">
+            <li><span class="check"></span> ترافیک نامحدود</li>
+            <li><span class="check"></span> دستگاه نامحدود</li>
+            <li><span class="check"></span> پشتیبانی اولویت‌دار</li>
+            <li><span class="check"></span> آی‌پی ثابت</li>
+          </ul>
+          <button class="btn-primary w-full" data-plan='{"id":"ultimate","name":"نامحدود","price":20}'>افزودن به سبد</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+{% endblock %}
