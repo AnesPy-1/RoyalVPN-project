@@ -8,7 +8,6 @@ class SubscriptionLinksAdmin(admin.ModelAdmin):
         'plan_type',
         'day_limit',
         'traffic_limit',
-        'price',
         'is_used',
     ]
     list_filter = [
@@ -18,3 +17,20 @@ class SubscriptionLinksAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 30
 
+
+@admin.register(Subscriptions)
+class SubscriptionsAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'sub',
+        'is_test',
+        'expire_date',
+    ]
+    list_filter = [
+        'is_test',
+    ]
+    search_fields = [
+        'user',
+    ]
+    list_per_page = 10
+    list_max_show_all = 30

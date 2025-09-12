@@ -12,7 +12,6 @@ class SubscriptionLinks(models.Model):
     sub_link = models.CharField(max_length=255)
     day_limit = models.IntegerField(null=True, blank=True)
     traffic_limit = models.IntegerField(null=True, blank=True)
-    price = models.PositiveIntegerField()
     is_used = models.BooleanField(default=False)
 
     def __str__(self):
@@ -22,7 +21,7 @@ class Subscriptions(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='user_subscriptions')
     sub = models.ForeignKey(SubscriptionLinks, on_delete=models.PROTECT, related_name='+')
     is_test = models.BooleanField(default=False)
-    expire_date = models.DateTimeField()
+    expire_date = models.DateTimeField(null=True, blank=True)
 
     def save(
         self,
@@ -33,8 +32,6 @@ class Subscriptions(models.Model):
         update_fields=None,
     ):
         if self.sub.day_limit:
-            self.expire_date = timezone.now() - timezone.timedelta(days=self.sub.day_limit)
+            self.expire_date = timezone.now() + timezone.timedelta(days=self.sub.day_limit)
         return super().save(*args)
 
-    def __str__(self):
-        return self.user
