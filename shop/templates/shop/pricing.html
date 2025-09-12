@@ -14,39 +14,35 @@
       </div>
 
       <div class="mt-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="plan-card">
-          <h3 class="plan-name">پایه</h3>
-          <p class="plan-price">۵<span class="text-sm text-slate-400">/ماه</span></p>
-          <ul class="plan-list">
-            <li><span class="check"></span> ۵۰ گیگابایت ترافیک</li>
-            <li><span class="check"></span> ۱ دستگاه</li>
-            <li><span class="check"></span> سرورهای استاندارد</li>
-          </ul>
-          <button class="btn-primary w-full" data-plan='{"id":"basic","name":"پایه","price":5}'>افزودن به سبد</button>
-        </div>
-        <div class="plan-card featured border-blue-500/60">
+        {% for product in products %}
+        <div class="plan-card {% if product.is_special %} featured border-blue-500/60 {% endif %}">
+          {% if product.is_special %}
           <div class="ribbon">محبوب</div>
-          <h3 class="plan-name">حرفه‌ای</h3>
-          <p class="plan-price">۱۲<span class="text-sm text-slate-200">/ماه</span></p>
+          {% endif %}
+          <h3 class="plan-name">{{ product.name }}</h3>
+          {% if product.time_limit == '0' %}
+          <p class="plan-price">لایف تایم</p>
+          {% else %}
+          <p class="plan-price">{{ product.time_limit }}</p>
+          {% endif %}
           <ul class="plan-list">
-            <li><span class="check"></span> ۵۰۰ گیگابایت ترافیک</li>
-            <li><span class="check"></span> ۵ دستگاه</li>
-            <li><span class="check"></span> دسترسی به همه سرورها</li>
-            <li><span class="check"></span> بهینه برای استریم</li>
-          </ul>
-          <button class="btn-primary w-full" data-plan='{"id":"pro","name":"حرفه‌ای","price":12}'>افزودن به سبد</button>
-        </div>
-        <div class="plan-card">
-          <h3 class="plan-name">نامحدود</h3>
-          <p class="plan-price">۲۰<span class="text-sm text-slate-400">/ماه</span></p>
-          <ul class="plan-list">
+            {% if product.traffic_limit == '0' %}
             <li><span class="check"></span> ترافیک نامحدود</li>
-            <li><span class="check"></span> دستگاه نامحدود</li>
-            <li><span class="check"></span> پشتیبانی اولویت‌دار</li>
-            <li><span class="check"></span> آی‌پی ثابت</li>
+            {% else %}
+            <li><span class="check"></span> {{ product.traffic_limit }}</li>
+            {% endif %}
+            {% if product.device_connections_limit == '0' %}
+            <li><span class="check"></span> کاربر نامحدود</li>
+            {% else %}
+            <li><span class="check"></span> {{ product.device_connections_limit }}</li>
+            {% endif %}
+            <li><span class="check"></span> {{ product.feature1 }}</li>
+            <li><span class="check"></span> {{ product.feature2 }}</li>
+            <li><span class="check"></span> {{ product.feature3 }}</li>
           </ul>
-          <button class="btn-primary w-full" data-plan='{"id":"ultimate","name":"نامحدود","price":20}'>افزودن به سبد</button>
+          <button class="btn-primary w-full">'>افزودن به سبد</button>
         </div>
+        {% endfor %}
       </div>
     </section>
   </main>

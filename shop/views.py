@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from subs.models import SubscriptionLinks, Subscriptions
 from django.contrib import messages
 
+from .models import Product, Comment
 
 def home_view(request):
-    return render(request, 'shop/home.html')
+    comments = Comment.objects.all()[:9]
+    return render(request, 'shop/home.html', context={'comments':comments})
 
 
 def get_test(request):
@@ -35,4 +37,5 @@ def get_test(request):
     return redirect('home')
 
 def pricing_view(request):
-    return render(request, 'shop/pricing.html')
+    products = Product.objects.all()
+    return render(request, 'shop/pricing.html', context={'products':products})
