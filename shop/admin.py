@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Comment
+from .models import Product, Comment, Discount
 
 
 @admin.register(Product)
@@ -31,3 +31,10 @@ class CommentAdmin(admin.ModelAdmin):
     ]
     list_per_page = 10
     list_max_show_all = 30
+
+
+@admin.register(Discount)
+class DiscountAdmin(admin.ModelAdmin):
+    list_display = [
+        'value'
+    ]

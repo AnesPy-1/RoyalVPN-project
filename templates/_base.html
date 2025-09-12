@@ -24,7 +24,7 @@
                 </button>
                 <nav id="mainNav" class="hidden md:flex items-center gap-6">
                     <a class="nav-link" href="{% url 'home' %}">خانه</a>
-                    <a class="nav-link" href="pricing.html">قیمت‌ها</a>
+                    <a class="nav-link" href="{% url 'pricing' %}">قیمت‌ها</a>
                     <a class="nav-link" href="about.html">درباره ما</a>
                     <a class="nav-link" href="faq.html">سوالات متداول</a>
                     <a class="nav-link" href="contact.html">تماس با ما</a>
@@ -36,8 +36,8 @@
             </div>
             <div id="mobileNav" class="md:hidden hidden pb-4">
                 <div class="grid gap-2 text-sm">
-                    <a class="nav-link py-2" href="index.html">خانه</a>
-                    <a class="nav-link py-2" href="pricing.html">قیمت‌ها</a>
+                    <a class="nav-link py-2" href="{% url 'home' %}">خانه</a>
+                    <a class="nav-link py-2" href="{% url 'pricing' %}">قیمت‌ها</a>
                     <a class="nav-link py-2" href="about.html">درباره ما</a>
                     <a class="nav-link py-2" href="faq.html">سوالات متداول</a>
                     <a class="nav-link py-2" href="contact.html">تماس با ما</a>

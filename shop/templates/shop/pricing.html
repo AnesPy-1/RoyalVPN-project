@@ -2,50 +2,75 @@
 
 {% block page_title %} رویال وی‌پی‌ان - قیمت‌ها {% endblock %}
 
-
 {% block page_content %}
 
+<main class="flex-1">
+  <section class="container mx-auto px-4 pt-12 pb-6 md:pt-16 md:pb-10">
+    <div class="text-center max-w-2xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-extrabold">پلن مناسب خود را انتخاب کنید</h1>
+      <p class="mt-3 text-slate-300">قیمت‌گذاری ساده با امکانات قدرتمند. هر زمان بخواهید قابل لغو.</p>
+    </div>
 
-  <main class="flex-1">
-    <section class="container mx-auto px-4 pt-12 pb-6 md:pt-16 md:pb-10">
-      <div class="text-center max-w-2xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-extrabold">پلن مناسب خود را انتخاب کنید</h1>
-        <p class="mt-3 text-slate-300">قیمت‌گذاری ساده با امکانات قدرتمند. هر زمان بخواهید قابل لغو.</p>
-      </div>
+    <div class="mt-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {% for product in products %}
+      <div class="relative plan-card {% if product.is_special %} featured border-blue-500/60 shadow-xl {% endif %}">
 
-      <div class="mt-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {% for product in products %}
-        <div class="plan-card {% if product.is_special %} featured border-blue-500/60 {% endif %}">
-          {% if product.is_special %}
-          <div class="ribbon">محبوب</div>
-          {% endif %}
-          <h3 class="plan-name">{{ product.name }}</h3>
-          {% if product.time_limit == '0' %}
-          <p class="plan-price">لایف تایم</p>
-          {% else %}
-          <p class="plan-price">{{ product.time_limit }}</p>
-          {% endif %}
-          <ul class="plan-list">
-            {% if product.traffic_limit == '0' %}
-            <li><span class="check"></span> ترافیک نامحدود</li>
-            {% else %}
-            <li><span class="check"></span> {{ product.traffic_limit }}</li>
-            {% endif %}
-            {% if product.device_connections_limit == '0' %}
-            <li><span class="check"></span> کاربر نامحدود</li>
-            {% else %}
-            <li><span class="check"></span> {{ product.device_connections_limit }}</li>
-            {% endif %}
-            <li><span class="check"></span> {{ product.feature1 }}</li>
-            <li><span class="check"></span> {{ product.feature2 }}</li>
-            <li><span class="check"></span> {{ product.feature3 }}</li>
-          </ul>
-          <button class="btn-primary w-full">'>افزودن به سبد</button>
+        {% if product.discount %}
+        <div class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+          {{ product.discount }}% تخفیف
         </div>
-        {% endfor %}
-      </div>
-    </section>
-  </main>
+        {% endif %}
 
+        {% if product.is_special %}
+        <div class="ribbon">محبوب</div>
+        {% endif %}
+
+        <h3 class="plan-name mt-6">{{ product.name }}</h3>
+
+        <div class="mt-2 mb-4">
+          {% if product.discount %}
+          <p class="text-slate-400 line-through text-sm">{{ product.price }} تومان</p>
+          {% endif %}
+          <p class="plan-price text-2xl font-extrabold text-green-400">{{ product.get_final_price }} تومان</p>
+        </div>
+
+        <!-- مدت زمان -->
+        {% if product.time_limit == '0' %}
+          <p class="text-slate-300">لایف تایم</p>
+        {% else %}
+          <p class="text-slate-300">{{ product.time_limit }}</p>
+        {% endif %}
+
+        <!-- امکانات -->
+        <ul class="plan-list mt-4">
+          {% if product.traffic_limit == '0' %}
+            <li><span class="check"></span> ترافیک نامحدود</li>
+          {% else %}
+            <li><span class="check"></span> {{ product.traffic_limit }} گیگابایت</li>
+          {% endif %}
+
+          {% if product.device_connections_limit == '0' %}
+            <li><span class="check"></span> کاربر نامحدود</li>
+          {% else %}
+            <li><span class="check"></span> {{ product.device_connections_limit }} کاربر همزمان</li>
+          {% endif %}
+          {% if product.feature1 %}
+          <li><span class="check"></span> {{ product.feature1 }}</li>
+          {% endif %}
+          {% if product.feature2 %}
+          <li><span class="check"></span> {{ product.feature2 }}</li>
+          {% endif %}
+          {% if product.feature2 %}
+          <li><span class="check"></span> {{ product.feature3 }}</li>
+          {% endif %}
+        </ul>
+
+        <!-- دکمه -->
+        <button class="btn-primary w-full mt-6">افزودن به سبد</button>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
 
 {% endblock %}
