@@ -39,3 +39,6 @@ def get_test(request):
 def pricing_view(request):
     products = Product.objects.all()
     return render(request, 'shop/pricing.html', context={'products':products})
+
+def about_us_view(request):
+    return render(request, 'shop/about.html')
