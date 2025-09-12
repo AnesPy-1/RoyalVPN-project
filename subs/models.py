@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from datetime import timedelta
 
 
 class SubscriptionLinks(models.Model):
@@ -9,18 +8,15 @@ class SubscriptionLinks(models.Model):
         TEST = 'test', "test"
         SUB = 'sub', 'Subscription'
 
-    plan_type = models.CharField(max_length=10, choices=TypeChoices.choices)
-    name = models.CharField(max_length=155)
+    plan_type = models.CharField(max_length=10, choices=TypeChoices.choices, default=TypeChoices.SUB)
     sub_link = models.CharField(max_length=255)
     day_limit = models.IntegerField(null=True, blank=True)
-    data_limit = models.CharField(null=True, blank=True)
-    traffic_limit = models.IntegerField()
+    traffic_limit = models.IntegerField(null=True, blank=True)
     price = models.PositiveIntegerField()
     is_used = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
-
+        return self.sub_link
 
 class Subscriptions(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='user_subscriptions')
