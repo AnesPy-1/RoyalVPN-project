@@ -14,4 +14,11 @@ class Product(models.Model):
         return self.name
 
 
+class Comment(models.Model):
+    display_name = models.CharField(max_length=55)
+    user_profile = models.ImageField(upload_to='comments/')
+    user_city = models.CharField(max_length=55)
+    text = models.TextField()
 
+    def __str__(self):
+        return self.text
