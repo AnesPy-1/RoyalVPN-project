@@ -99,93 +99,18 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                     <!-- Testimonial -->
+                    {% for comment in comments %}
                     <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
                         <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=11" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
+                            <img src="{{ comment.user_profile.url }}" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
                             <div>
-                                <div class="font-semibold text-slate-200">علی</div>
-                                <div class="text-xs text-slate-400">تهران</div>
+                                <div class="font-semibold text-slate-200">{{ comment.display_name }}</div>
+                                <div class="text-xs text-slate-400">{{ comment.user_city }}</div>
                             </div>
                         </div>
-                        <p class="text-slate-300">«اتصالش خیلی سریعه، مخصوصا برای استریم. واقعا عالیه.»</p>
+                        <p class="text-slate-300">«{{ comment.text }}»</p>
                     </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=22" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">سارا</div>
-                                <div class="text-xs text-slate-400">شیراز</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«روی همه دستگاهام راحت وصل شدم. خیلی ساده و کاربرپسند.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=33" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">مهدی</div>
-                                <div class="text-xs text-slate-400">مشهد</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«پشتیبانی واقعا سریع جواب میده. حس امنیت دارم.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=44" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">نرگس</div>
-                                <div class="text-xs text-slate-400">اصفهان</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«هیچوقت قطعی نداشتم. عالی برای کارای دانشگاهی.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=55" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">امیر</div>
-                                <div class="text-xs text-slate-400">تبریز</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«برای بازی آنلاین خیلی خوبه، پینگ پایین داره.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=66" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">فاطمه</div>
-                                <div class="text-xs text-slate-400">کرج</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«تنوع سرورها خیلی خوبه، همیشه سریع‌ترینشون در دسترسه.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=77" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">رضا</div>
-                                <div class="text-xs text-slate-400">آلمان</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«خیلی مطمئنه، برای کار شرکتی ازش استفاده می‌کنم.»</p>
-                    </div>
-
-                    <div class="rounded-xl bg-slate-800/60 p-6 border border-white/10 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://i.pravatar.cc/100?img=88" alt="عکس کاربر" class="w-10 h-10 rounded-full border border-white/10">
-                            <div>
-                                <div class="font-semibold text-slate-200">مونا</div>
-                                <div class="text-xs text-slate-400">ترکیه</div>
-                            </div>
-                        </div>
-                        <p class="text-slate-300">«کیفیت عالی با قیمت مناسب، واقعا ارزششو داره.»</p>
-                    </div>
+                    {% endfor %}
 
                 </div>
             </div>
