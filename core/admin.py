@@ -1,7 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from .models import *
+
+
+class AnswersInline(admin.TabularInline):
+    model = Answer
+    extra = 1
+    max_num = 1
+
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -19,3 +26,21 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('phone', 'password1', 'password2'),
         }),
     )
+
+
+@admin.register(SiteSettings)
+class SiteSettings(admin.ModelAdmin):
+    list_display = [
+        'site_name1',
+        'site_name2',
+    ]
+
+
+@admin.register(FrequentlyAskedQuestions)
+class FrequentlyAskedQuestionsAdmin(admin.ModelAdmin):
+    list_display = [
+        'question',
+    ]
+    inlines = [
+        AnswersInline,
+    ]

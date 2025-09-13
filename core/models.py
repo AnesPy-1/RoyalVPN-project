@@ -21,6 +21,7 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
         return self.create_user(phone, password, **extra_fields)
 
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, null=True, blank=True)
     phone = models.CharField(max_length=32, unique=True)
@@ -60,6 +61,7 @@ class FrequentlyAskedQuestions(models.Model):
     question = models.CharField(max_length=55)
 
 class Answer(models.Model):
+    question = models.ForeignKey(FrequentlyAskedQuestions, on_delete=models.PROTECT, related_name='answers')
     answer = models.CharField(max_length=55)
 
 
