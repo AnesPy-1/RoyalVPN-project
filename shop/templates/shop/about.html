@@ -1,7 +1,7 @@
 {% extends '_base.html' %}
 
 
-{% block page_title %}رویال وی‌پی‌ان - درباره ما {% endblock %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }}- درباره ما {% endblock %}
 
 
 {% block page_content %}
@@ -9,8 +9,8 @@
 
   <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
     <div class="max-w-3xl">
-      <h1 class="text-3xl md:text-5xl font-extrabold">درباره رویال وی‌پی‌ان</h1>
-      <p class="mt-4 text-slate-300">رویال وی‌پی‌ان با یک هدف شکل گرفت: اینترنتی باز، خصوصی و امن برای همه. ما شبکه‌ای جهانی با کارایی بالا را اداره می‌کنیم و به بالاترین استانداردهای حریم خصوصی پایبندیم.</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold">درباره {{ site_context.site_name1 }} {{ site_context.site_name2 }}</h1>
+      <p class="mt-4 text-slate-300"> {{ site_context.site_name1 }} {{ site_context.site_name2 }} با یک هدف شکل گرفت: اینترنتی باز، خصوصی و امن برای همه. ما شبکه‌ای جهانی با کارایی بالا را اداره می‌کنیم و به بالاترین استانداردهای حریم خصوصی پایبندیم.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-4">
         <div class="stat">
           <div class="stat-number">{{ site_context.established_year_for_about_us }}</div>

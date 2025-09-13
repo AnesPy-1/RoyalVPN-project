@@ -45,7 +45,7 @@ class SiteSettings(models.Model):
     up_time = models.CharField(max_length=55)
     countries_count = models.CharField(max_length=55)
     servers_count = models.CharField(max_length=55)
-
+    footer_text = models.CharField(max_length=155)
 
     users_count_for_about_us = models.CharField(max_length=55)
     established_year_for_about_us = models.CharField(max_length=55)
