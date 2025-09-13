@@ -13,24 +13,32 @@
       <p class="mt-4 text-slate-300">رویال وی‌پی‌ان با یک هدف شکل گرفت: اینترنتی باز، خصوصی و امن برای همه. ما شبکه‌ای جهانی با کارایی بالا را اداره می‌کنیم و به بالاترین استانداردهای حریم خصوصی پایبندیم.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-4">
         <div class="stat">
-          <div class="stat-number">۲۰۱۸</div>
+          <div class="stat-number">{{ site_context.established_year_for_about_us }}</div>
           <div class="stat-label">سال تأسیس</div>
         </div>
         <div class="stat">
-          <div class="stat-number">۷۵+</div>
+          <div class="stat-number">{{ site_context.countries_count }}+</div>
           <div class="stat-label">کشور</div>
         </div>
         <div class="stat">
-          <div class="stat-number">۱میلیون+</div>
+          <div class="stat-number">{{ site_context.users_count_for_about_us }}+</div>
           <div class="stat-label">کاربر</div>
         </div>
       </div>
       <h2 class="mt-10 text-2xl font-bold">اصول ما</h2>
       <ul class="mt-3 grid md:grid-cols-2 gap-3 text-slate-300">
-        <li class="flex items-center gap-2"><span class="check"></span> اولویت با حریم خصوصی و بدون لاگ</li>
-        <li class="flex items-center gap-2"><span class="check"></span> امنیت پیش‌فرض</li>
-        <li class="flex items-center gap-2"><span class="check"></span> شفافیت در سیاست‌ها</li>
-        <li class="flex items-center gap-2"><span class="check"></span> پشتیبانی انسانی ۲۴/۷</li>
+        {% if site_context.feature1_for_about_us %}
+        <li class="flex items-center gap-2"><span class="check"></span> {{ site_context.feature1_for_about_us }}</li>
+        {% endif %}
+        {% if site_context.feature2_for_about_us %}
+        <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature2_for_about_us }}</li>
+        {% endif %}
+        {% if site_context.feature3_for_about_us %}
+        <li class="flex items-center gap-2"><span class="check"></span> {{ site_context.feature3_for_about_us }}</li>
+        {% endif %}
+        {% if site_context.feature4_for_about_us %}
+        <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature4_for_about_us }}</li>
+        {% endif %}
       </ul>
     </div>
   </main>

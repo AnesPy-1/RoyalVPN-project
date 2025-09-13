@@ -41,13 +41,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class SiteSettings(models.Model):
     site_name1 = models.CharField(max_length=55)
     site_name2 = models.CharField(max_length=55)
-    site_logo = models.ImageField(upload_to='logo/')
+    site_logo = models.URLField()
     up_time = models.CharField(max_length=55)
     countries_count = models.CharField(max_length=55)
     servers_count = models.CharField(max_length=55)
 
-    footer_text = models.CharField(max_length=155)
-    footer_developer_name_text = models.CharField(max_length=55)
 
     users_count_for_about_us = models.CharField(max_length=55)
     established_year_for_about_us = models.CharField(max_length=55)
