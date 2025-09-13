@@ -47,3 +47,19 @@ class SiteSettings(models.Model):
 
     footer_text = models.CharField(max_length=155)
     footer_developer_name_text = models.CharField(max_length=55)
+
+    users_count_for_about_us = models.CharField(max_length=55)
+    established_year_for_about_us = models.CharField(max_length=55)
+    feature1_for_about_us = models.CharField(max_length=55)
+    feature2_for_about_us = models.CharField(max_length=55)
+    feature3_for_about_us = models.CharField(max_length=55)
+    feature4_for_about_us = models.CharField(max_length=55)
+
+
+class FrequentlyAskedQuestions(models.Model):
+    question = models.CharField(max_length=55)
+
+class Answer(models.Model):
+    answer = models.CharField(max_length=55)
+
+
