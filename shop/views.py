@@ -42,3 +42,11 @@ def pricing_view(request):
 
 def about_us_view(request):
     return render(request, 'shop/about.html')
+
+# Frequently Asked Questions
+
+def faq_view(request):
+    return render(request, 'shop/faq.html')
+
+def contact_view(request):
+    return render(request, 'shop/contact.html')
