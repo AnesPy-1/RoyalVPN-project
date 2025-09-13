@@ -35,3 +35,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+
+class SiteSettings(models.Model):
+    site_name1 = models.CharField(max_length=55)
+    site_name2 = models.CharField(max_length=55)
+    site_logo = models.ImageField(upload_to='logo/')
+    up_time = models.CharField(max_length=55)
+    countries_count = models.CharField(max_length=55)
+    servers_count = models.CharField(max_length=55)
+
+    footer_text = models.CharField(max_length=155)
+    footer_developer_name_text = models.CharField(max_length=55)

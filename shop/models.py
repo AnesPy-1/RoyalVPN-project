@@ -13,7 +13,13 @@ class Product(models.Model):
     traffic_limit = models.CharField(max_length=155, help_text="unlimited: 0")
     device_connections_limit = models.CharField(max_length=155, help_text="unlimited: 0")
     price = models.PositiveIntegerField()
-    discount = models.ForeignKey(Discount, on_delete=models.PROTECT, related_name='discount_products')
+    discount = models.ForeignKey(
+        Discount,
+        on_delete=models.PROTECT,
+        related_name='discount_products',
+        null=True,
+        blank=True,
+    )
     feature1 = models.CharField(max_length=155, blank=True)
     feature2 = models.CharField(max_length=155, blank=True)
     feature3 = models.CharField(max_length=155, blank=True)
@@ -22,6 +28,7 @@ class Product(models.Model):
     def get_final_price(self):
         if self.discount:
             return max(self.price * (1 - self.discount.value / 100), 0)
+        return self.price
 
     def __str__(self):
         return self.name

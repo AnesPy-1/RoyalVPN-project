@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-
+{% load humanize %}
 {% block page_title %} رویال وی‌پی‌ان - قیمت‌ها {% endblock %}
 
 {% block page_content %}
@@ -17,7 +17,7 @@
 
         {% if product.discount %}
         <div class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-          {{ product.discount }}% تخفیف
+          {{ product.discount }} تخفیف
         </div>
         {% endif %}
 
@@ -29,9 +29,9 @@
 
         <div class="mt-2 mb-4">
           {% if product.discount %}
-          <p class="text-slate-400 line-through text-sm">{{ product.price }} تومان</p>
+          <p class="text-slate-400 line-through text-sm">{{ product.price|intcomma }} تومان</p>
           {% endif %}
-          <p class="plan-price text-2xl font-extrabold text-green-400">{{ product.get_final_price }} تومان</p>
+          <p class="plan-price text-2xl font-extrabold text-green-400">{{ product.get_final_price|floatformat:0|intcomma }} تومان</p>
         </div>
 
         <!-- مدت زمان -->
