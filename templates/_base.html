@@ -25,8 +25,8 @@
                 <nav id="mainNav" class="hidden md:flex items-center gap-6">
                     <a class="nav-link" href="{% url 'home' %}">خانه</a>
                     <a class="nav-link" href="{% url 'pricing' %}">قیمت‌ها</a>
-                    <a class="nav-link" href="about.html">درباره ما</a>
-                    <a class="nav-link" href="faq.html">سوالات متداول</a>
+                    <a class="nav-link" href="{% url 'about' %}">درباره ما</a>
+                    <a class="nav-link" href="{% url 'faq' %}">سوالات متداول</a>
                     <a class="nav-link" href="{% url 'contact' %}">تماس با ما</a>
                     <a class="relative group" href="cart.html" aria-label="سبد خرید">
                         <svg class="h-6 w-6 text-slate-300 group-hover:text-white transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/></svg>
@@ -38,9 +38,9 @@
                 <div class="grid gap-2 text-sm">
                     <a class="nav-link py-2" href="{% url 'home' %}">خانه</a>
                     <a class="nav-link py-2" href="{% url 'pricing' %}">قیمت‌ها</a>
-                    <a class="nav-link py-2" href="about.html">درباره ما</a>
-                    <a class="nav-link py-2" href="faq.html">سوالات متداول</a>
-                    <a class="nav-link py-2" href="contact.html">تماس با ما</a>
+                    <a class="nav-link py-2" href="{% url 'about' %}">درباره ما</a>
+                    <a class="nav-link py-2" href="{% url 'faq' %}">سوالات متداول</a>
+                    <a class="nav-link py-2" href="{% url 'contact' %}">تماس با ما</a>
                     <a class="nav-link py-2" href="cart.html">سبد خرید</a>
                 </div>
             </div>
