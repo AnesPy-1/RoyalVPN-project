@@ -14,6 +14,9 @@ class OrderAdmin(admin.ModelAdmin):
         'phone_number',
         'name',
     ]
+    list_filter = [
+        'status'
+    ]
     search_fields = [
         'id',
         'user',

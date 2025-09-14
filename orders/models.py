@@ -5,9 +5,15 @@ from shop.models import Product
 
 
 class Order(models.Model):
+    class OrderStatus(models.TextChoices):
+        PENDING_PAYMENT = 'pending_payment', 'Pending Payment'
+        PAID = 'paid', 'Paid'
+        CANCELLED = 'cancelled', 'Cancelled'
+
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_orders')
     phone_number = models.CharField(max_length=55)
     name = models.CharField(max_length=155)
+    status = models.CharField(max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
