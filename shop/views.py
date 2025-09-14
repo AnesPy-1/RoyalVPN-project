@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from subs.models import SubscriptionLinks, Subscriptions
 from django.contrib import messages
@@ -8,7 +9,7 @@ def home_view(request):
     comments = Comment.objects.all()[:9]
     return render(request, 'shop/home.html', context={'comments':comments})
 
-
+#@login_required
 def get_test(request):
     user = request.user
     user_exist_subscription = Subscriptions.objects.filter(user=user, is_test=True)
