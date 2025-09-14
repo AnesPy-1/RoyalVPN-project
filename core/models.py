@@ -54,6 +54,10 @@ class SiteSettings(models.Model):
     feature3_for_about_us = models.CharField(max_length=55)
     feature4_for_about_us = models.CharField(max_length=55)
 
+    telegram_support_id_link = models.URLField()
+    telegram_Channel_id_link = models.URLField()
+    telegram_bot_id_link = models.URLField()
+
 
 class FrequentlyAskedQuestions(models.Model):
     question = models.CharField(max_length=55)

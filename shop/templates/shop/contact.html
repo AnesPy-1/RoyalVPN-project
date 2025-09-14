@@ -1,37 +1,28 @@
 {% extends '_base.html' %}
 
-
 {% block page_title %} {{ site_context.site_name1 }} {{ site_context.site_name2 }} - تماس با ما{% endblock %}
-
 
 {% block page_content %}
 
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
+  <div class="max-w-xl mx-auto text-center">
+    <h1 class="text-3xl md:text-5xl font-extrabold">تماس با ما</h1>
+    <p class="mt-2 text-slate-300">برای پشتیبانی یا اطلاعات بیشتر، از طریق گزینه‌های زیر اقدام کنید.</p>
 
-  <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
-    <div class="max-w-2xl">
-      <h1 class="text-3xl md:text-5xl font-extrabold">تماس با ما</h1>
-      <p class="mt-2 text-slate-300">سوالی دارید؟ تیم ما ۲۴/۷ پاسخگوی شماست.</p>
-      <form id="contactForm" class="mt-6 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="label">نام</label>
-            <input type="text" class="input" id="contactName" placeholder="نام شما" required />
-          </div>
-          <div>
-            <label class="label">ایمیل</label>
-            <input type="email" class="input" id="contactEmail" placeholder="you@email.com" required />
-          </div>
-        </div>
-        <div>
-          <label class="label">پیام</label>
-          <textarea class="input min-h-[140px]" id="contactMessage" placeholder="پیام خود را بنویسید..." required></textarea>
-        </div>
-        <button class="btn-primary w-max" type="submit">ارسال پیام</button>
-        <p id="contactMsg" class="text-sm text-emerald-400 hidden">سپاس! به‌زودی با شما تماس می‌گیریم.</p>
-      </form>
+    <div class="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
+      <a href="{{ site_context.telegram_support_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+        پشتیبانی تلگرام
+      </a>
+
+      <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition">
+        کانال ما
+      </a>
+
+      <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
+        ربات ما
+      </a>
     </div>
-  </main>
-
-
+  </div>
+</main>
 
 {% endblock %}
