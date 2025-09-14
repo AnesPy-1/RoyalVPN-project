@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - سبد خرید{% endblock %}
+
+{% block page_content %}
+
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16" dir="rtl">
+  <h1 class="text-3xl md:text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">
+    سبد خرید شما
+  </h1>
+
+  <div class="grid lg:grid-cols-3 gap-6">
+    
+    <!-- 🟦 ستون آیتم‌ها -->
+    <div class="lg:col-span-2 space-y-4">
+
+      <!-- آیتم ۱ -->
+      <div class="flex items-center justify-between rounded-lg bg-white/5 p-4">
+        <div class="flex items-center gap-3">
+          <div>
+            <p class="font-semibold">محصول تستی ۱</p>
+            <p class="text-sm text-slate-400">تعداد: ۲</p>
+          </div>
+        </div>
+        <p class="font-bold">$50</p>
+      </div>
+
+    </div>
+
+    <!-- 🟪 ستون جمع کل -->
+    <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5">
+      <div class="flex items-center justify-between">
+        <p class="text-slate-300">جمع جزء</p>
+        <p class="font-semibold">$150</p>
+      </div>
+      <div class="mt-2 flex items-center justify-between text-sm text-slate-400">
+        <p>مالیات</p>
+        <p>$0</p>
+      </div>
+      <div class="mt-3 border-t border-white/10 pt-3 flex items-center justify-between">
+        <p class="font-semibold">مبلغ نهایی</p>
+        <p class="font-bold">$150</p>
+      </div>
+      <a href="" class="block text-center mt-4 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white font-semibold hover:opacity-90 transition">
+        ادامه فرایند خرید
+      </a>
+    </aside>
+  </div>
+</main>
+
+{% endblock %}
