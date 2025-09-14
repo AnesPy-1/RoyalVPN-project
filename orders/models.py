@@ -13,6 +13,7 @@ class Order(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_orders')
     phone_number = models.CharField(max_length=55)
     name = models.CharField(max_length=155)
+    telegram_id = models.CharField(max_length=55, blank=True)
     status = models.CharField(max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
