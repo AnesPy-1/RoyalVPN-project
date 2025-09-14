@@ -23,6 +23,8 @@ class Cart(models.Model):
     def get_cart_final_price(self):
         return sum([item.product.get_final_price() for item in self.items.select_related('product')])
 
+    def cart_total_discount(self):
+        return int(self.get_cart_old_total() - self.get_cart_final_price())
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
