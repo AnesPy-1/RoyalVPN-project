@@ -56,17 +56,26 @@
           {% endif %}
           {% if product.feature1 %}
           <li><span class="check"></span> {{ product.feature1 }}</li>
+          {% else %}
+          <li><span class="check"></span>  پایداری بالا</li>
           {% endif %}
           {% if product.feature2 %}
           <li><span class="check"></span> {{ product.feature2 }}</li>
+          {% else %}
+          <li><span class="check"></span>  10 سرور+</li>
           {% endif %}
           {% if product.feature2 %}
           <li><span class="check"></span> {{ product.feature3 }}</li>
+          {% else %}
+          <li><span class="check"></span> پشتیبانی 24/7</li>
           {% endif %}
         </ul>
 
         <!-- دکمه -->
+        <form action="{% url 'cart-add' product.id %}" method="post">
+          {% csrf_token %}
         <button class="btn-primary w-full mt-6">افزودن به سبد</button>
+          </form>
       </div>
       {% endfor %}
     </div>
