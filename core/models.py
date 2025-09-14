@@ -60,10 +60,10 @@ class SiteSettings(models.Model):
 
 
 class FrequentlyAskedQuestions(models.Model):
-    question = models.CharField(max_length=55)
+    question = models.CharField(max_length=255)
 
 class Answer(models.Model):
     question = models.ForeignKey(FrequentlyAskedQuestions, on_delete=models.PROTECT, related_name='answers')
-    answer = models.CharField(max_length=55)
+    answer = models.CharField(max_length=255)
 
 

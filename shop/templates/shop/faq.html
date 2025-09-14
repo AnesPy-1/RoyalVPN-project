@@ -10,22 +10,14 @@
   <main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-3xl">
     <h1 class="text-3xl md:text-5xl font-extrabold">سوالات متداول</h1>
     <div class="mt-6 divide-y divide-white/10 border border-white/10 rounded-xl overflow-hidden bg-white/5">
+      {% for q in faqs %}
       <details class="faq">
-        <summary>آیا لاگ ذخیره می‌کنید؟</summary>
-        <p>خیر. رویال وی‌پی‌ان به سیاست عدم ثبت لاگ پایبند است و توسط طرف سوم ممیزی می‌شود.</p>
+        <summary>{{ q.question }}</summary>
+        {% for answer in q.answers.all %}
+        <p>{{ answer.answer }}</p>
+        {% endfor %}
       </details>
-      <details class="faq">
-        <summary>آیا برای استریم مناسب است؟</summary>
-        <p>بله، پلن‌های حرفه‌ای و نامحدود شامل سرورهای بهینه‌شده برای استریم هستند.</p>
-      </details>
-      <details class="faq">
-        <summary>چند دستگاه می‌توانم متصل کنم؟</summary>
-        <p>پایه: ۱ دستگاه، حرفه‌ای: ۵ دستگاه، نامحدود: بدون محدودیت.</p>
-      </details>
-      <details class="faq">
-        <summary>آیا ضمانت بازگشت وجه دارید؟</summary>
-        <p>بله، ۷ روز ضمانت بازگشت وجه برای همه پلن‌ها وجود دارد.</p>
-      </details>
+      {% endfor %}
     </div>
   </main>
 

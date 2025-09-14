@@ -11,12 +11,21 @@ def home_view(request):
 
 def get_test(request):
     user = request.user
+    user_exist_subscription = Subscriptions.objects.filter(user=user, is_test=True)
 
-    if Subscriptions.objects.filter(user=user, is_test=True).exists():
+    if user_exist_subscription.exists():
+        user_exist_sub_link = Subscriptions.objects.filter(user=user, is_test=True).first().sub.sub_link
         messages.info(request, "شما قبلا اشتراک تست خود را دریافت کرده‌اید!")
-        return redirect('home')
+        return render(
+            request,
+            'shop/get_sub.html',
+            context={
+                'user_exist_sub_link': user_exist_sub_link,
+            }
+        )
 
     test_link = SubscriptionLinks.objects.filter(is_test=True, is_used=False).first()
+
     if test_link:
         test_link.is_used = True
         test_link.save()
@@ -30,7 +39,7 @@ def get_test(request):
             request,
             'shop/get_sub.html',
             context={
-                'test_sub':user_sub,
+                'test_link':test_link,
             }
         )
     messages.error(request, "هیچ اکانت تستی در دسترس نیست، لطفا با پشتیبانی در تماس باشید.")
