@@ -24,6 +24,8 @@ class Product(models.Model):
     feature2 = models.CharField(max_length=155, blank=True)
     feature3 = models.CharField(max_length=155, blank=True)
     is_special = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def get_final_price(self):
         if self.discount:
@@ -38,6 +40,8 @@ class Comment(models.Model):
     user_profile = models.ImageField(upload_to='comments/')
     user_city = models.CharField(max_length=55)
     text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.text

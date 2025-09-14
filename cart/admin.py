@@ -17,3 +17,5 @@ class CartAdmin(admin.ModelAdmin):
     inlines = [
         CartItemInline,
     ]
+    list_max_show_all = 30
+    list_per_page = 20

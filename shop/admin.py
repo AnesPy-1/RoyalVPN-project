@@ -18,8 +18,8 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = [
         'name',
     ]
-    list_per_page = 10
     list_max_show_all = 30
+    list_per_page = 20
 
 
 @admin.register(Comment)
@@ -29,8 +29,8 @@ class CommentAdmin(admin.ModelAdmin):
         'user_city',
         'text',
     ]
-    list_per_page = 10
     list_max_show_all = 30
+    list_per_page = 20
 
 
 @admin.register(Discount)
@@ -38,3 +38,5 @@ class DiscountAdmin(admin.ModelAdmin):
     list_display = [
         'value'
     ]
+    list_max_show_all = 30
+    list_per_page = 20
