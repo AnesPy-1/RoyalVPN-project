@@ -14,7 +14,8 @@ class OrderAdmin(admin.ModelAdmin):
         'user',
         'phone_number',
         'name',
-        'created_at'
+        'final_price',
+        'created_at',
     ]
     list_filter = [
         'status'
@@ -25,10 +26,10 @@ class OrderAdmin(admin.ModelAdmin):
         'name',
     ]
     ordering = [
-        'created_at',
+        '-created_at',
     ]
     autocomplete_fields = [
-        'user'
+        'user',
     ]
     list_max_show_all = 30
     list_per_page = 20

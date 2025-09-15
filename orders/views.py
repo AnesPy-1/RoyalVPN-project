@@ -22,6 +22,7 @@ def order_create_view(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.user = request.user
+            obj.final_price = cart.get_cart_final_price()
             obj.save()
 
             if not request.user.telegram_id:
