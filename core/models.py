@@ -31,6 +31,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_phone_verified = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
+    telegram_id = models.CharField(max_length=55, blank=True)
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []

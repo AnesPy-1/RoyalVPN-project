@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import *
-
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 class AnswersInline(admin.TabularInline):
     model = Answer
@@ -17,7 +17,7 @@ class CustomUserAdmin(UserAdmin):
     ordering = ['-date_joined']
     fieldsets = (
         (None, {'fields':('phone', 'password')}),
-        ('Personal', {'fields':('full_name', 'email')}),
+        ('Personal', {'fields':('full_name', 'email', 'telegram_id')}),
         ('Permissions', {'fields':('is_staff', 'is_superuser', 'is_phone_verified')})
     )
     add_fieldsets = (

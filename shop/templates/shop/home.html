@@ -18,7 +18,7 @@
                     <div>
                         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
                             اینترنت امن و پرسرعت با
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400"> رویال وی‌پی‌ان</span>
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400"> {{ site_context.site_name1 }} {{ site_context.site_name2 }}</span>
                         </h1>
                         <p class="mt-4 text-slate-300 text-lg md:text-xl">اتصال پایدار، عدم ثبت لاگ، شبکه جهانی و پشتیبانی ۲۴/۷. تنها با یک کلیک امن شوید.</p>
                         <div class="mt-6 flex flex-wrap gap-3">
@@ -56,7 +56,7 @@
                                 <li class="flex items-center gap-2"><span class="check"></span> عدم ثبت لاگ</li>
                                 <li class="flex items-center gap-2"><span class="check"></span> بهینه برای استریم</li>
                             </ul>
-                            <a href="{% url 'get-test' %}" class="btn-primary mt-6 w-full text-center">امتحان رویال وی‌پی‌ان</a>
+                            <a href="{% url 'get-test' %}" class="btn-primary mt-6 w-full text-center">امتحان {{ site_context.site_name1 }} {{site_context.site_name2 }}</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-2xl mx-auto mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">کاربرا چی میگن؟</h2>
-                    <p class="mt-3 text-slate-300">ببینید کاربران رویال وی‌پی‌ان چه تجربه‌ای داشتن.</p>
+                    <p class="mt-3 text-slate-300">ببینید کاربران {{ site_context.site_name1 }} {{ site_context.site_name2 }} چه تجربه‌ای داشتن.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -127,7 +127,7 @@
                         </div>
                         <div class="flex md:justify-start gap-3">
                             <a href="{% url 'pricing' %}" class="btn-primary">مشاهده پلن‌ها</a>
-                            <a href="about.html" class="btn-ghost">چرا رویال وی‌پی‌ان</a>
+                            <a href="about.html" class="btn-ghost">چرا {{ site_context.site_name1 }} {{ site_context.site_name2 }}</a>
                         </div>
                     </div>
                 </div>

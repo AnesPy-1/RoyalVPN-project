@@ -38,6 +38,7 @@ class OrderItem(models.Model):
     ):
         self.item_price = self.product.price
         self.item_final_price = self.product.get_final_price()
+        return super().save()
 
     def __str__(self):
-        return self.product
+        return f"item:{self.id}"

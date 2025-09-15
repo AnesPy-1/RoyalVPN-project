@@ -8,17 +8,25 @@
   <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
     <h1 class="text-3xl md:text-4xl font-extrabold mb-6">تسویه حساب</h1>
     <div class="grid lg:grid-cols-3 gap-6">
-      <form id="checkoutForm" class="lg:col-span-2 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
+      <form  action="{% url 'checkout' %}" method="post" class="lg:col-span-2 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
+        {% csrf_token %}
         <div class="grid md:grid-cols-3 gap-4">
           <div>
             <label class="label">شماره موبایل</label>
-            <input type="tel" id="phone" class="input" placeholder="۰۹xx xxx xxxx" required />
+            <input type="tel" name="{{ form.phone_number.name }}"  value="{{ user.phone }}"  id="phone" class="input" placeholder="۰۹xx xxx xxxx" required />
           </div>
           <div class="md:col-span-2">
             <label class="label">نام</label>
-            <input type="text" id="fullName" class="input" placeholder="نام شما" required />
+            <input type="text" name="{{ form.name.name }}" id="fullName" class="input" placeholder="نام شما" required />
           </div>
         </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="md:col-span-2">
+            <label class="label">آی‌دی تلگرام(اختیاری)</label>
+            <input type="text" name="{{ form.telegram_id.name }}" value="{{ user.telegram_id }}" id="telegram" class="input" placeholder="@username" />
+          </div>
+        </div>
+
         <br>
         <br>
         <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300 text-sm">
