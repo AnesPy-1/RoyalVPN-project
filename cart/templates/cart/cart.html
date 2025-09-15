@@ -76,15 +76,16 @@
     </div>
 
     <!-- ستون جمع و پرداخت -->
+    {% if cart.items.all %}
     <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5 mt-6 lg:mt-0 lg:w-80 lg:sticky lg:top-20">
       <div class="flex items-center justify-between mb-2">
         <p class="text-slate-300">جمع جزء</p>
         <p class="font-semibold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} تومان</p>
       </div>
-      <div class="flex items-center justify-between text-sm text-slate-400 mb-3">
-        <p>سود شما از خرید</p>
-        <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
-      </div>
+  <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
+    <p>سود شما از خرید</p>
+    <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
+  </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between mb-4">
         <p class="font-semibold">مبلغ نهایی</p>
         <p class="font-bold">{{ cart.get_cart_final_price|floatformat:0|intcomma }} تومان</p>
@@ -93,6 +94,7 @@
         ادامه فرایند خرید
       </a>
     </aside>
+    {% endif %}
   </div>
 </main>
 {% endblock %}
