@@ -14,6 +14,7 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=55)
     name = models.CharField(max_length=155)
     telegram_id = models.CharField(max_length=55, blank=True)
+    final_price = models.PositiveIntegerField()
     status = models.CharField(max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
