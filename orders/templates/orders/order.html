@@ -32,7 +32,9 @@
         <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300 text-sm">
           پس از تایید اطلاعات، به صفحه پرداخت منتقل خواهید شد.
         </div>
-        <button class="btn-primary mt-2 w-full md:w-max" type="submit">ادامه به پرداخت</button>
+      <a href="{% url 'payment' %}" class="btn-primary mt-2 w-full md:w-max inline-block text-center">
+          ادامه به پرداخت
+      </a>
         <p id="checkoutMsg" class="text-sm text-emerald-400 hidden">در حال انتقال به صفحه پرداخت...</p>
       </form>
 

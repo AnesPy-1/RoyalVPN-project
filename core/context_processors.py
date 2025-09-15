@@ -12,5 +12,4 @@ def site_context(request):
         if not request.session.session_key:
             request.session.create()
         cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
-    faqs = FrequentlyAskedQuestions.objects.prefetch_related('answers')
-    return {'site_context':site_settings, 'cart':cart, 'faqs':faqs}
+    return {'site_context':site_settings, 'cart':cart}

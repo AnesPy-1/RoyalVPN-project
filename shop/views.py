@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from subs.models import SubscriptionLinks, Subscriptions
 from django.contrib import messages
 
+from core.models import FrequentlyAskedQuestions
 from .models import Product, Comment
 
 def home_view(request):
@@ -56,7 +57,8 @@ def about_us_view(request):
 # Frequently Asked Questions
 
 def faq_view(request):
-    return render(request, 'shop/faq.html')
+    faqs = FrequentlyAskedQuestions.objects.prefetch_related('answers')
+    return render(request, 'shop/faq.html', context={'faqs':faqs})
 
 def contact_view(request):
     return render(request, 'shop/contact.html')
