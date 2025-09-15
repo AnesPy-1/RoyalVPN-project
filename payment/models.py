@@ -12,4 +12,4 @@ class Payment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"user {self.user.name} paid {self.total_price} at {self.created_at}"
+        return f"user {self.user.full_name} paid {self.total_price} at {self.created_at}"

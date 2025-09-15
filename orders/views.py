@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 from cart.models import Cart, CartItem
 from .forms import OrderCreationForm
@@ -15,6 +15,8 @@ def order_create_view(request):
         if not request.session.session_key:
             request.session.create()
         cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
+    if not cart.items.all():
+        return redirect('pricing')
 
     if request.method == 'POST':
         form = OrderCreationForm(request.POST)
@@ -39,7 +41,7 @@ def order_create_view(request):
                 )
             cart.delete()
             messages.success(request, "سفارش شما آماده پرداخت است")
-            return redirect('home')
+            return redirect('payment', obj.id)
     else:
         form = OrderCreationForm()
 
