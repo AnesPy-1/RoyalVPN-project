@@ -1,8 +1,24 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+from orders.models import Order
+from payment.models import Payment
+from subs.models import Subscriptions
 from .models import *
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+
+class PaymentsInline(admin.TabularInline):
+    model = Payment
+    extra = 0
+
+
+class SubscriptionInline(admin.TabularInline):
+    model = Subscriptions
+    extra = 0
+
+
+class OrdersInline(admin.TabularInline):
+    model = Order
+    extra = 0
 
 class AnswersInline(admin.TabularInline):
     model = Answer
@@ -26,6 +42,11 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('phone', 'password1', 'password2'),
         }),
     )
+    inlines = [
+        PaymentsInline,
+        SubscriptionInline,
+        OrdersInline,
+    ]
 
 
 @admin.register(SiteSettings)

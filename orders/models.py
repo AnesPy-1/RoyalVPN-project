@@ -1,24 +1,34 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.text import gettext_lazy as _
 
 from shop.models import Product
 
 
 class Order(models.Model):
     class OrderStatus(models.TextChoices):
-        PENDING_PAYMENT = 'pending_payment', 'Pending Payment'
-        PAID = 'paid', 'Paid'
-        CANCELLED = 'cancelled', 'Cancelled'
-        FAILED = "failed", "Failed"
+        PENDING_PAYMENT = 'pending_payment', _('Pending Payment')
+        PAID = 'paid', _('Paid')
+        CANCELLED = 'cancelled', _('Cancelled')
+        FAILED = "failed", _("Failed")
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_orders')
-    phone_number = models.CharField(max_length=55)
-    name = models.CharField(max_length=155)
-    telegram_id = models.CharField(max_length=55, blank=True)
-    final_price = models.PositiveIntegerField()
-    status = models.CharField(max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='user_orders',
+        verbose_name=_("user"),
+    )
+    phone_number = models.CharField(_("phone number"), max_length=55)
+    name = models.CharField(_("name"), max_length=155)
+    telegram_id = models.CharField(_("telegram_id"), max_length=55, blank=True)
+    final_price = models.PositiveIntegerField(_("final_price"))
+    status = models.CharField(_("status"), max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)
+    created_at = models.DateTimeField(_("created_at"),auto_now_add=True)
+    updated_at = models.DateTimeField(_("updated_at"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Order")
+        verbose_name_plural = _("Orders")
 
     def __str__(self):
         return f"order: {self.id} for {self.name}"
@@ -30,6 +40,10 @@ class OrderItem(models.Model):
     item_price = models.CharField(max_length=155)
     is_completed = models.BooleanField(default=False)
     item_final_price = models.CharField(max_length=155)
+
+    class Meta:
+        verbose_name = _("Order Items")
+        verbose_name_plural = _("Items")
 
     def save(
         self,
