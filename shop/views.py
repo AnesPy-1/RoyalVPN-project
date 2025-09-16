@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
+from orders.models import Order
+from payment.models import Payment
 from subs.models import SubscriptionLinks, Subscriptions
 from django.contrib import messages
 
@@ -16,7 +19,7 @@ def get_test(request):
     user_exist_subscription = Subscriptions.objects.filter(user=user, is_test=True)
 
     if user_exist_subscription.exists():
-        user_exist_sub_link = Subscriptions.objects.filter(user=user, is_test=True).first().sub.sub_link
+        user_exist_sub_link = Subscriptions.objects.filter(user=user, is_test=True).first()
         messages.info(request, "شما قبلا اشتراک تست خود را دریافت کرده‌اید!")
         return render(
             request,
@@ -62,3 +65,61 @@ def faq_view(request):
 
 def contact_view(request):
     return render(request, 'shop/contact.html')
+
+
+def get_sub(request, order_id, payment_id):
+    order = get_object_or_404(Order, pk=order_id)
+    payment = get_object_or_404(Payment, pk=payment_id)
+
+    created_subs = []
+
+    if order.status != Order.OrderStatus.PAID:
+        messages.error(request, "سفارش پرداخت نشده است.")
+        return redirect('home')
+    if order.user != request.user or payment.user != request.user:
+        messages.error(request, "خطا در اطلاعات ورودی")
+        return redirect('home')
+
+    if payment.is_used:
+        for item in payment.subs.all():
+            created_subs.append(item)
+
+        messages.error(request, "سفارش قبلا تحویل شده است.")
+        return render(request, "shop/get_sub.html", context={'user_exists_subscriptions': created_subs})
+
+
+    for item in order.items.all():
+        sub = SubscriptionLinks.objects.filter(
+            plan_type=SubscriptionLinks.TypeChoices.SUB,
+            day_limit=item.product.time_limit_NUM,
+            traffic_limit=item.product.traffic_limit,
+            is_test=False,
+            is_used=False,
+        ).first()
+        if sub:
+            user_sub = Subscriptions.objects.create(
+                user=request.user,
+                sub=sub,
+            )
+            created_subs.append(sub)
+            sub.is_used = True
+            sub.save()
+            payment.subs.add(user_sub)
+            payment.save()
+            item.is_completed = True
+            item.save()
+
+        else:
+            order.status = Order.OrderStatus.FAILED
+            messages.info(
+                request,
+                f"مشکل در ساخت اکانت برای سفارش شماره {order.id}، لطفا با پشتیبانی در تماس باشید."
+            )
+
+    if created_subs:
+        payment.is_used = True
+        payment.save()
+        messages.success(request, "اکانت شما آماده استفاده است.")
+        return render(request, "shop/get_sub.html", context={'user_subscriptions': created_subs})
+    else:
+        return redirect('home')

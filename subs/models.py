@@ -10,8 +10,8 @@ class SubscriptionLinks(models.Model):
 
     plan_type = models.CharField(max_length=10, choices=TypeChoices.choices, default=TypeChoices.SUB)
     sub_link = models.CharField(max_length=255)
-    day_limit = models.IntegerField(null=True, blank=True)
-    traffic_limit = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    day_limit = models.IntegerField(help_text="Unlimited=0")
+    traffic_limit = models.IntegerField()
     is_test = models.BooleanField(default=False)
     is_used = models.BooleanField(default=False)
 

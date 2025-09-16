@@ -10,7 +10,10 @@ class Discount(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=155)
     time_limit = models.CharField(max_length=155, help_text="unlimited: 0")
+    time_limit_NUM = models.IntegerField(help_text="unlimited: 0")
     traffic_limit = models.CharField(max_length=155, help_text="unlimited: 0")
+    traffic_limit_NUM = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+
     device_connections_limit = models.CharField(max_length=155, help_text="unlimited: 0")
     price = models.PositiveIntegerField()
     discount = models.ForeignKey(

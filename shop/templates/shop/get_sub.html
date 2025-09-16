@@ -8,23 +8,89 @@
 
 <main class="flex items-center justify-center min-h-screen p-4">
     <div class="max-w-md w-full bg-slate-800 rounded-2xl shadow-2xl p-6 border border-white/10">
+        {% if test_link %}
         <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
             <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
-                <a href="
-                     {% if test_link %}
+                <a href="{{ test_link }}" target="_blank" class="text-blue-400 hover:underline">
                     {{ test_link }}
-                    {% else %}
-                    {{ user_exist_sub_link }}
-                    {% endif %}" target="_blank" class="text-blue-400 hover:underline">
-                    {% if test_link %}
-                    {{ test_link }}
-                    {% else %}
-                    {{ user_exist_sub_link }}
-                    {% endif %}
                 </a>
+            {% if test_link.day_limit == '0' %}
+            <p> زمان:نامحدود</p>
+            {% else %}
+            <p> زمان: {{ test_link.day_limit }} روز</p>
+            {% endif %}
+            {% if test_link.traffic_limit == '0' %}
+            <p> حجم: نامحدود گیگ</p>
+            {% else %}
+            <p> حجم: {{ test_link.day_limit }} گیگ</p>
+            {% endif %}
             </p>
         </div>
-        {% if user_subscription %}
+        {% elif user_exist_sub_link %}
+                <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
+            <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
+                <a href="{{ user_exist_sub_link.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
+                    {{ user_exist_sub_link.sub.sub_link }}
+                </a>
+            {% if user_exist_sub_link.sub.day_limit == '0' %}
+            <p> زمان:نامحدود</p>
+            {% else %}
+            <p> زمان: {{ user_exist_sub_link.sub.day_limit }} روز</p>
+            {% endif %}
+            {% if user_exist_sub_link.sub.traffic_limit == '0' %}
+            <p> حجم: نامحدود گیگ</p>
+            {% else %}
+            <p> حجم: {{ user_exist_sub_link.sub.day_limit }} گیگ</p>
+            {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        {% if user_subscriptions %}
+        {% for sub in user_subscriptions %}
+        <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
+            <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
+                <a href="{{ sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
+                    {{ sub.sub_link }}
+                </a>
+            {% if sub.day_limit == '0' %}
+            <p> زمان:نامحدود</p>
+            {% else %}
+            <p> زمان: {{ sub.day_limit }} روز</p>
+            {% endif %}
+            {% if sub.traffic_limit == '0' %}
+            <p> حجم: نامحدود گیگ</p>
+            {% else %}
+            <p> حجم: {{ sub.day_limit }} گیگ</p>
+            {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+
+        {% elif user_exists_subscriptions %}
+                {% for sub in user_exists_subscriptions %}
+        <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
+            <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
+                <a href="{{ sub.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
+                    {{ sub.sub.sub_link }}
+                </a>
+            </p>
+            {% if sub.sub.day_limit == '0' %}
+            <p> زمان:نامحدود</p>
+            {% else %}
+            <p> زمان: {{ sub.sub.day_limit }} روز</p>
+            {% endif %}
+            {% if sub.sub.traffic_limit == '0' %}
+            <p> حجم: نامحدود گیگ</p>
+            {% else %}
+            <p> حجم: {{ sub.sub.day_limit }} گیگ</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        {% if user_subscriptions %}
         <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
                     <b>با تشکر از اعتماد شما،</b>
             این لینک برای استفاده از سرویس VPN شماست.
@@ -40,6 +106,14 @@
             سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
             در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
         </p>
+        {% elif user_exists_subscriptions %}
+        <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
+                    <b>کاربر گرامی شما قبلا یکبار این سفارش را دریافت کرده اید،</b>
+            این لینک قدیمی سرویس  تست VPN شماست و فقط در صورتی که اکانت منقضی نشده باشد قابل استفاده است.
+            کافیست روی لینک کلیک کنید تا وارد شوید.
+            سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
+            در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
+        </p>
         {% elif user_exist_sub_link %}
                 <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
                     <b>کاربر گرامی شما قبلا یکبار اکانت تست خود را دریافت کرده اید،</b>
@@ -49,11 +123,7 @@
             در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
         </p>
         {% endif %}
-              <a href="   {% if test_link %}
-                    {{ test_link }}
-                    {% else %}
-                    {{ user_exist_sub_link }}
-                    {% endif %}" class="mt-6 block w-full text-center bg-blue-500 hover:bg-blue-600 transition-colors text-white font-semibold py-2 rounded-lg">
+              <a href="" class="mt-6 block w-full text-center bg-blue-500 hover:bg-blue-600 transition-colors text-white font-semibold py-2 rounded-lg">
             ورود به پنل کاربری
         </a>
 

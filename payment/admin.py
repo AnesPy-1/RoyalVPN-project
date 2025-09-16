@@ -9,9 +9,13 @@ class PaymentAdmin(admin.ModelAdmin):
         'order',
         'user',
         'total_price',
-        'created_at'
+        'is_used',
+        'created_at',
     ]
     search_fields = ['user']
+    list_filter = [
+        'is_used',
+    ]
     ordering = [
         '-created_at'
     ]

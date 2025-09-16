@@ -8,6 +8,7 @@ urlpatterns = [
     path('pricing/', views.pricing_view, name='pricing'),
     path('about/', views.about_us_view, name='about'),
     path('faq/', views.faq_view, name='faq'),
-    path('contact/', views.contact_view, name='contact')
+    path('contact/', views.contact_view, name='contact'),
+    path('get-sub/<int:order_id>/<int:payment_id>/', views.get_sub, name='get-sub')
 
 ]

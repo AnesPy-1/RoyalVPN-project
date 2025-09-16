@@ -9,6 +9,7 @@ class Order(models.Model):
         PENDING_PAYMENT = 'pending_payment', 'Pending Payment'
         PAID = 'paid', 'Paid'
         CANCELLED = 'cancelled', 'Cancelled'
+        FAILED = "failed", "Failed"
 
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_orders')
     phone_number = models.CharField(max_length=55)
@@ -27,6 +28,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="+")
     item_price = models.CharField(max_length=155)
+    is_completed = models.BooleanField(default=False)
     item_final_price = models.CharField(max_length=155)
 
     def save(
