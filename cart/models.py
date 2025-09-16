@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.text import gettext_lazy as _
 
 from shop.models import Product
 
@@ -11,8 +12,9 @@ class Cart(models.Model):
         related_name='user_carts',
         null=True,
         blank=True,
+        verbose_name=_("user")
     )
-    session_key = models.CharField(max_length=55, blank=True)
+    session_key = models.CharField(_("session key"), max_length=55, blank=True)
 
     def __str__(self):
         return f"cart: {self.id}"
@@ -27,10 +29,20 @@ class Cart(models.Model):
         return int(self.get_cart_old_total() - self.get_cart_final_price())
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='+')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name='items',
+        verbose_name=_("cart")
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='+',
+        verbose_name=_("product")
+    )
+    created_at = models.DateTimeField(_("created_at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("updated_at"), auto_now=True)
 
     def __str__(self):
         return f"item: {self.id}"
