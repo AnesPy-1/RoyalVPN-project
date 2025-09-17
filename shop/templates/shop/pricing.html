@@ -1,14 +1,15 @@
 {% extends '_base.html' %}
 {% load humanize %}
-{% block page_title %} {{ site_context.site_name1 }} {{ site_context.site_name2 }}- قیمت‌ها {% endblock %}
+{% load i18n %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "Pricing" %}{% endblock %}
 
 {% block page_content %}
 
 <main class="flex-1">
   <section class="container mx-auto px-4 pt-12 pb-6 md:pt-16 md:pb-10">
     <div class="text-center max-w-2xl mx-auto">
-      <h1 class="text-3xl md:text-5xl font-extrabold">پلن مناسب خود را انتخاب کنید</h1>
-      <p class="mt-3 text-slate-300">قیمت‌گذاری ساده با امکانات قدرتمند. هر زمان بخواهید قابل لغو.</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold">{% trans "Choose Your Plan" %}</h1>
+      <p class="mt-3 text-slate-300">{% trans ".Simple pricing with powerful features. Cancel anytime" %}</p>
     </div>
 
     <div class="mt-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -17,28 +18,28 @@
 
         {% if product.discount %}
         <div class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-          {{ product.discount }} تخفیف
+          {{ product.discount }} {% trans 'Off' %}
         </div>
         {% endif %}
 
         {% if product.is_special %}
-        <div class="ribbon">محبوب</div>
+        <div class="ribbon">{% trans "Popular" %}</div>
         {% endif %}
 
         <h3 class="plan-name mt-6">{{ product.name }}</h3>
 
         <div class="mt-2 mb-4">
           {% if product.discount %}
-          <p class="text-slate-400 line-through text-sm">{{ product.price|intcomma }} تومان</p>
+          <p class="text-slate-400 line-through text-sm">{{ product.price|intcomma }} {% trans "Toman" %}</p>
           {% else %}
           <br>
           {% endif %}
-          <p class="plan-price text-2xl font-extrabold text-green-400">{{ product.get_final_price|floatformat:0|intcomma }} تومان</p>
+          <p class="plan-price text-2xl font-extrabold text-green-400"> {{ product.get_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
         </div>
 
         <!-- مدت زمان -->
         {% if product.time_limit == '0' %}
-          <p class="text-slate-300">لایف تایم</p>
+          <p class="text-slate-300">{% trans "Lifetime" %}</p>
         {% else %}
           <p class="text-slate-300">{{ product.time_limit }}</p>
         {% endif %}
@@ -46,38 +47,41 @@
         <!-- امکانات -->
         <ul class="plan-list mt-4">
           {% if product.traffic_limit == '0' %}
-            <li><span class="check"></span> ترافیک نامحدود</li>
+            <li><span class="check"></span> {% trans "Unlimited traffic" %}</li>
           {% else %}
-            <li><span class="check"></span> {{ product.traffic_limit }} گیگابایت</li>
+            <li><span class="check"></span> {{ product.traffic_limit }} {% trans "GB" %}</li>
           {% endif %}
 
           {% if product.device_connections_limit == '0' %}
-            <li><span class="check"></span> کاربر نامحدود</li>
+            <li><span class="check"></span> {% trans "Unlimited users" %}</li>
           {% else %}
-            <li><span class="check"></span> {{ product.device_connections_limit }} کاربر همزمان</li>
+            <li><span class="check"></span> {{ product.device_connections_limit }} {% trans "simultaneous users" %}</li>
           {% endif %}
+
           {% if product.feature1 %}
-          <li><span class="check"></span> {{ product.feature1 }}</li>
+            <li><span class="check"></span> {{ product.feature1 }}</li>
           {% else %}
-          <li><span class="check"></span>  پایداری بالا</li>
+            <li><span class="check"></span> {% trans "High stability" %}</li>
           {% endif %}
+
           {% if product.feature2 %}
-          <li><span class="check"></span> {{ product.feature2 }}</li>
+            <li><span class="check"></span> {{ product.feature2 }}</li>
           {% else %}
-          <li><span class="check"></span>  10 سرور+</li>
+            <li><span class="check"></span> {% trans "10+ servers" %}</li>
           {% endif %}
-          {% if product.feature2 %}
-          <li><span class="check"></span> {{ product.feature3 }}</li>
+
+          {% if product.feature3 %}
+            <li><span class="check"></span> {{ product.feature3 }}</li>
           {% else %}
-          <li><span class="check"></span> پشتیبانی 24/7</li>
+            <li><span class="check"></span> {% trans "24/7 support" %}</li>
           {% endif %}
         </ul>
 
         <!-- دکمه -->
         <form action="{% url 'cart-add' product.id %}" method="post">
           {% csrf_token %}
-        <button class="btn-primary w-full mt-6">افزودن به سبد</button>
-          </form>
+          <button class="btn-primary w-full mt-6">{% trans "Add to Cart" %}</button>
+        </form>
       </div>
       {% endfor %}
     </div>

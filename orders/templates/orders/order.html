@@ -1,90 +1,84 @@
 {% extends '_base.html' %}
 {% load humanize %}
-
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - ثبت سفارش{% endblock %}
+{% load i18n %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "Checkout" %}{% endblock %}
 
 {% block page_content %}
 
-  <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-6">تسویه حساب</h1>
-    <div class="grid lg:grid-cols-3 gap-6">
-      <form  action="{% url 'checkout' %}" method="post" class="lg:col-span-2 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
-        {% csrf_token %}
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="label">شماره موبایل</label>
-            <input type="tel" name="{{ form.phone_number.name }}"  value="{{ user.phone }}"  id="phone" class="input" placeholder="۰۹xx xxx xxxx" required />
-          </div>
-          <div class="md:col-span-2">
-            <label class="label">نام</label>
-            <input type="text" name="{{ form.name.name }}" id="fullName" class="input" placeholder="نام شما" required />
-          </div>
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
+  <h1 class="text-3xl md:text-4xl font-extrabold mb-6">{% trans "Checkout" %}</h1>
+  <div class="grid lg:grid-cols-3 gap-6">
+    <form action="{% url 'checkout' %}" method="post" class="lg:col-span-2 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
+      {% csrf_token %}
+      <div class="grid md:grid-cols-3 gap-4">
+        <div>
+          <label class="label">{% trans "Phone Number" %}</label>
+          <input type="tel" name="{{ form.phone_number.name }}" value="{{ user.phone }}" id="phone" class="input" placeholder="{% trans '09xx xxx xxxx' %}" required />
         </div>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="md:col-span-2">
-            <label class="label">آی‌دی تلگرام(اختیاری)</label>
-            <input type="text" name="{{ form.telegram_id.name }}" value="{{ user.telegram_id }}" id="telegram" class="input" placeholder="@username" />
-          </div>
+        <div class="md:col-span-2">
+          <label class="label">{% trans "Full Name" %}</label>
+          <input type="text" name="{{ form.name.name }}" id="fullName" class="input" placeholder="{% trans 'Your Name' %}" required />
         </div>
-
-        <br>
-        <br>
-        <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300 text-sm">
-          پس از تایید اطلاعات، به صفحه پرداخت منتقل خواهید شد.
-        </div>
-        <button class="btn-primary mt-2 w-full md:w-max" type="submit">ادامه به پرداخت</button>
-        <p id="checkoutMsg" class="text-sm text-emerald-400 hidden">در حال انتقال به صفحه پرداخت...</p>
-      </form>
-
-<aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5">
-  <h2 class="font-semibold mb-3">خلاصه سفارش</h2>
-
-
-
-  <!-- لیست محصولات استاتیک -->
-  <div class="space-y-3">
-    {% for item in cart.items.all %}
-    <div class="flex justify-between items-center bg-white/10 rounded-lg p-3">
-      <div>
-        <p class="font-semibold">{{ item.product.name }}</p>
-        <p class="text-sm text-slate-400">تعداد: ۱</p>
-        {% if item.product.traffic_limit == '0' %}
-        <p class="text-sm text-slate-400">حجم: نامحدود</p>
-        {% else %}
-        <p class="text-sm text-slate-400">حجم: {{ item.product.traffic_limit }}</p>
-        {% endif %}
-        {% if item.product.time_limit == '0' %}
-        <p class="text-sm text-slate-400">زمان: نامحدود</p>
-        {% else %}
-        <p class="text-sm text-slate-400">زمان: {{ item.product.time_limit }}</p>
-        {% endif %}
       </div>
-      {% if item.product.discount %}
-      <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} تومان</p>
-      {% endif %}
-      <p class="font-bold">{{ item.product.get_final_price|floatformat:0|intcomma }} تومان</p>
-    </div>
-    {% endfor %}
 
-  </div>
-  <br>
-  <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
-    <p class="font-semibold text-slate-300">مبلغ کل</p>
-    <p class="font-bold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} تومان</p>
-  </div>
-  <!-- سود شما -->
-  <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
-    <p>سود شما از خرید</p>
-    <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
-  </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="md:col-span-2">
+          <label class="label">{% trans "Telegram ID (Optional)" %}</label>
+          <input type="text" name="{{ form.telegram_id.name }}" value="{{ user.telegram_id }}" id="telegram" class="input" placeholder="{% trans '@username' %}" />
+        </div>
+      </div>
 
-  <!-- مبلغ قابل پرداخت -->
-  <div class="mt-2 border-t border-white/10 pt-3 flex items-center justify-between font-bold text-lg">
-    <p>مبلغ قابل پرداخت</p>
-    <p>{{ cart.get_cart_final_price|floatformat:0|intcomma }} تومان</p>
+      <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300 text-sm mt-4">
+        {% trans "After confirming your information, you will be redirected to the payment page." %}
+      </div>
+      <button class="btn-primary mt-2 w-full md:w-max" type="submit">{% trans "Continue to Payment" %}</button>
+      <p id="checkoutMsg" class="text-sm text-emerald-400 hidden">{% trans "Redirecting to payment page..." %}</p>
+    </form>
+
+    <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5">
+      <h2 class="font-semibold mb-3">{% trans "Order Summary" %}</h2>
+
+      <div class="space-y-3">
+        {% for item in cart.items.all %}
+        <div class="flex justify-between items-center bg-white/10 rounded-lg p-3">
+          <div>
+            <p class="font-semibold">{{ item.product.name }}</p>
+            <p class="text-sm text-slate-400">{% trans "Quantity" %}: 1</p>
+            {% if item.product.traffic_limit == '0' %}
+            <p class="text-sm text-slate-400">{% trans "Traffic" %}: {% trans "Unlimited" %}</p>
+            {% else %}
+            <p class="text-sm text-slate-400">{% trans "Traffic" %}: {{ item.product.traffic_limit }}</p>
+            {% endif %}
+            {% if item.product.time_limit == '0' %}
+            <p class="text-sm text-slate-400">{% trans "Time" %}: {% trans "Unlimited" %}</p>
+            {% else %}
+            <p class="text-sm text-slate-400">{% trans "Time" %}: {{ item.product.time_limit }}</p>
+            {% endif %}
+          </div>
+          {% if item.product.discount %}
+          <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+          {% endif %}
+          <p class="font-bold">{{ item.product.get_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2 mt-4">
+        <p class="font-semibold text-slate-300">{% trans "Total Amount" %}</p>
+        <p class="font-bold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+      </div>
+
+      <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
+        <p>{% trans "Your Savings" %}</p>
+        <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+      </div>
+
+      <div class="mt-2 border-t border-white/10 pt-3 flex items-center justify-between font-bold text-lg">
+        <p>{% trans "Amount Payable" %}</p>
+        <p>{{ cart.get_cart_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+      </div>
+    </aside>
   </div>
-</aside>
-    </div>
-  </main>
+</main>
 
 {% endblock %}

@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-16 17:24+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\models.py:15
+msgid "user"
+msgstr "کاربر"
+
+#: .\models.py:17
+msgid "session key"
+msgstr "کلید ناشناس سشن کاربر"
+
+#: .\models.py:36
+msgid "cart"
+msgstr "سبد خرید"
+
+#: .\models.py:42
+msgid "product"
+msgstr "محصول"
+
+#: .\models.py:44
+msgid "created_at"
+msgstr "تاریخ ساخت"
+
+#: .\models.py:45
+msgid "updated_at"
+msgstr "آخرین بروزرسانی"
+
+#: .\models.py:51 .\templates\cart\cart.html:4
+msgid "Cart"
+msgstr "سبد خرید"
+
+#: .\models.py:52
+msgid "Carts"
+msgstr "سبد خرید ها"
+
+#: .\templates\cart\cart.html:10
+msgid "Your Shopping Cart"
+msgstr "سبد خرید شما"
+
+#: .\templates\cart\cart.html:20
+msgid "Remove item"
+msgstr "حذف محصول"
+
+#: .\templates\cart\cart.html:30 .\templates\cart\cart.html:32
+#: .\templates\cart\cart.html:83 .\templates\cart\cart.html:87
+#: .\templates\cart\cart.html:91
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\cart\cart.html:39
+msgid "Traffic:"
+msgstr "حجم"
+
+#: .\templates\cart\cart.html:41 .\templates\cart\cart.html:49
+msgid "Unlimited"
+msgstr "نامحدود"
+
+#: .\templates\cart\cart.html:43
+msgid "GB"
+msgstr "گیگابایت"
+
+#: .\templates\cart\cart.html:47
+msgid "Time:"
+msgstr "زمان:"
+
+#: .\templates\cart\cart.html:55
+msgid "Users:"
+msgstr "محدودیت تعداد کاربر"
+
+#: .\templates\cart\cart.html:57
+msgid "Unlimited users"
+msgstr "کاربر نامحدود"
+
+#: .\templates\cart\cart.html:59
+msgid "user(s)"
+msgstr "محدودیت تعداد کاربر"
+
+#: .\templates\cart\cart.html:63
+msgid "Dedicated Admin Panel?"
+msgstr "پنل مدیریت اختصاصی؟"
+
+#: .\templates\cart\cart.html:64
+msgid "Yes"
+msgstr "بله"
+
+#: .\templates\cart\cart.html:70
+msgid "Your cart is empty!"
+msgstr "سبد خرید شما خالی است"
+
+#: .\templates\cart\cart.html:72
+msgid "Go shopping"
+msgstr "رفتن به خرید"
+
+#: .\templates\cart\cart.html:82
+msgid "Subtotal"
+msgstr "مبلغ نهایی"
+
+#: .\templates\cart\cart.html:86
+msgid "Your savings"
+msgstr "سود شما از خرید"
+
+#: .\templates\cart\cart.html:90
+msgid "Total"
+msgstr "جمع کل"
+
+#: .\templates\cart\cart.html:94
+msgid "Proceed to Checkout"
+msgstr "ادامه به پرداخت"
+
+#: .\views.py:24
+msgid "Product successfully added to the cart."
+msgstr "محصول با موفقیت به سبد خرید اضافه شد"
+
+#: .\views.py:31
+msgid "Product has been removed from the cart."
+msgstr "محصول مورد نظر از سبد حذف شد"

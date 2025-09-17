@@ -1,28 +1,29 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
-{% block page_title %} {{ site_context.site_name1 }} {{ site_context.site_name2 }} - تماس با ما{% endblock %}
+{% block page_title %}
+{% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - Contact Us{% endblocktrans %}
+{% endblock %}
 
 {% block page_content %}
-
 <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
   <div class="max-w-xl mx-auto text-center">
-    <h1 class="text-3xl md:text-5xl font-extrabold">تماس با ما</h1>
-    <p class="mt-2 text-slate-300">برای پشتیبانی یا اطلاعات بیشتر، از طریق گزینه‌های زیر اقدام کنید.</p>
+    <h1 class="text-3xl md:text-5xl font-extrabold">{% trans "Contact Us" %}</h1>
+    <p class="mt-2 text-slate-300">{% trans "For support or more information, please use the options below." %}</p>
 
     <div class="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
       <a href="{{ site_context.telegram_support_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
-        پشتیبانی تلگرام
+        {% trans "Telegram Support" %}
       </a>
 
       <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition">
-        کانال ما
+        {% trans "Our Channel" %}
       </a>
 
       <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
-        ربات ما
+        {% trans "Our Bot" %}
       </a>
     </div>
   </div>
 </main>
-
 {% endblock %}

@@ -1,14 +1,11 @@
 {% extends '_base.html' %}
-
-
-{% block page_title %} {{ site_context.site_name1 }} {{ site_context.site_name2 }} - سوالات متداول{% endblock %}
-
+{% load i18n %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "FAQ" %}{% endblock %}
 
 {% block page_content %}
 
-
-  <main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-3xl">
-    <h1 class="text-3xl md:text-5xl font-extrabold">سوالات متداول</h1>
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-3xl">
+    <h1 class="text-3xl md:text-5xl font-extrabold">{% trans "Frequently Asked Questions" %}</h1>
     <div class="mt-6 divide-y divide-white/10 border border-white/10 rounded-xl overflow-hidden bg-white/5">
       {% for q in faqs %}
       <details class="faq">
@@ -19,9 +16,6 @@
       </details>
       {% endfor %}
     </div>
-  </main>
-
-
-
+</main>
 
 {% endblock %}

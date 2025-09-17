@@ -1,47 +1,42 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
-
-{% block page_title %}دریافت اکانت {% endblock %}
-
+{% block page_title %}{% trans "Get Account" %}{% endblock %}
 
 {% block page_content %}
-
 <main class="flex items-center justify-center min-h-screen p-4">
     <div class="max-w-md w-full bg-slate-800 rounded-2xl shadow-2xl p-6 border border-white/10">
+
         {% if test_link %}
         <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
             <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
-                <a href="{{ test_link }}" target="_blank" class="text-blue-400 hover:underline">
-                    {{ test_link }}
-                </a>
-            {% if test_link.day_limit == '0' %}
-            <p> زمان:نامحدود</p>
-            {% else %}
-            <p> زمان: {{ test_link.day_limit }} روز</p>
-            {% endif %}
-            {% if test_link.traffic_limit == '0' %}
-            <p> حجم: نامحدود گیگ</p>
-            {% else %}
-            <p> حجم: {{ test_link.day_limit }} گیگ</p>
-            {% endif %}
+                <a href="{{ test_link }}" target="_blank" class="text-blue-400 hover:underline">{{ test_link }}</a>
+                {% if test_link.day_limit == '0' %}
+                <p>{% trans "Time: Unlimited" %}</p>
+                {% else %}
+                <p> Time: {{ test_link.day_limit }} days</p>
+                {% endif %}
+                {% if test_link.traffic_limit == '0' %}
+                <p>{% trans "Traffic: Unlimited GB" %}</p>
+                {% else %}
+                <p>Traffic: {{ test_link.day_limit }} GB</p>
+                {% endif %}
             </p>
         </div>
         {% elif user_exist_sub_link %}
-                <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
+        <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
             <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
-                <a href="{{ user_exist_sub_link.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
-                    {{ user_exist_sub_link.sub.sub_link }}
-                </a>
-            {% if user_exist_sub_link.sub.day_limit == '0' %}
-            <p> زمان:نامحدود</p>
-            {% else %}
-            <p> زمان: {{ user_exist_sub_link.sub.day_limit }} روز</p>
-            {% endif %}
-            {% if user_exist_sub_link.sub.traffic_limit == '0' %}
-            <p> حجم: نامحدود گیگ</p>
-            {% else %}
-            <p> حجم: {{ user_exist_sub_link.sub.day_limit }} گیگ</p>
-            {% endif %}
+                <a href="{{ user_exist_sub_link.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">{{ user_exist_sub_link.sub.sub_link }}</a>
+                {% if user_exist_sub_link.sub.day_limit == '0' %}
+                <p>{% trans "Time: Unlimited" %}</p>
+                {% else %}
+                <p>{% trans 'Time:' %} {{ user_exist_sub_link.sub.day_limit }} {% trans 'days' %}</p>
+                {% endif %}
+                {% if user_exist_sub_link.sub.traffic_limit == '0' %}
+                <p>{% trans "Traffic: Unlimited GB" %}</p>
+                {% else %}
+                <p>{% trans 'Traffic:' %} {{ user_exist_sub_link.sub.day_limit }} {% trans 'GB' %}</p>
+                {% endif %}
             </p>
         </div>
         {% endif %}
@@ -50,91 +45,73 @@
         {% for sub in user_subscriptions %}
         <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
             <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
-                <a href="{{ sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
-                    {{ sub.sub_link }}
-                </a>
-            {% if sub.day_limit == '0' %}
-            <p> زمان:نامحدود</p>
-            {% else %}
-            <p> زمان: {{ sub.day_limit }} روز</p>
-            {% endif %}
-            {% if sub.traffic_limit == '0' %}
-            <p> حجم: نامحدود گیگ</p>
-            {% else %}
-            <p> حجم: {{ sub.day_limit }} گیگ</p>
-            {% endif %}
+                <a href="{{ sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">{{ sub.sub_link }}</a>
+                {% if sub.day_limit == '0' %}
+                <p>{% trans "Time: Unlimited" %}</p>
+                {% else %}
+                <p>{% trans 'Time:' %} {{ sub.day_limit }} {% trans 'days' %} </p>
+                {% endif %}
+                {% if sub.traffic_limit == '0' %}
+                <p>{% trans "Traffic: Unlimited GB" %}</p>
+                {% else %}
+                <p>{% trans 'Traffic:' %} {{ sub.day_limit }} {% trans 'GB' %}</p>
+                {% endif %}
             </p>
         </div>
         {% endfor %}
-
         {% elif user_exists_subscriptions %}
-                {% for sub in user_exists_subscriptions %}
+        {% for sub in user_exists_subscriptions %}
         <div class="bg-slate-700/60 rounded-xl p-4 border-l-4 border-blue-500 shadow-inner hover:bg-slate-700/80 transition-colors">
             <p class="text-slate-200 text-sm md:text-base leading-relaxed break-all">
-                <a href="{{ sub.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">
-                    {{ sub.sub.sub_link }}
-                </a>
+                <a href="{{ sub.sub.sub_link }}" target="_blank" class="text-blue-400 hover:underline">{{ sub.sub.sub_link }}</a>
             </p>
             {% if sub.sub.day_limit == '0' %}
-            <p> زمان:نامحدود</p>
+            <p>{% trans "Time: Unlimited" %}</p>
             {% else %}
-            <p> زمان: {{ sub.sub.day_limit }} روز</p>
+            <p>{% trans 'Time:' %} {{ sub.sub.day_limit }} {% trans 'days' %}</p>
             {% endif %}
             {% if sub.sub.traffic_limit == '0' %}
-            <p> حجم: نامحدود گیگ</p>
+            <p>{% trans "Traffic: Unlimited GB" %}</p>
             {% else %}
-            <p> حجم: {{ sub.sub.day_limit }} گیگ</p>
+            <p>{% trans 'Traffic:' %} {{ sub.sub.day_limit }} {% trans 'GB' %}</p>
             {% endif %}
         </div>
         {% endfor %}
         {% endif %}
-
 
         {% if user_subscriptions %}
         <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
-                    <b>با تشکر از اعتماد شما،</b>
-            این لینک برای استفاده از سرویس VPN شماست.
-            کافیست روی لینک کلیک کنید تا وارد شوید.
-            سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
-            در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
+            <b>{% trans "Thank you for your trust," %}</b>
+            {% trans "This link is for using your VPN service. Click the link to enter. Experience high speed, full security, and stable connection. If needed, check the instructional text below." %}
         </p>
         {% elif test_link %}
         <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
-                    <b>اشتراک تست شما آمادست!،</b>
-            این لینک برای استفاده از سرویس  تست VPN شماست.
-            کافیست روی لینک کلیک کنید تا وارد شوید.
-            سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
-            در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
+            <b>{% trans "Your test subscription is ready!" %}</b>
+            {% trans "This link is for using your VPN test service. Click the link to enter. Experience high speed, full security, and stable connection. If needed, check the instructional text below." %}
         </p>
         {% elif user_exists_subscriptions %}
         <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
-                    <b>کاربر گرامی شما قبلا یکبار این سفارش را دریافت کرده اید،</b>
-            این لینک قدیمی سرویس  تست VPN شماست و فقط در صورتی که اکانت منقضی نشده باشد قابل استفاده است.
-            کافیست روی لینک کلیک کنید تا وارد شوید.
-            سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
-            در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
+            <b>{% trans "Dear user, you have already received this order once," %}</b>
+            {% trans "This is your old test VPN service link and can be used only if the account has not expired. Click the link to enter. Experience high speed, full security, and stable connection. If needed, check the instructional text below." %}
         </p>
         {% elif user_exist_sub_link %}
-                <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
-                    <b>کاربر گرامی شما قبلا یکبار اکانت تست خود را دریافت کرده اید،</b>
-            این لینک قدیمی سرویس  تست VPN شماست و فقط در صورتی که اکانت منقضی نشده باشد قابل استفاده است.
-            کافیست روی لینک کلیک کنید تا وارد شوید.
-            سرعت بالا، امنیت کامل، و اتصال پایدار را تجربه کنید.
-            در صورت نیاز، متن آموزشی زیر را مطالعه کنید.
+        <p class="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
+            <b>{% trans "Dear user, you have already received your test account once," %}</b>
+            {% trans "This is your old test VPN service link and can be used only if the account has not expired. Click the link to enter. Experience high speed, full security, and stable connection. If needed, check the instructional text below." %}
         </p>
         {% endif %}
-              <a href="" class="mt-6 block w-full text-center bg-blue-500 hover:bg-blue-600 transition-colors text-white font-semibold py-2 rounded-lg">
-            ورود به پنل کاربری
+
+        <a href="" class="mt-6 block w-full text-center bg-blue-500 hover:bg-blue-600 transition-colors text-white font-semibold py-2 rounded-lg">
+            {% trans "Login to User Panel" %}
         </a>
 
         <div class="mt-6 text-slate-400 text-sm space-y-2">
-            <p>۱. روی لینک بالا کلیک کنید تا ساب شما باز شود.</p>
-            <p>۳. بعد از ورود، می‌توانید وضعیت اتصال و حجم باقی مانده خود را مشاهده کنید.</p>
-            <p>۴. هر زمان که نیاز داشتید، می‌توانید اتصال خود را قطع و دوباره وصل کنید.</p>
-            <p>۵. در صورت مشکل در اتصال از بخش <a href="{% url 'contact' %}"  class='text-blue-500 hover:text-blue-700 font-medium transition'>تماس با ما</a> با تیم پشتیبانی ما در ارتباط باشید.</p>
+            <p>{% trans "1. Click the above link to open your subscription." %}</p>
+            <p>{% trans "3. After login, you can check your connection status and remaining traffic." %}</p>
+            <p>{% trans "4. You can disconnect and reconnect anytime as needed." %}</p>
+            <p>{% trans '5. If there is a problem with the connection, contact our support team via' %} <a href="{% url 'contact' %}" class='text-blue-500 hover:text-blue-700 font-medium transition'>{% trans 'Contact Us' %}</a>.</p>
         </div>
+
     </div>
 </main>
-
-
 {% endblock %}

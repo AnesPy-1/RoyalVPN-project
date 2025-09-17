@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-17 15:36+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\models.py:9
+msgid "Test"
+msgstr "تست"
+
+#: .\models.py:10 .\models.py:62
+msgid "Subscription"
+msgstr "اشتراک"
+
+#: .\models.py:13
+msgid "Plan type"
+msgstr "نوع پلن"
+
+#: .\models.py:18 .\models.py:28 .\models.py:43
+msgid "Subscription link"
+msgstr "لینک اشتراک"
+
+#: .\models.py:19
+msgid "Day limit"
+msgstr "محدودیت روز"
+
+#: .\models.py:19
+msgid "Unlimited=0"
+msgstr "نامحدود=0"
+
+#: .\models.py:20
+msgid "Traffic limit"
+msgstr "محدودیت ترافیک"
+
+#: .\models.py:21 .\models.py:45
+msgid "Is test"
+msgstr "آیا تستی است"
+
+#: .\models.py:22
+msgid "Is used"
+msgstr "استفاده شده است"
+
+#: .\models.py:29
+msgid "Subscription links"
+msgstr "لینک‌های اشتراک"
+
+#: .\models.py:37
+msgid "User"
+msgstr "کاربر"
+
+#: .\models.py:46
+msgid "Expire date"
+msgstr "تاریخ انقضا"
+
+#: .\models.py:47
+msgid "Is active"
+msgstr "فعال است"
+
+#: .\models.py:63
+msgid "Subscriptions"
+msgstr "اشتراک‌ها"

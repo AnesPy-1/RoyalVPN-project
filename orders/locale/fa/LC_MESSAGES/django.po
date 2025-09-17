@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-16 17:32+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\models.py:10
+msgid "Pending Payment"
+msgstr "در انتطار پرداخت"
+
+#: .\models.py:11
+msgid "Paid"
+msgstr "پرداخت شده"
+
+#: .\models.py:12
+msgid "Cancelled"
+msgstr "کنسل شده"
+
+#: .\models.py:13
+msgid "Failed"
+msgstr "با خطا مواجه شده"
+
+#: .\models.py:19
+msgid "user"
+msgstr "کاربر"
+
+#: .\models.py:21
+msgid "phone number"
+msgstr "شماره موبایل"
+
+#: .\models.py:22
+msgid "name"
+msgstr "نام"
+
+#: .\models.py:23
+msgid "telegram_id"
+msgstr "ایدی تلگرام"
+
+#: .\models.py:24
+msgid "final_price"
+msgstr "قیمت نهایی"
+
+#: .\models.py:25
+msgid "status"
+msgstr "وضعیت"
+
+#: .\models.py:26
+msgid "created_at"
+msgstr "تاریخ ساخت"
+
+#: .\models.py:27
+msgid "updated_at"
+msgstr "آخرین بروزرسانی"
+
+#: .\models.py:30
+msgid "Order"
+msgstr "سفارش"
+
+#: .\models.py:31
+msgid "Orders"
+msgstr "سفارشات "
+
+#: .\models.py:45
+msgid "Order Items"
+msgstr "ایتم سفارش"
+
+#: .\models.py:46
+msgid "Items"
+msgstr "ایتم ها"
+
+#: .\templates\orders\order.html:4 .\templates\orders\order.html:9
+msgid "Checkout"
+msgstr "اقدام به پرداخت"
+
+#: .\templates\orders\order.html:15
+msgid "Phone Number"
+msgstr "شماره موبایل"
+
+#: .\templates\orders\order.html:16
+msgid "09xx xxx xxxx"
+msgstr "09xx xxx xxxx"
+
+#: .\templates\orders\order.html:19
+msgid "Full Name"
+msgstr "نام کامل"
+
+#: .\templates\orders\order.html:20
+msgid "Your Name"
+msgstr "نام شما"
+
+#: .\templates\orders\order.html:26
+msgid "Telegram ID (Optional)"
+msgstr "ایدی تلگرام (اختیاری)"
+
+#: .\templates\orders\order.html:27
+msgid "@username"
+msgstr "@username"
+
+#: .\templates\orders\order.html:32
+msgid ""
+"After confirming your information, you will be redirected to the payment "
+"page."
+msgstr "پس از تایید اطلاعات، به صفحه پرداخت منتقل خواهید شد."
+
+#: .\templates\orders\order.html:34
+msgid "Continue to Payment"
+msgstr "اقدام به پرداخت"
+
+#: .\templates\orders\order.html:35
+msgid "Redirecting to payment page..."
+msgstr "در حال انتقال به درگاه پرداخت"
+
+#: .\templates\orders\order.html:39
+msgid "Order Summary"
+msgstr "خلاصه سفارش"
+
+#: .\templates\orders\order.html:46
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\templates\orders\order.html:48 .\templates\orders\order.html:50
+msgid "Traffic"
+msgstr "حجم"
+
+#: .\templates\orders\order.html:48 .\templates\orders\order.html:53
+msgid "Unlimited"
+msgstr "نامحدود"
+
+#: .\templates\orders\order.html:53 .\templates\orders\order.html:55
+msgid "Time"
+msgstr "زمان"
+
+#: .\templates\orders\order.html:59 .\templates\orders\order.html:61
+#: .\templates\orders\order.html:68 .\templates\orders\order.html:73
+#: .\templates\orders\order.html:78
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\orders\order.html:67
+msgid "Total Amount"
+msgstr "مبلغ کل"
+
+#: .\templates\orders\order.html:72
+msgid "Your Savings"
+msgstr "سود شما از خرید"
+
+#: .\templates\orders\order.html:77
+msgid "Amount Payable"
+msgstr "مبلغ قابل پرداخت"

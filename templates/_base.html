@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="fa" dir="rtl">
+{% load static i18n %}
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,7 +53,9 @@
 
     <!-- Header -->
     <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/70 border-b border-slate-800">
+
         <div class="container mx-auto px-4">
+
             <div class="flex items-center justify-between py-4">
                 <a href="{% url 'home' %}" class="flex items-center gap-2">
                     <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-fuchsia-600 shadow-lg">
@@ -61,56 +63,67 @@
                     </span>
                     <span class="text-xl font-bold tracking-tight">{{ site_context.site_name1 }} <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">{{ site_context.site_name2 }}</span></span>
                 </a>
+                <div class="flex items-center space-x-2">
+    <!-- فارسی -->
+    <a href="/fa/" class="flex items-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/State_flag_of_Iran_%281964%E2%80%931980%29.svg/330px-State_flag_of_Iran_%281964%E2%80%931980%29.svg.png"
+             alt="Iran" class="w-5 h-5 rounded-full mr-2">
+        <span>فارسی</span>
+    </a>
+
+    <!-- English -->
+    <a href="/en/" class="flex items-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+             alt="US" class="w-5 h-5 rounded-full mr-2">
+        <span>English</span>
+    </a>
+</div>
                 <button id="navToggle" class="md:hidden p-2 rounded-lg hover:bg-white/5">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
                 <nav id="mainNav" class="hidden md:flex items-center gap-6">
-                    <a class="nav-link" href="{% url 'home' %}">خانه</a>
-                    <a class="nav-link" href="{% url 'pricing' %}">قیمت‌ها</a>
-                    <a class="nav-link" href="{% url 'about' %}">درباره ما</a>
-                    <a class="nav-link" href="{% url 'faq' %}">سوالات متداول</a>
-                    <a class="nav-link" href="{% url 'contact' %}">تماس با ما</a>
-                    <a class="relative group" href="{% url 'cart' %}" aria-label="سبد خرید">
-    <!-- آیکون سبد خرید -->
-           <svg class="h-6 w-6 text-slate-300 group-hover:text-white transition-colors"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                     d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
-           </svg>
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+                    <a class="nav-link" href="{% url 'pricing' %}">{% trans "Pricing" %}</a>
+                    <a class="nav-link" href="{% url 'about' %}">{% trans "About us" %}</a>
+                    <a class="nav-link" href="{% url 'faq' %}">{% trans "FAQ" %}</a>
+                    <a class="nav-link" href="{% url 'contact' %}">{% trans "Contact us" %}</a>
+                    <a class="relative group" href="{% url 'cart' %}" aria-label="{% trans 'Cart' %}">
+                        <!-- آیکون سبد خرید -->
+                        <svg class="h-6 w-6 text-slate-300 group-hover:text-white transition-colors"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
+                        </svg>
+                        <span class="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full shadow">
+                            {{ cart.items.count }}
+                        </span>
 
-           <!-- عدد استاتیک، قابل تغییر دستی -->
-           <span class="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full shadow">
-               {{ cart.items.count }}
-           </span>
-        </a>
-
+                    </a>
 
                 </nav>
+
             </div>
             <div id="mobileNav" class="md:hidden hidden pb-4">
                 <div class="grid gap-2 text-sm">
-                    <a class="nav-link py-2" href="{% url 'home' %}">خانه</a>
-                    <a class="nav-link py-2" href="{% url 'pricing' %}">قیمت‌ها</a>
-                    <a class="nav-link py-2" href="{% url 'about' %}">درباره ما</a>
-                    <a class="nav-link py-2" href="{% url 'faq' %}">سوالات متداول</a>
-                    <a class="nav-link py-2" href="{% url 'contact' %}">تماس با ما</a>
-                    <a class="nav-link py-2" href="{% url 'cart' %}">سبد خرید</a>
+                    <a class="nav-link py-2" href="{% url 'home' %}">{% trans "Home" %}</a>
+                    <a class="nav-link py-2" href="{% url 'pricing' %}">{% trans "Pricing" %}</a>
+                    <a class="nav-link py-2" href="{% url 'about' %}">{% trans "About us" %}</a>
+                    <a class="nav-link py-2" href="{% url 'faq' %}">{% trans "FAQ" %}</a>
+                    <a class="nav-link py-2" href="{% url 'contact' %}">{% trans "Contact us" %}</a>
+                    <a class="nav-link py-2" href="{% url 'cart' %}">{% trans "Cart" %}</a>
                 </div>
             </div>
         </div>
     </header>
 
-    {% block page_content %}
-
-    {% endblock %}
+    {% block page_content %}{% endblock %}
 
     <!-- Footer -->
     <footer class="mt-10 border-t border-slate-800">
         <div class="container mx-auto px-4 py-10">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-slate-400 text-sm"><span id="year"></span>{{ site_context.footer_text }}</p>
-                                <p class="text-slate-500 text-sm">ساخته‌شده توسط <a class="text-slate-300 hover:text-white" href="https://t.me/Pokerjoon">X ƤƠƘЄƦ@</a></p>
-
+                <p class="text-slate-500 text-sm">{% trans "Developed with ❤️ and lots of ☕️ by" %} <a class="text-slate-300 hover:text-white" href="https://t.me/Pokerjoon">@X ƤƠƘЄƦ</a></p>
             </div>
         </div>
     </footer>

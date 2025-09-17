@@ -47,9 +47,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class SiteSettings(models.Model):
     site_name1 = models.CharField(_("site name1"), max_length=55)
     site_name2 = models.CharField(_("site name2"), max_length=55)
+    site_logo = models.ImageField(_("site logo"), upload_to='logo/')
     payment_card = models.CharField(_("payment card number"), max_length=155)
     payment_card_name = models.CharField(_("payment card owner name"), max_length=155)
-    site_logo = models.URLField(_("site logo svg"))
     up_time = models.CharField(_("servers uptime"), max_length=55)
     countries_count = models.CharField(_("countries count"), max_length=55)
     servers_count = models.CharField(_("servers count"), max_length=55)

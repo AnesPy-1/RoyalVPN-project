@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
+from django.utils.text import gettext_lazy as gt_lazy
 
 from cart.models import Cart, CartItem
 from .forms import OrderCreationForm
@@ -40,7 +41,7 @@ def order_create_view(request):
                     product=item.product,
                 )
             cart.delete()
-            messages.success(request, "سفارش شما آماده پرداخت است")
+            messages.success(request, gt_lazy("Your order is ready for payment."))
             return redirect('payment', obj.id)
     else:
         form = OrderCreationForm()

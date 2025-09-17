@@ -1,31 +1,30 @@
 {% extends '_base.html' %}
-
 {% load humanize %}
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }}- پرداخت {% endblock %}
-
+{% load i18n %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - Payment{% endblock %}
 
 {% block page_content %}
 
-  <main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-2xl">
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-6">پرداخت</h1>
-    <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-      <p class="text-slate-300">لطفاً مبلغ <b>{{ order.final_price|floatformat:0|intcomma }}</b>  را به شماره کارت زیر واریز کرده و رسید را بارگذاری کنید.</p>
-      <div class="mt-4 p-4 rounded-xl border border-white/10 bg-white/5">
-        <p class="text-sm text-slate-400 mb-1">شماره کارت</p>
-        <p class="text-2xl font-extrabold tracking-wider">{{ site_context.payment_card }}</p>
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-2xl">
+  <h1 class="text-3xl md:text-4xl font-extrabold mb-6">{% trans 'Payment' %}</h1>
+  <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+    <p class="text-slate-300">
+      {% trans 'Please transfer' %} <b>{{ order.final_price|floatformat:0|intcomma }} {% trans 'Toman' %}</b> {% trans 'to the following card number and upload the receipt.' %}
+    </p>
+    <div class="mt-4 p-4 rounded-xl border border-white/10 bg-white/5">
+      <p class="text-sm text-slate-400 mb-1">Card Number</p>
+      <p class="text-2xl font-extrabold tracking-wider">{{ site_context.payment_card }}</p>
 
-        <p class="mt-1 text-slate-400 text-sm">به نام: {{ site_context.payment_card_name }}</p>
-      </div>
-      <form method="post" action="{% url 'payment' order.id %}" enctype="multipart/form-data" class="mt-6 grid gap-3">
-        {% csrf_token %}
-        <label class="label">آپلود تصویر رسید</label>
-        <input type="file" name="{{ form.payment_picture.name }}" id="receipt" accept="image/*" class="input py-2" required />
-        <button class="btn-primary w-max" type="submit">ارسال رسید</button>
-        <p id="paymentMsg" class="text-sm text-emerald-400 hidden">رسید با موفقیت ارسال شد. پشتیبانی به‌زودی با شما تماس می‌گیرد.</p>
-      </form>
+      <p class="mt-1 text-slate-400 text-sm">{% trans 'Card Holder:' %} {{ site_context.payment_card_name }}</p>
     </div>
-  </main>
-
-
+    <form method="post" action="{% url 'payment' order.id %}" enctype="multipart/form-data" class="mt-6 grid gap-3">
+      {% csrf_token %}
+      <label class="label">{% trans 'Upload Receipt Image' %}</label>
+      <input type="file" name="{{ form.payment_picture.name }}" id="receipt" accept="image/*" class="input py-2" required />
+      <button class="btn-primary w-max" type="submit">{% trans 'Submit Receipt' %}</button>
+      <p id="paymentMsg" class="text-sm text-emerald-400 hidden">{% trans 'Receipt successfully uploaded. Support will contact you soon.' %}</p>
+    </form>
+  </div>
+</main>
 
 {% endblock %}

@@ -1,97 +1,97 @@
 {% extends '_base.html' %}
-{% load humanize %}
+{% load humanize i18n %}
 
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - سبد خرید{% endblock %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "Cart" %}{% endblock %}
 
 {% block page_content %}
 <main class="flex-1 container mx-auto px-4 pt-10 pb-16" dir="rtl">
-  <!-- عنوان صفحه -->
+  <!-- Page Title -->
   <h1 class="text-3xl md:text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">
-    سبد خرید شما
+    {% trans "Your Shopping Cart" %}
   </h1>
 
   <div class="lg:flex lg:space-x-6 lg:space-x-reverse">
-    <!-- ستون آیتم‌ها -->
+    <!-- Items Column -->
     <div class="lg:flex-1 space-y-4">
       {% for item in cart.items.all %}
       <div class="bg-white/5 rounded-xl p-5 shadow hover:shadow-lg transition relative">
-<form method="POST" action="{% url 'cart-remove' item.id %}" class="absolute top-3 left-3">
-        {% csrf_token %}
-        <button type="submit" class="text-red-500 hover:text-red-700 text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full transition" title="حذف محصول">
-            ×
-        </button>
-    </form>
+        <form method="POST" action="{% url 'cart-remove' item.id %}" class="absolute top-3 left-3">
+          {% csrf_token %}
+          <button type="submit" class="text-red-500 hover:text-red-700 text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full transition" title="{% trans 'Remove item' %}">
+              ×
+          </button>
+        </form>
         <br>
-        <!-- نام و قیمت -->
+        <!-- Name & Price -->
         <div class="flex items-center justify-between mb-3">
           <p class="font-semibold text-lg">{{ item.product.name }}</p>
           <div class="text-right">
             {% if item.product.discount %}
-            <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} تومان</p>
+            <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
             {% endif %}
-            <p class="font-bold text-green-500 text-lg">{{ item.product.get_final_price|floatformat:0|intcomma }} تومان</p>
+            <p class="font-bold text-green-500 text-lg">{{ item.product.get_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
           </div>
         </div>
 
-        <!-- جزئیات بیشتر -->
+        <!-- More Details -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300 mt-3 border-t border-gray-700 pt-3">
           <div class="flex flex-col">
-            <p class="font-semibold mb-1">حجم:</p>
+            <p class="font-semibold mb-1">{% trans "Traffic:" %}</p>
             {% if item.product.traffic_limit == '0' %}
-            <p>نامحدود</p>
+            <p>{% trans "Unlimited" %}</p>
             {% else %}
-            <p>{{ item.product.traffic_limit }} گیگابایت</p>
+            <p>{{ item.product.traffic_limit }} {% trans "GB" %}</p>
             {% endif %}
           </div>
           <div class="flex flex-col">
-            <p class="font-semibold mb-1">زمان:</p>
+            <p class="font-semibold mb-1">{% trans "Time:" %}</p>
             {% if item.product.time_limit == '0' %}
-            <p>نامحدود</p>
+            <p>{% trans "Unlimited" %}</p>
             {% else %}
             <p>{{ item.product.time_limit }}</p>
             {% endif %}
           </div>
           <div class="flex flex-col">
-            <p class="font-semibold mb-1">تعداد کاربر:</p>
+            <p class="font-semibold mb-1">{% trans "Users:" %}</p>
             {% if item.product.device_connections_limit %}
-            <p>کاربر نامحدود</p>
+            <p>{% trans "Unlimited users" %}</p>
             {% else %}
-            <p>{{ item.product.device_connections_limit }} کاربر</p>
+            <p>{{ item.product.device_connections_limit }} {% trans "user(s)" %}</p>
             {% endif %}
           </div>
           <div class="flex flex-col">
-            <p class="font-semibold mb-1">پنل مدیریت اختصاصی؟</p>
-            <p>دارد</p>
+            <p class="font-semibold mb-1">{% trans "Dedicated Admin Panel?" %}</p>
+            <p>{% trans "Yes" %}</p>
           </div>
         </div>
       </div>
       {% empty %}
       <div class="flex flex-col items-center justify-center rounded-xl bg-white/5 p-8 text-center space-y-4">
-        <p class="font-semibold text-lg">سبد خرید شما خالی است!</p>
+        <p class="font-semibold text-lg">{% trans "Your cart is empty!" %}</p>
         <a href="{% url 'pricing' %}" class="text-blue-500 hover:text-blue-700 underline font-semibold">
-          رفتن به خرید
+          {% trans "Go shopping" %}
         </a>
       </div>
       {% endfor %}
     </div>
 
-    <!-- ستون جمع و پرداخت -->
+    <!-- Summary & Checkout Column -->
     {% if cart.items.all %}
     <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5 mt-6 lg:mt-0 lg:w-80 lg:sticky lg:top-20">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-slate-300">جمع جزء</p>
-        <p class="font-semibold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} تومان</p>
+        <p class="text-slate-300">{% trans "Subtotal" %}</p>
+        <p class="font-semibold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} {% trans "Toman" %}</p>
       </div>
-  <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
-    <p>سود شما از خرید</p>
-    <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
-  </div>
+      <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
+        <p>{% trans "Your savings" %}</p>
+        <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+      </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between mb-4">
-        <p class="font-semibold">مبلغ نهایی</p>
-        <p class="font-bold">{{ cart.get_cart_final_price|floatformat:0|intcomma }} تومان</p>
+        <p class="font-semibold">{% trans "Total" %}</p>
+        <p class="font-bold">{{ cart.get_cart_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
       </div>
       <a href="{% url 'checkout' %}" class="block text-center w-full px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white font-semibold hover:scale-105 transition transform">
-        ادامه فرایند خرید
+        {% trans "Proceed to Checkout" %}
       </a>
     </aside>
     {% endif %}

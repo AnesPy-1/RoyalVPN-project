@@ -1,48 +1,50 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
-
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }}- درباره ما {% endblock %}
-
+{% block page_title %}
+{% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - About Us{% endblocktrans %}
+{% endblock %}
 
 {% block page_content %}
-
-
-  <main class="flex-1 container mx-auto px-4 pt-10 pb-16">
+<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
     <div class="max-w-3xl">
-      <h1 class="text-3xl md:text-5xl font-extrabold">درباره {{ site_context.site_name1 }} {{ site_context.site_name2 }}</h1>
-      <p class="mt-4 text-slate-300"> {{ site_context.site_name1 }} {{ site_context.site_name2 }} با یک هدف شکل گرفت: اینترنتی باز، خصوصی و امن برای همه. ما شبکه‌ای جهانی با کارایی بالا را اداره می‌کنیم و به بالاترین استانداردهای حریم خصوصی پایبندیم.</p>
-      <div class="mt-8 grid md:grid-cols-3 gap-4">
-        <div class="stat">
-          <div class="stat-number">{{ site_context.established_year_for_about_us }}</div>
-          <div class="stat-label">سال تأسیس</div>
+        <h1 class="text-3xl md:text-5xl font-extrabold">
+            {% blocktrans %}About {{ site_context.site_name1 }} {{ site_context.site_name2 }}{% endblocktrans %}
+        </h1>
+        <p class="mt-4 text-slate-300">
+            {% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} was founded with a mission: open, private, and secure internet for everyone. We operate a high-performance global network and adhere to the highest privacy standards.{% endblocktrans %}
+        </p>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-4">
+            <div class="stat">
+                <div class="stat-number">{{ site_context.established_year_for_about_us }}</div>
+                <div class="stat-label">{% trans "Established Year" %}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">{{ site_context.countries_count }}+</div>
+                <div class="stat-label">{% trans "Countries" %}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">{{ site_context.users_count_for_about_us }}+</div>
+                <div class="stat-label">{% trans "Users" %}</div>
+            </div>
         </div>
-        <div class="stat">
-          <div class="stat-number">{{ site_context.countries_count }}+</div>
-          <div class="stat-label">کشور</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">{{ site_context.users_count_for_about_us }}+</div>
-          <div class="stat-label">کاربر</div>
-        </div>
-      </div>
-      <h2 class="mt-10 text-2xl font-bold">اصول ما</h2>
-      <ul class="mt-3 grid md:grid-cols-2 gap-3 text-slate-300">
-        {% if site_context.feature1_for_about_us %}
-        <li class="flex items-center gap-2"><span class="check"></span> {{ site_context.feature1_for_about_us }}</li>
-        {% endif %}
-        {% if site_context.feature2_for_about_us %}
-        <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature2_for_about_us }}</li>
-        {% endif %}
-        {% if site_context.feature3_for_about_us %}
-        <li class="flex items-center gap-2"><span class="check"></span> {{ site_context.feature3_for_about_us }}</li>
-        {% endif %}
-        {% if site_context.feature4_for_about_us %}
-        <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature4_for_about_us }}</li>
-        {% endif %}
-      </ul>
+
+        <h2 class="mt-10 text-2xl font-bold">{% trans "Our Principles" %}</h2>
+        <ul class="mt-3 grid md:grid-cols-2 gap-3 text-slate-300">
+            {% if site_context.feature1_for_about_us %}
+            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature1_for_about_us }}</li>
+            {% endif %}
+            {% if site_context.feature2_for_about_us %}
+            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature2_for_about_us }}</li>
+            {% endif %}
+            {% if site_context.feature3_for_about_us %}
+            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature3_for_about_us }}</li>
+            {% endif %}
+            {% if site_context.feature4_for_about_us %}
+            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature4_for_about_us }}</li>
+            {% endif %}
+        </ul>
     </div>
-  </main>
-
-
-
+</main>
 {% endblock %}

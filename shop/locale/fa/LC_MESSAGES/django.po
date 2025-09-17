@@ -1,0 +1,473 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-16 18:15+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\models.py:6
+msgid "Discount value"
+msgstr "مقدار تخفیف"
+
+#: .\models.py:12 .\models.py:31
+msgid "Discount"
+msgstr "تخفیف"
+
+#: .\models.py:13
+msgid "Discounts"
+msgstr "تخفیف‌ها"
+
+#: .\models.py:17
+msgid "Name"
+msgstr "نام"
+
+#: .\models.py:18
+msgid "Time limit"
+msgstr "محدودیت زمان"
+
+#: .\models.py:18 .\models.py:19 .\models.py:20 .\models.py:23
+msgid "unlimited: 0"
+msgstr "نامحدود: ۰"
+
+#: .\models.py:19
+msgid "Time limit (numeric)"
+msgstr "محدودیت زمان (عددی)"
+
+#: .\models.py:20
+msgid "Traffic limit"
+msgstr "محدودیت ترافیک"
+
+#: .\models.py:21
+msgid "Traffic limit (numeric)"
+msgstr "محدودیت ترافیک (عددی)"
+
+#: .\models.py:23
+msgid "Device connections limit"
+msgstr "محدودیت اتصال دستگاه‌ها"
+
+#: .\models.py:24
+msgid "Price"
+msgstr "قیمت"
+
+#: .\models.py:33
+msgid "Feature 1"
+msgstr "ویژگی ۱"
+
+#: .\models.py:34
+msgid "Feature 2"
+msgstr "ویژگی ۲"
+
+#: .\models.py:35
+msgid "Feature 3"
+msgstr "ویژگی ۳"
+
+#: .\models.py:36
+msgid "Is special"
+msgstr "ویژه است"
+
+#: .\models.py:37 .\models.py:58
+msgid "Created at"
+msgstr "ایجاد شده در"
+
+#: .\models.py:38 .\models.py:59
+msgid "Updated at"
+msgstr "به‌روزرسانی شده در"
+
+#: .\models.py:49
+msgid "Product"
+msgstr "محصول"
+
+#: .\models.py:50
+msgid "Products"
+msgstr "محصولات"
+
+#: .\models.py:54
+msgid "Display name"
+msgstr "نام نمایشی"
+
+#: .\models.py:55
+msgid "User profile image"
+msgstr "تصویر پروفایل کاربر"
+
+#: .\models.py:56
+msgid "User city"
+msgstr "شهر کاربر"
+
+#: .\models.py:57
+msgid "Comment text"
+msgstr "متن نظر"
+
+#: .\models.py:65
+msgid "Comment"
+msgstr "نظر"
+
+#: .\models.py:66
+msgid "Comments"
+msgstr "نظرات"
+
+#: .\templates\shop\about.html:5
+#, python-format
+msgid "%(site_context.site_name1)s %(site_context.site_name2)s - About Us"
+msgstr "%(site_context.site_name1)s %(site_context.site_name2)s - درباره ما"
+
+#: .\templates\shop\about.html:12
+#, python-format
+msgid "About %(site_context.site_name1)s %(site_context.site_name2)s"
+msgstr "درباره %(site_context.site_name1)s %(site_context.site_name2)s"
+
+#: .\templates\shop\about.html:15
+#, python-format
+msgid ""
+"%(site_context.site_name1)s %(site_context.site_name2)s was founded with a "
+"mission: open, private, and secure internet for everyone. We operate a high-"
+"performance global network and adhere to the highest privacy standards."
+msgstr ""
+"%(site_context.site_name1)s %(site_context.site_name2)s با هدف اینترنتی باز، خصوصی و امن برای همه تأسیس شد. ما یک شبکه جهانی با عملکرد بالا اداره می‌کنیم و به بالاترین استانداردهای حریم خصوصی پایبند هستیم."
+
+#: .\templates\shop\about.html:21
+msgid "Established Year"
+msgstr "سال تأسیس"
+
+#: .\templates\shop\about.html:25 .\templates\shop\home.html:33
+msgid "Countries"
+msgstr "کشورها"
+
+#: .\templates\shop\about.html:29
+msgid "Users"
+msgstr "کاربران"
+
+#: .\templates\shop\about.html:33
+msgid "Our Principles"
+msgstr "اصول ما"
+
+#: .\templates\shop\contact.html:5
+#, python-format
+msgid "%(site_context.site_name1)s %(site_context.site_name2)s - Contact Us"
+msgstr "%(site_context.site_name1)s %(site_context.site_name2)s - تماس با ما"
+
+#: .\templates\shop\contact.html:11 .\templates\shop\get_sub.html:112
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+#: .\templates\shop\contact.html:12
+msgid "For support or more information, please use the options below."
+msgstr "برای پشتیبانی یا اطلاعات بیشتر، لطفاً از گزینه‌های زیر استفاده کنید."
+
+#: .\templates\shop\contact.html:16
+msgid "Telegram Support"
+msgstr "پشتیبانی تلگرام"
+
+
+#: .\templates\shop\contact.html:20
+msgid "Our Channel"
+msgstr "کانال ما"
+
+#: .\templates\shop\contact.html:24
+msgid "Our Bot"
+msgstr "ربات ما"
+
+#: .\templates\shop\faq.html:3
+msgid "FAQ"
+msgstr "سؤالات متداول"
+
+#: .\templates\shop\faq.html:8
+msgid "Frequently Asked Questions"
+msgstr "سؤالات پرتکرار"
+
+#: .\templates\shop\get_sub.html:4
+msgid "Get Account"
+msgstr "دریافت حساب"
+
+#: .\templates\shop\get_sub.html:15 .\templates\shop\get_sub.html:31
+#: .\templates\shop\get_sub.html:50 .\templates\shop\get_sub.html:69
+msgid "Time: Unlimited"
+msgstr "زمان: نامحدود"
+
+#: .\templates\shop\get_sub.html:20 .\templates\shop\get_sub.html:36
+#: .\templates\shop\get_sub.html:55 .\templates\shop\get_sub.html:74
+msgid "Traffic: Unlimited GB"
+msgstr "ترافیک: نامحدود گیگابایت"
+
+#: .\templates\shop\get_sub.html:33 .\templates\shop\get_sub.html:52
+#: .\templates\shop\get_sub.html:71
+msgid "Time:"
+msgstr "زمان:"
+
+#: .\templates\shop\get_sub.html:33 .\templates\shop\get_sub.html:52
+#: .\templates\shop\get_sub.html:71
+msgid "days"
+msgstr "روز"
+
+#: .\templates\shop\get_sub.html:38 .\templates\shop\get_sub.html:57
+#: .\templates\shop\get_sub.html:76
+msgid "Traffic:"
+msgstr "ترافیک:"
+
+#: .\templates\shop\get_sub.html:38 .\templates\shop\get_sub.html:57
+#: .\templates\shop\get_sub.html:76 .\templates\shop\pricing.html:52
+msgid "GB"
+msgstr "گیگابایت"
+
+#: .\templates\shop\get_sub.html:84
+msgid "Thank you for your trust,"
+msgstr "از اعتماد شما سپاسگزاریم،"
+
+#: .\templates\shop\get_sub.html:85
+msgid ""
+"This link is for using your VPN service. Click the link to enter. Experience "
+"high speed, full security, and stable connection. If needed, check the "
+"instructional text below."
+msgstr "این لینک برای استفاده از سرویس VPN شماست. روی لینک کلیک کنید تا وارد شوید. سرعت بالا، امنیت کامل و اتصال پایدار را تجربه کنید. در صورت نیاز، متن راهنمای پایین را بررسی کنید."
+
+
+#: .\templates\shop\get_sub.html:89
+msgid "Your test subscription is ready!"
+msgstr "اشتراک تست شما آماده است!"
+
+#: .\templates\shop\get_sub.html:90
+msgid ""
+"This link is for using your VPN test service. Click the link to enter. "
+"Experience high speed, full security, and stable connection. If needed, "
+"check the instructional text below."
+msgstr "این لینک برای استفاده از سرویس تست VPN شماست. روی لینک کلیک کنید تا وارد شوید. سرعت بالا، امنیت کامل و اتصال پایدار را تجربه کنید. در صورت نیاز، متن راهنما در پایین را بررسی کنید."
+
+#: .\templates\shop\get_sub.html:94
+msgid "Dear user, you have already received this order once,"
+msgstr "کاربر گرامی، شما قبلاً این سفارش را دریافت کرده‌اید،"
+
+#: .\templates\shop\get_sub.html:95 .\templates\shop\get_sub.html:100
+msgid ""
+"This is your old test VPN service link and can be used only if the account "
+"has not expired. Click the link to enter. Experience high speed, full "
+"security, and stable connection. If needed, check the instructional text "
+"below."
+msgstr "این لینک سرویس تست VPN قدیمی شماست و فقط در صورتی قابل استفاده است که حساب شما منقضی نشده باشد. روی لینک کلیک کنید تا وارد شوید. سرعت بالا، امنیت کامل و اتصال پایدار را تجربه کنید. در صورت نیاز، متن راهنما در پایین را بررسی کنید."
+
+#: .\templates\shop\get_sub.html:99
+msgid "Dear user, you have already received your test account once,"
+msgstr "کاربر گرامی، شما قبلاً حساب تست خود را دریافت کرده‌اید،"
+
+#: .\templates\shop\get_sub.html:105
+msgid "Login to User Panel"
+msgstr "ورود به پنل کاربری"
+
+#: .\templates\shop\get_sub.html:109
+msgid "1. Click the above link to open your subscription."
+msgstr "۱. روی لینک بالا کلیک کنید تا اشتراک خود را باز کنید."
+
+#: .\templates\shop\get_sub.html:110
+msgid "3. After login, you can check your connection status and remaining traffic."
+msgstr "۳. پس از ورود، می‌توانید وضعیت اتصال و میزان ترافیک باقی‌مانده را بررسی کنید."
+
+#: .\templates\shop\get_sub.html:111
+msgid "4. You can disconnect and reconnect anytime as needed."
+msgstr "۴. شما می‌توانید هر زمان که نیاز داشتید قطع و دوباره متصل شوید."
+
+#: .\templates\shop\get_sub.html:112
+msgid "5. If there is a problem with the connection, contact our support team via"
+msgstr "۵. در صورت بروز مشکل در اتصال، با تیم پشتیبانی ما تماس بگیرید از طریق"
+
+#: .\templates\shop\home.html:4
+msgid "Secure, Fast, and Borderless Internet"
+msgstr "اینترنت امن، سریع و بدون مرز"
+
+#: .\templates\shop\home.html:18
+msgid "Secure and High-Speed Internet with"
+msgstr "اینترنت امن و پرسرعت با"
+
+#: .\templates\shop\home.html:21
+msgid ""
+"Stable connection, no logs, global network, and 24/7 support. Secure in just "
+"one click."
+msgstr "اتصال پایدار، بدون لاگ، شبکه جهانی و پشتیبانی ۲۴/۷. تنها با یک کلیک امن شوید."
+
+
+#: .\templates\shop\home.html:23
+msgid "Get Started"
+msgstr "شروع کنید"
+
+#: .\templates\shop\home.html:24
+msgid "See Features"
+msgstr "مشاهده ویژگی‌ها"
+
+#: .\templates\shop\home.html:29
+msgid "Servers"
+msgstr "سرورها"
+
+#: .\templates\shop\home.html:37
+msgid "Uptime"
+msgstr "آپ‌تایم"
+
+#: .\templates\shop\home.html:48
+msgid "First choice for privacy"
+msgstr "اولین انتخاب برای حریم خصوصی"
+
+#: .\templates\shop\home.html:49
+msgid "Military-grade encryption"
+msgstr "رمزگذاری در سطح نظامی"
+
+#: .\templates\shop\home.html:53
+msgid "Instant and secure connection"
+msgstr "اتصال فوری و ایمن"
+
+#: .\templates\shop\home.html:54
+msgid "No logs kept"
+msgstr "بدون ذخیره گزارش"
+
+#: .\templates\shop\home.html:55
+msgid "Optimized for streaming"
+msgstr "بهینه‌سازی‌شده برای استریم"
+
+#: .\templates\shop\home.html:57
+msgid "Try"
+msgstr "امتحان کنید"
+
+#: .\templates\shop\home.html:68
+msgid "Powerful Features for a Safer Internet"
+msgstr "ویژگی‌های قدرتمند برای اینترنتی امن‌تر"
+
+
+#: .\templates\shop\home.html:69
+msgid ".Everything you need for speed and privacy across all devices"
+msgstr "همه‌چیز که برای سرعت و حریم خصوصی روی تمام دستگاه‌ها نیاز دارید"
+
+#: .\templates\shop\home.html:74
+msgid "Blazing Fast"
+msgstr "سرعت فوق‌العاده"
+
+#: .\templates\shop\home.html:75
+msgid ".1+ Gbps servers, low ping, instant connection"
+msgstr "پینگ پایین و پهنای باند بسیار بالا"
+
+#: .\templates\shop\home.html:79
+msgid "Real Privacy"
+msgstr "حریم خصوصی واقعی"
+
+#: .\templates\shop\home.html:80
+msgid ".No data stored; independently audited"
+msgstr "هیچ داده ای از شما دخیره نمیشود. امنیت شما تضمین شدست"
+
+#: .\templates\shop\home.html:84
+msgid "Global Network"
+msgstr "شبکه جهانی"
+
+#: .\templates\shop\home.html:85
+msgid ".75countries and 1000+ servers at your disposal+ "
+msgstr "بیش از 10 سرور از کشور های مختلف با ایپی ثابت"
+
+#: .\templates\shop\home.html:95
+msgid "What users say"
+msgstr "کاربرا چی میگن؟"
+
+#: .\templates\shop\home.html:96
+msgid "See how users experienced"
+msgstr "ببنید کاربران چی میگن"
+
+#: .\templates\shop\home.html:102
+msgid "User image"
+msgstr "تصویر کاربر"
+
+#: .\templates\shop\home.html:121
+msgid "?Ready to reclaim your privacy"
+msgstr "آمامده اید که حریم خصوصی تان را پس بگیرید؟"
+
+#: .\templates\shop\home.html:122
+msgid ".7day money-back guarantee. Cancel anytime you want"
+msgstr "با ضمانت کیفیت و پایداری تا پایان اشتراک شما."
+
+#: .\templates\shop\home.html:125
+msgid "View Plans"
+msgstr "مشاهده قیمت ها"
+
+#: .\templates\shop\home.html:126
+msgid "Why"
+msgstr "چرا"
+
+
+#: .\templates\shop\pricing.html:11
+msgid "Choose Your Plan"
+msgstr "پلن خود را انتخاب کنید"
+
+#: .\templates\shop\pricing.html:12
+msgid ".Simple pricing with powerful features. Cancel anytime"
+msgstr "قیمت‌گذاری ساده با امکانات قدرتمند."
+
+#: .\templates\shop\pricing.html:21
+msgid "Off"
+msgstr "تخفیف"
+
+#: .\templates\shop\pricing.html:26
+msgid "Popular"
+msgstr "پرطرفدار"
+
+#: .\templates\shop\pricing.html:33 .\templates\shop\pricing.html:37
+msgid "Toman"
+msgstr "تومان"
+
+#: .\templates\shop\pricing.html:42
+msgid "Lifetime"
+msgstr "زمان نامحدود"
+
+#: .\templates\shop\pricing.html:50
+msgid "Unlimited traffic"
+msgstr "حجم نامحدود"
+
+#: .\templates\shop\pricing.html:56
+msgid "Unlimited users"
+msgstr "کاربر نامحدود"
+
+#: .\templates\shop\pricing.html:58
+msgid "simultaneous users"
+msgstr "کاربر همزمان"
+
+#: .\templates\shop\pricing.html:64
+msgid "High stability"
+msgstr "پایداری بالا"
+
+#: .\templates\shop\pricing.html:70
+msgid "10+ servers"
+msgstr "+10 سرور"
+
+#: .\templates\shop\pricing.html:76
+msgid "24/7 support"
+msgstr "پشتیبانی 24/7"
+
+#: .\templates\shop\pricing.html:83
+msgid "Add to Cart"
+msgstr "افزودن به سبد خرید"
+
+msgid "Home"
+msgstr "خانه"
+
+#: .\_base.html:69 .\_base.html:89
+msgid "Pricing"
+msgstr "قیمت‌ها"
+
+#: .\_base.html:70 .\_base.html:90
+msgid "About us"
+msgstr "درباره ما"
+
+
+#: .\_base.html:72 .\_base.html:92
+msgid "Contact us"
+msgstr "تماس با ما"
+
+#: .\_base.html:73 .\_base.html:93
+msgid "Cart"
+msgstr "سبد خرید"
+
+#: .\_base.html:106
+msgid "Developed with ❤️ and lots of ☕️ by"
+msgstr "توسعه یافته با ❤️ و کلی ☕️ توسط"
