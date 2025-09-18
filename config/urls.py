@@ -8,13 +8,15 @@ from django.conf.urls.i18n import i18n_patterns
 def redirect_to_fa(request):
     return redirect('/fa/')
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
+    path('', redirect_to_fa),
+] + i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
     path('cart/', include('cart.urls')),
     path('checkout/', include('orders.urls')),
     path('payment/', include('payment.urls')),
-    path('register/', include('core.urls'))
+    path('', include('core.urls')),
 )
 
 if settings.DEBUG:

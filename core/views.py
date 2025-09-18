@@ -49,3 +49,7 @@ def verify_code_view(request):
         return render(request, 'core/verify_code.html')
 
 
+def user_dashboard_view(request):
+    user_orders = request.user.user_orders.all()
+    return render(request, 'core/dashboard.html', context={'orders':user_orders})
+
