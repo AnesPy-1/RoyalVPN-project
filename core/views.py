@@ -43,7 +43,7 @@ def verify_code_view(request):
             user, created = CustomUser.objects.get_or_create(phone=phone)
 
             login(request, user)
-
+            messages.success(request, _("Welcome"))
             return redirect('home')
         messages.error(request, _("The code you entered is incorrect. Please try again."))
         return render(request, 'core/verify_code.html')
