@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.utils.text import gettext_lazy as _
 from django.shortcuts import render, redirect
 
@@ -48,7 +49,7 @@ def verify_code_view(request):
         messages.error(request, _("The code you entered is incorrect. Please try again."))
         return render(request, 'core/verify_code.html')
 
-
+@login_required
 def user_dashboard_view(request):
     user_orders = request.user.user_orders.all()
     return render(request, 'core/dashboard.html', context={'orders':user_orders})

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-18 12:54+0330\n"
+"POT-Creation-Date: 2025-09-18 15:57+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,6 +159,89 @@ msgstr "سوالات متداول"
 #: .\models.py:97
 msgid "answer"
 msgstr "پاسخ ها"
+
+#: .\templates\core\dashboard.html:4
+msgid "User Dashboard"
+msgstr "داشبورد کاربری"
+
+#: .\templates\core\dashboard.html:12
+msgid "Profile"
+msgstr "پروفایل"
+
+#: .\templates\core\dashboard.html:19
+msgid "Name:"
+msgstr "نام"
+
+#: .\templates\core\dashboard.html:23
+msgid "Id:"
+msgstr "ایدی عددی"
+
+#: .\templates\core\dashboard.html:27
+#, fuzzy
+#| msgid "phone"
+msgid "Phone:"
+msgstr "شماره تماس"
+
+#: .\templates\core\dashboard.html:31
+msgid "Joined:"
+msgstr "تاریخ عضویت"
+
+#: .\templates\core\dashboard.html:35
+#, fuzzy
+#| msgid "telegram id"
+msgid "Telegram Id:"
+msgstr "ایدی تلگرام"
+
+#: .\templates\core\dashboard.html:42
+msgid "Recent Orders"
+msgstr "سفارشات اخیر"
+
+#: .\templates\core\dashboard.html:47
+msgid "Order Id:"
+msgstr "شماره سفارش"
+
+#: .\templates\core\dashboard.html:53
+msgid "Status:"
+msgstr "وضعیت"
+
+#: .\templates\core\dashboard.html:59
+msgid "Paid"
+msgstr "پرداخت شده"
+
+#: .\templates\core\dashboard.html:66
+msgid "Pending"
+msgstr "در انتظار پرداخت"
+
+#: .\templates\core\dashboard.html:73
+msgid "Failed"
+msgstr "به مشکل خورده"
+
+#: .\templates\core\dashboard.html:80
+msgid "Cancelled"
+msgstr "کنسل شده"
+
+#: .\templates\core\dashboard.html:91
+#, fuzzy
+#| msgid "telegram id"
+msgid "item id:"
+msgstr "ایدی تلگرام"
+
+#: .\templates\core\dashboard.html:93 .\templates\core\dashboard.html:95
+msgid "data:"
+msgstr "حجم"
+
+#: .\templates\core\dashboard.html:93 .\templates\core\dashboard.html:98
+#: .\templates\core\dashboard.html:100
+msgid "Unlimited"
+msgstr "نامحدود"
+
+#: .\templates\core\dashboard.html:95
+msgid "GB"
+msgstr "گیگابایت"
+
+#: .\templates\core\dashboard.html:98 .\templates\core\dashboard.html:100
+msgid "time:"
+msgstr "زمان"
 
 #: .\templates\core\send_code.html:4
 msgid "Login"
