@@ -2,13 +2,18 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from django.utils.text import gettext_lazy as _
+import random
+
 
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **extra_fields):
         if not phone:
             raise ValueError("Users must have a phone number")
         user = self.model(phone=phone, **extra_fields)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
         user.save(using=self._db)
         return user
 
@@ -92,3 +97,16 @@ class Answer(models.Model):
     answer = models.CharField(_("answer"),max_length=255)
 
 
+class OTP(models.Model):
+    phone = models.CharField(max_length=15)
+    code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+
+
+    @staticmethod
+    def generate_code():
+        return str(random.randint(100000, 999999))
+
+    def is_valid(self):
+        return (timezone.now() - self.created_at).seconds < 120 and not self.is_used

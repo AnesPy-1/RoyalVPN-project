@@ -14,6 +14,7 @@ urlpatterns = i18n_patterns(
     path('cart/', include('cart.urls')),
     path('checkout/', include('orders.urls')),
     path('payment/', include('payment.urls')),
+    path('register/', include('core.urls'))
 )
 
 if settings.DEBUG:
