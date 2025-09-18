@@ -7,6 +7,7 @@
     <title>{% block page_title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="icon" href="{{ site_context.site_logo.url }}" type="image/x-icon">
 </head>
 <body class="bg-slate-900 text-white min-h-screen flex flex-col">
 {% if messages %}
@@ -57,12 +58,17 @@
         <div class="container mx-auto px-4">
 
             <div class="flex items-center justify-between py-4">
-                <a href="{% url 'home' %}" class="flex items-center gap-2">
-                    <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-fuchsia-600 shadow-lg">
-                        <svg xmlns="{{ site_settings.site_logo_svg }}" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-white"><path d="M12 1.5l8.485 4.9v10.2L12 21.5l-8.485-4.9V6.4L12 1.5zm0 2.309L5.015 7.09v9.82L12 20.192l6.985-3.282V7.09L12 3.809z"/></svg>
+            <a href="{% url 'home' %}" class="flex items-center gap-2">
+                <img src="{{ site_context.site_logo.url }}" alt="Logo" class="h-9 w-9">
+                <span class="text-xl font-bold tracking-tight">
+                    {{ site_context.site_name1 }}
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">
+                        {{ site_context.site_name2 }}
                     </span>
-                    <span class="text-xl font-bold tracking-tight">{{ site_context.site_name1 }} <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">{{ site_context.site_name2 }}</span></span>
-                </a>
+                </span>
+            </a>
+
+
                 <div class="flex items-center space-x-2">
     <!-- فارسی -->
     <a href="/fa/" class="flex items-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
