@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    "crispy_forms",
+    "crispy_tailwind",
+
     'core',
     'subs',
     'shop',
@@ -135,8 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.CustomUser'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
 
-MELIPAYAMAK_USERNAME = "یوزرنیم_پنل"
-MELIPAYAMAK_PASSWORD = "پسورد_پنل"
-MELIPAYAMAK_NUMBER   = "5000..."  # خط اختصاصی یا خدماتی
-MELIPAYAMAK_BODYID   = 12345      # فقط وقتی از خط خدماتی OTP استفاده می‌کنی
+LOGIN_REDIRECT_URL = 'dashboard'

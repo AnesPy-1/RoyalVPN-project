@@ -468,6 +468,4 @@ msgstr "تماس با ما"
 msgid "Cart"
 msgstr "سبد خرید"
 
-#: .\_base.html:106
-msgid "Developed with ❤️ and lots of ☕️ by"
-msgstr "توسعه یافته با ❤️ و کلی ☕️ توسط"
+

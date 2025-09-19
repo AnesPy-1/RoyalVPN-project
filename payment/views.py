@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.utils.text import gettext_lazy as _
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 
 from orders.models import Order
 from payment.forms import PaymentForm
 
-
+@login_required
 def payment_creation_view(request, order_id):
     order = get_object_or_404(Order, pk=order_id)
     if order.status != Order.OrderStatus.PENDING_PAYMENT:

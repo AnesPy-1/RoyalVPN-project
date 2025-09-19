@@ -28,18 +28,18 @@ class AnswersInline(admin.TabularInline):
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
-    list_display = ['phone', 'full_name', 'is_staff', 'is_phone_verified']
+    list_display = ['username', 'full_name', 'is_staff']
     search_fields = ['id', 'phone', 'full_name']
     ordering = ['-date_joined']
     fieldsets = (
-        (None, {'fields':('phone', 'password')}),
+        (None, {'fields':('username', 'password')}),
         ('Personal', {'fields':('full_name', 'email', 'telegram_id')}),
-        ('Permissions', {'fields':('is_staff', 'is_superuser', 'is_phone_verified')})
+        ('Permissions', {'fields':('is_staff', 'is_superuser')})
     )
     add_fieldsets = (
         (None, {
             'classes':('wide',),
-            'fields': ('phone', 'password1', 'password2'),
+            'fields': ('username', 'password1', 'password2'),
         }),
     )
     inlines = [

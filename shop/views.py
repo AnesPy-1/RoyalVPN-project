@@ -13,7 +13,7 @@ def home_view(request):
     comments = Comment.objects.all()[:9]
     return render(request, 'shop/home.html', context={'comments':comments})
 
-#@login_required
+@login_required
 def get_test(request):
     user = request.user
     user_exist_subscription = Subscriptions.objects.filter(user=user, is_test=True)
@@ -57,8 +57,6 @@ def pricing_view(request):
 def about_us_view(request):
     return render(request, 'shop/about.html')
 
-# Frequently Asked Questions
-
 def faq_view(request):
     faqs = FrequentlyAskedQuestions.objects.prefetch_related('answers')
     return render(request, 'shop/faq.html', context={'faqs':faqs})
@@ -66,7 +64,7 @@ def faq_view(request):
 def contact_view(request):
     return render(request, 'shop/contact.html')
 
-
+@login_required
 def get_sub(request, order_id, payment_id):
     order = get_object_or_404(Order, pk=order_id)
     payment = get_object_or_404(Payment, pk=payment_id)

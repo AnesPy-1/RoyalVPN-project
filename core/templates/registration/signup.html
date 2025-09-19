@@ -1,0 +1,27 @@
+ {% extends "_base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}{% trans "Sign Up" %}{% endblock %}
+
+{% block page_content %}
+<div class="flex items-center justify-center flex-1 px-4">
+  <div class="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center">{% trans "Create Account" %}</h2>
+
+    <form method="post" action="{% url 'signup' %}" class="space-y-4">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit"
+              class="w-full py-2 px-4 rounded-lg bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white font-semibold shadow hover:opacity-90 transition">
+        {% trans "Sign Up" %}
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-slate-400">
+      {% trans "Already have an account?" %}
+      <a href="{% url 'login' %}" class="text-blue-400 hover:text-blue-300">{% trans "Login" %}</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

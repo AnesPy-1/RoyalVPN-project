@@ -8,7 +8,7 @@ from .forms import OrderCreationForm
 from .models import OrderItem
 
 
-#@login_required
+@login_required
 def order_create_view(request):
     if request.user.is_authenticated:
         cart, _ = Cart.objects.get_or_create(user=request.user)
