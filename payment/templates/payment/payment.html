@@ -17,13 +17,40 @@
 
       <p class="mt-1 text-slate-400 text-sm">{% trans 'Card Holder:' %} {{ site_context.payment_card_name }}</p>
     </div>
-    <form method="post" action="{% url 'payment' order.id %}" enctype="multipart/form-data" class="mt-6 grid gap-3">
-      {% csrf_token %}
-      <label class="label">{% trans 'Upload Receipt Image' %}</label>
-      <input type="file" name="{{ form.payment_picture.name }}" id="receipt" accept="image/*" class="input py-2" required />
-      <button class="btn-primary w-max" type="submit">{% trans 'Submit Receipt' %}</button>
-      <p id="paymentMsg" class="text-sm text-emerald-400 hidden">{% trans 'Receipt successfully uploaded. Support will contact you soon.' %}</p>
-    </form>
+<form id="paymentForm" method="post" enctype="multipart/form-data" action="{% url 'payment' order.id %}" class="mt-6 grid gap-3">
+  {% csrf_token %}
+  <label class="label">{% trans 'Upload Receipt Image' %}</label>
+  <input type="file" name="{{ form.payment_picture.name }}" id="receipt" accept="image/*" class="input py-2" required />
+
+  <button type="button" id="submitBtn" class="btn-primary w-max">
+    {% trans 'Submit Receipt' %}
+  </button>
+
+  <p id="statusMsg" class="text-sm text-emerald-400 hidden">{% trans 'Processing... — do not refresh the page!' %}</p>
+</form>
+
+<script>
+document.getElementById('submitBtn').addEventListener('click', function() {
+  const form = document.getElementById('paymentForm');
+  const status = document.getElementById('statusMsg');
+
+  // اگر فایل انتخاب نشده
+  const fileInput = document.getElementById('receipt');
+  if (!fileInput.files.length) {
+    alert('لطفا یک تصویر انتخاب کنید.');
+    return;
+  }
+
+  // نمایش پیام در حال بررسی و غیر فعال کردن دکمه
+  status.classList.remove('hidden');
+  this.disabled = true;
+
+  // بعد از 10 ثانیه فرم ارسال شود
+  setTimeout(() => {
+    form.submit();
+  }, 10000); // 10000 میلی ثانیه = 10 ثانیه
+});
+</script>
   </div>
 </main>
 

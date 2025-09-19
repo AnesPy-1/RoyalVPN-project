@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-18 15:57+0330\n"
+"POT-Creation-Date: 2025-09-19 14:26+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\models.py:32
-msgid "username"
-msgstr "نام کاربری"
-
-#: .\models.py:33
+#: .\models.py:9
 msgid "phone"
 msgstr "شماره تماس"
 
-#: .\models.py:34
-msgid "email"
-msgstr "ایمیل"
-
-#: .\models.py:35
+#: .\models.py:10
 msgid "full name"
 msgstr "نام کامل"
 
-#: .\models.py:36
-msgid "is active"
-msgstr "فعال/غیر فعال"
-
-#: .\models.py:37
-msgid "is staff"
-msgstr "ادمین"
-
-#: .\models.py:38
-msgid "is phone verified"
-msgstr "شماره احراز شده/نشده"
-
-#: .\models.py:39
-msgid "date joined"
-msgstr "تاریخ عضویت"
-
-#: .\models.py:40
+#: .\models.py:11
 msgid "telegram id"
 msgstr "ایدی تلگرام"
 
-#: .\models.py:48
+#: .\models.py:14
 msgid "User"
 msgstr "کاربر"
 
-#: .\models.py:49
+#: .\models.py:15
 msgid "Users"
 msgstr "کاربر ها"
 
-#: .\models.py:53
+#: .\models.py:19
 msgid "site name1"
 msgstr "نام سایت 1"
 
-#: .\models.py:54
+#: .\models.py:20
 msgid "site name2"
 msgstr "نام سایت 2"
 
-#: .\models.py:55
+#: .\models.py:21
 #, fuzzy
 #| msgid "site logo svg"
 msgid "site logo"
 msgstr "svg لوگوی سایت"
 
-#: .\models.py:56
+#: .\models.py:22
 msgid "payment card number"
 msgstr "شماره کارت"
 
-#: .\models.py:57
+#: .\models.py:23
 msgid "payment card owner name"
 msgstr "نام صاحب کارت"
 
-#: .\models.py:58
+#: .\models.py:24
 msgid "servers uptime"
 msgstr "آپتایم سرور ها"
 
-#: .\models.py:59
+#: .\models.py:25
 msgid "countries count"
 msgstr "تعداد لوکیشن ها"
 
-#: .\models.py:60
+#: .\models.py:26
 msgid "servers count"
 msgstr "تعداد سرور ها"
 
-#: .\models.py:61
+#: .\models.py:27
 msgid "footer text"
 msgstr "متن کپی رایت برایبخش فوتر "
 
-#: .\models.py:63
+#: .\models.py:29
 msgid "users_count_for_about_us"
 msgstr "تعداد کاربر در صفحه درباره ما"
 
-#: .\models.py:64
+#: .\models.py:30
 msgid "established_year_for_about_us"
 msgstr "سال تاسیس در صفحه درباره ما"
 
-#: .\models.py:65
+#: .\models.py:31
 msgid "feature1_for_about_us"
 msgstr "قابلیت اول در صفحه درباره ما"
 
-#: .\models.py:66
+#: .\models.py:32
 msgid "feature2_for_about_us"
 msgstr "قابلیت دوم در صفحه درباره ما"
 
-#: .\models.py:67
+#: .\models.py:33
 msgid "feature3_for_about_us"
 msgstr "قابلیت سوم در صفحه درباره ما"
 
-#: .\models.py:68
+#: .\models.py:34
 msgid "feature4_for_about_us"
 msgstr "قابلیت چهارم در صفحه درباره ما"
 
-#: .\models.py:70
+#: .\models.py:36
 msgid "telegram_support_id_link"
 msgstr "ایدی پشتیبانی تلگرام فروشگاه"
 
-#: .\models.py:71
+#: .\models.py:37
 msgid "telegram_Channel_id_link"
 msgstr "ایدی چنل تلگرام فروشگاه"
 
-#: .\models.py:72
+#: .\models.py:38
 msgid "telegram_bot_id_link"
 msgstr "ایدی بات تلگرام فروشگاه"
 
-#: .\models.py:78
+#: .\models.py:44
 msgid "SiteSetting"
 msgstr "تنظیمات وبسایت"
 
-#: .\models.py:79
+#: .\models.py:45
 msgid "SiteSettings"
 msgstr "تنظیمات وبسایت"
 
-#: .\models.py:83 .\models.py:95
+#: .\models.py:49 .\models.py:61
 msgid "question"
 msgstr "سوال"
 
-#: .\models.py:86
+#: .\models.py:52
 msgid "FrequentlyAskedQuestion"
 msgstr "سوال"
 
-#: .\models.py:87
+#: .\models.py:53
 msgid "FrequentlyAskedQuestions"
 msgstr "سوالات متداول"
 
-#: .\models.py:97
+#: .\models.py:63
 msgid "answer"
 msgstr "پاسخ ها"
 
@@ -192,97 +168,137 @@ msgstr "تاریخ عضویت"
 msgid "Telegram Id:"
 msgstr "ایدی تلگرام"
 
-#: .\templates\core\dashboard.html:42
+#: .\templates\core\dashboard.html:43
+msgid "Logout"
+msgstr ""
+
+#: .\templates\core\dashboard.html:52
 msgid "Recent Orders"
 msgstr "سفارشات اخیر"
 
-#: .\templates\core\dashboard.html:47
+#: .\templates\core\dashboard.html:57
 msgid "Order Id:"
 msgstr "شماره سفارش"
 
-#: .\templates\core\dashboard.html:53
+#: .\templates\core\dashboard.html:63
 msgid "Status:"
 msgstr "وضعیت"
 
-#: .\templates\core\dashboard.html:59
+#: .\templates\core\dashboard.html:69
 msgid "Paid"
 msgstr "پرداخت شده"
 
-#: .\templates\core\dashboard.html:66
+#: .\templates\core\dashboard.html:76
 msgid "Pending"
 msgstr "در انتظار پرداخت"
 
-#: .\templates\core\dashboard.html:73
+#: .\templates\core\dashboard.html:83
 msgid "Failed"
 msgstr "به مشکل خورده"
 
-#: .\templates\core\dashboard.html:80
+#: .\templates\core\dashboard.html:90
 msgid "Cancelled"
 msgstr "کنسل شده"
 
-#: .\templates\core\dashboard.html:91
+#: .\templates\core\dashboard.html:95
+msgid "more detail"
+msgstr "دیدن جزییات"
+
+#: .\templates\core\dashboard.html:103
 #, fuzzy
 #| msgid "telegram id"
 msgid "item id:"
 msgstr "ایدی تلگرام"
 
-#: .\templates\core\dashboard.html:93 .\templates\core\dashboard.html:95
+#: .\templates\core\dashboard.html:105 .\templates\core\dashboard.html:107
 msgid "data:"
 msgstr "حجم"
 
-#: .\templates\core\dashboard.html:93 .\templates\core\dashboard.html:98
-#: .\templates\core\dashboard.html:100
+#: .\templates\core\dashboard.html:105 .\templates\core\dashboard.html:110
+#: .\templates\core\dashboard.html:112
 msgid "Unlimited"
 msgstr "نامحدود"
 
-#: .\templates\core\dashboard.html:95
+#: .\templates\core\dashboard.html:107
 msgid "GB"
 msgstr "گیگابایت"
 
-#: .\templates\core\dashboard.html:98 .\templates\core\dashboard.html:100
+#: .\templates\core\dashboard.html:110 .\templates\core\dashboard.html:112
 msgid "time:"
 msgstr "زمان"
 
-#: .\templates\core\send_code.html:4
+#: .\templates\registration\login.html:5 .\templates\registration\login.html:10
+#: .\templates\registration\login.html:17
+#: .\templates\registration\signup.html:23
 msgid "Login"
 msgstr "ورود"
 
-#: .\templates\core\send_code.html:9
-msgid "Login with Phone"
-msgstr "ورود با شماره موبایل"
+#: .\templates\registration\login.html:22
+msgid "Do not have an account?"
+msgstr "اکانت ندارید؟"
 
-#: .\templates\core\send_code.html:15
-msgid "Phone Number"
-msgstr "شماره موبایل"
+#: .\templates\registration\login.html:23
+msgid "SigUp"
+msgstr "ثبت نام"
 
-#: .\templates\core\send_code.html:24
-msgid "Send Code"
-msgstr "ارسال کد تایید"
+#: .\templates\registration\signup.html:5
+#: .\templates\registration\signup.html:17
+msgid "Sign Up"
+msgstr "ثبت نام"
 
-#: .\templates\core\verify_code.html:4
-msgid "Verify Code"
-msgstr "بررسی کد"
+#: .\templates\registration\signup.html:10
+msgid "Create Account"
+msgstr "ثبت نام"
 
-#: .\templates\core\verify_code.html:9
-msgid "Enter Verification Code"
-msgstr "کد تایید را وارد نمایید"
+#: .\templates\registration\signup.html:22
+msgid "Already have an account?"
+msgstr "اکانت دارید؟"
 
-#: .\templates\core\verify_code.html:15
-msgid "Verification Code"
-msgstr "کد تایید"
+#~ msgid "username"
+#~ msgstr "نام کاربری"
 
-#: .\templates\core\verify_code.html:24
-msgid "Verify"
-msgstr "اعتبارسنجی"
+#~ msgid "email"
+#~ msgstr "ایمیل"
 
-#: .\views.py:23
-msgid "Please enter the 6-digit code that was sent to you via SMS."
-msgstr "لطفاً کد ۶ رقمی که از طریق پیامک برای شما ارسال شده است را وارد کنید."
+#~ msgid "is active"
+#~ msgstr "فعال/غیر فعال"
 
-#: .\views.py:46
-msgid "Welcome"
-msgstr "خوش آمدید"
+#~ msgid "is staff"
+#~ msgstr "ادمین"
 
-#: .\views.py:48
-msgid "The code you entered is incorrect. Please try again."
-msgstr "کدی که وارد کرده‌اید اشتباه است. لطفاً دوباره تلاش کنید."
+#~ msgid "is phone verified"
+#~ msgstr "شماره احراز شده/نشده"
+
+#~ msgid "date joined"
+#~ msgstr "تاریخ عضویت"
+
+#~ msgid "Login with Phone"
+#~ msgstr "ورود با شماره موبایل"
+
+#~ msgid "Phone Number"
+#~ msgstr "شماره موبایل"
+
+#~ msgid "Send Code"
+#~ msgstr "ارسال کد تایید"
+
+#~ msgid "Verify Code"
+#~ msgstr "بررسی کد"
+
+#~ msgid "Enter Verification Code"
+#~ msgstr "کد تایید را وارد نمایید"
+
+#~ msgid "Verification Code"
+#~ msgstr "کد تایید"
+
+#~ msgid "Verify"
+#~ msgstr "اعتبارسنجی"
+
+#~ msgid "Please enter the 6-digit code that was sent to you via SMS."
+#~ msgstr ""
+#~ "لطفاً کد ۶ رقمی که از طریق پیامک برای شما ارسال شده است را وارد کنید."
+
+#~ msgid "Welcome"
+#~ msgstr "خوش آمدید"
+
+#~ msgid "The code you entered is incorrect. Please try again."
+#~ msgstr "کدی که وارد کرده‌اید اشتباه است. لطفاً دوباره تلاش کنید."

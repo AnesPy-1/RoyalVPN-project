@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-16 17:49+0330\n"
+"POT-Creation-Date: 2025-09-19 14:27+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\models.py:12
 msgid "order"
 msgstr "سفارش"
@@ -73,22 +74,25 @@ msgstr "نام:"
 msgid "Upload Receipt Image"
 msgstr "آپلود عکس رسید"
 
-#: .\templates\payment\payment.html:24
+#: .\templates\payment\payment.html:26
 msgid "Submit Receipt"
 msgstr "ارسال رسید"
 
-#: .\templates\payment\payment.html:25
-msgid "Receipt successfully uploaded. Support will contact you soon."
-msgstr "..."
+#: .\templates\payment\payment.html:29
+msgid "Processing... — do not refresh the page!"
+msgstr "در حال بررسی به هیچ عنوان صفحه را رفرش نکنید.."
 
-#: .\views.py:12
+#: .\views.py:13
 msgid "This order has already been paid or is no longer payable."
 msgstr "سفارش قبلا پرداخت شده است یا دیگر قابل پرداخت نیست"
 
-#: .\views.py:25
+#: .\views.py:26
 msgid "Payment was successful."
 msgstr "پرداخت با موفقیت انجام شد"
 
-#: .\views.py:28
+#: .\views.py:29
 msgid "Please enter the information correctly."
 msgstr "لطفا اطلاعات را به درستی وارد کنید"
+
+#~ msgid "Receipt successfully uploaded."
+#~ msgstr "..."
