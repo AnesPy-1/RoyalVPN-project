@@ -1,6 +1,7 @@
 import os
 import tempfile
 from html import escape
+from pathlib import Path
 
 from aiogram import F, Router
 from aiogram.enums import ParseMode
@@ -9,6 +10,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, FSInputFile, InlineKeyboardButton, InlineKeyboardMarkup, Message
 
+from .backup import create_sqlite_backup, resolve_backup_database_path
 from .client import BotAPIError, RoyalVPNBotClient
 from .config import BOT_ADMIN_TELEGRAM_IDS
 from botapi.models import BotSession
@@ -514,10 +516,38 @@ async def admin_menu(callback: CallbackQuery):
             inline_keyboard=[
                 [InlineKeyboardButton(text="آمار سایت", callback_data="admin:stats")],
                 [InlineKeyboardButton(text="پرداخت‌های در انتظار", callback_data="admin:pending")],
+                [InlineKeyboardButton(text="بکاپ اضطراری", callback_data="admin:backup")],
             ]
         ),
     )
     await callback.answer()
+
+
+@router.callback_query(F.data == "admin:backup")
+async def admin_backup(callback: CallbackQuery):
+    if not _is_admin(callback.from_user.id):
+        await callback.answer("دسترسی ندارید.", show_alert=True)
+        return
+
+    try:
+        repo_root = Path(__file__).resolve().parent.parent
+        backup_path = create_sqlite_backup(resolve_backup_database_path(repo_root), target_dir=repo_root / "media" / "bot_receipts")
+        if not backup_path.exists():
+            raise FileNotFoundError("Backup file was not created")
+
+        await callback.message.answer_document(
+            document=FSInputFile(backup_path),
+            caption="📦 بکاپ اضطراری دیتابیس ارسال شد.\nفایل SQLite سایت و ربات در این پیام ضمیمه شده است.",
+        )
+        await callback.answer("بکاپ ارسال شد.")
+    except Exception as exc:
+        await callback.answer(f"ارسال بکاپ انجام نشد: {exc}", show_alert=True)
+    finally:
+        try:
+            if "backup_path" in locals() and backup_path.exists():
+                backup_path.unlink(missing_ok=True)
+        except Exception:
+            pass
 
 
 @router.callback_query(F.data == "admin:stats")
