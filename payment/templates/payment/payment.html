@@ -1,57 +1,78 @@
 {% extends '_base.html' %}
 {% load humanize %}
-{% load i18n %}
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - Payment{% endblock %}
+
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - پرداخت{% endblock %}
 
 {% block page_content %}
+<main>
+  <section class="section-band">
+    <div class="site-container">
+      <div class="section-head">
+        <div class="section-kicker">پرداخت و افزایش موجودی</div>
+        <h1 class="section-title">پرداخت از طریق ربات تلگرام</h1>
+        <p class="section-lead">
+          برای پرداخت سفارش و افزایش موجودی، از ربات رسمی RoyalVPN اقدام کنید. پس از تایید پرداخت، موجودی شما به صورت خودکار بروزرسانی می‌شود.
+        </p>
+      </div>
 
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-2xl">
-  <h1 class="text-3xl md:text-4xl font-extrabold mb-6">{% trans 'Payment' %}</h1>
-  <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-    <p class="text-slate-300">
-      {% trans 'Please transfer' %} <b>{{ order.final_price|floatformat:0|intcomma }} {% trans 'Toman' %}</b> {% trans 'to the following card number and upload the receipt.' %}
-    </p>
-    <div class="mt-4 p-4 rounded-xl border border-white/10 bg-white/5">
-      <p class="text-sm text-slate-400 mb-1">Card Number</p>
-      <p class="text-2xl font-extrabold tracking-wider">{{ site_context.payment_card }}</p>
+      <div class="auth-shell">
+        <section class="form-card payment-panel">
+          <div class="surface-card payment-hero">
+            <div class="section-kicker">مبلغ سفارش</div>
+            <h2 class="section-title" style="margin-top:0.35rem;font-size:1.6rem;">{{ order.final_price|floatformat:0|intcomma }} تومان</h2>
+            <p class="muted-copy">شناسه سفارش: {{ order.id }}</p>
+          </div>
 
-      <p class="mt-1 text-slate-400 text-sm">{% trans 'Card Holder:' %} {{ site_context.payment_card_name }}</p>
+          <div class="surface-card payment-note">
+            <p class="review-name" style="margin-bottom:0.45rem;">پرداخت</p>
+            <p class="muted-copy">موجودی کیف پول شما: {{ wallet_balance|floatformat:0|intcomma }} تومان</p>
+            {% if shortage_amount > 0 %}
+            <p class="muted-copy" style="color:#ef4444;">موجودی شما کافی نیست. شما {{ shortage_amount|intcomma }} تومان کسری دارید.</p>
+            {% endif %}
+            <p class="muted-copy">اگر موجودی کافی دارید، روی دکمه زیر بزنید تا پرداخت از کیف پول انجام شود.</p>
+          </div>
+
+          <form method="post" style="margin-bottom:1rem;">
+            {% csrf_token %}
+            <button type="submit" class="btn-primary btn-primary--full payment-cta">
+              پرداخت با کیف پول
+            </button>
+          </form>
+
+          <a href="https://t.me/RoyaIvpn_bot" target="_blank" rel="noopener" class="btn-ghost btn-primary--full" style="margin-bottom:1rem; display:inline-flex; justify-content:center;">
+            شارژ موجودی از طریق ربات
+          </a>
+
+          <div class="surface-card payment-info">
+            <p class="muted-copy">
+              در صورتی که موجودی کیف پول شما کافی نیست، می‌توانید از طریق ربات رسمی RoyalVPN موجودی خود را شارژ کنید.
+            </p>
+          </div>
+        </section>
+
+        <aside class="form-card payment-side">
+          <div class="section-kicker">اطلاعات سفارش</div>
+          <div class="info-grid" style="margin-top:1rem;">
+            <div class="info-card">
+              <div class="section-kicker">شماره سفارش</div>
+              <p class="muted-copy">{{ order.id }}</p>
+            </div>
+            <div class="info-card">
+              <div class="section-kicker">وضعیت</div>
+              <p class="muted-copy">در انتظار پرداخت</p>
+            </div>
+            <div class="info-card">
+              <div class="section-kicker">مبلغ قابل پرداخت</div>
+              <p class="muted-copy">{{ order.final_price|floatformat:0|intcomma }} تومان</p>
+            </div>
+            <div class="info-card">
+              <div class="section-kicker">ربات رسمی</div>
+              <p class="muted-copy">@RoyaIvpn_bot</p>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
-<form id="paymentForm" method="post" enctype="multipart/form-data" action="{% url 'payment' order.id %}" class="mt-6 grid gap-3">
-  {% csrf_token %}
-  <label class="label">{% trans 'Upload Receipt Image' %}</label>
-  <input type="file" name="{{ form.payment_picture.name }}" id="receipt" accept="image/*" class="input py-2" required />
-
-  <button type="button" id="submitBtn" class="btn-primary w-max">
-    {% trans 'Submit Receipt' %}
-  </button>
-
-  <p id="statusMsg" class="text-sm text-emerald-400 hidden">{% trans 'Processing... — do not refresh the page!' %}</p>
-</form>
-
-<script>
-document.getElementById('submitBtn').addEventListener('click', function() {
-  const form = document.getElementById('paymentForm');
-  const status = document.getElementById('statusMsg');
-
-  // اگر فایل انتخاب نشده
-  const fileInput = document.getElementById('receipt');
-  if (!fileInput.files.length) {
-    alert('لطفا یک تصویر انتخاب کنید.');
-    return;
-  }
-
-  // نمایش پیام در حال بررسی و غیر فعال کردن دکمه
-  status.classList.remove('hidden');
-  this.disabled = true;
-
-  // بعد از 10 ثانیه فرم ارسال شود
-  setTimeout(() => {
-    form.submit();
-  }, 10000); // 10000 میلی ثانیه = 10 ثانیه
-});
-</script>
-  </div>
+  </section>
 </main>
-
 {% endblock %}

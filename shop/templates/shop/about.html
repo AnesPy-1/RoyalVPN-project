@@ -1,50 +1,50 @@
 {% extends '_base.html' %}
-{% load i18n %}
 
 {% block page_title %}
-{% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - About Us{% endblocktrans %}
+درباره {{ site_context.site_name1 }} {{ site_context.site_name2 }}
 {% endblock %}
 
 {% block page_content %}
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
-    <div class="max-w-3xl">
-        <h1 class="text-3xl md:text-5xl font-extrabold">
-            {% blocktrans %}About {{ site_context.site_name1 }} {{ site_context.site_name2 }}{% endblocktrans %}
-        </h1>
-        <p class="mt-4 text-slate-300">
-            {% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} was founded with a mission: open, private, and secure internet for everyone. We operate a high-performance global network and adhere to the highest privacy standards.{% endblocktrans %}
+<main>
+  <section class="auth-section">
+    <div class="site-container auth-shell">
+      <div class="auth-copy">
+        <div class="section-kicker">درباره ما</div>
+        <h1>درباره {{ site_context.site_name1 }} {{ site_context.site_name2 }}</h1>
+        <p>
+          {{ site_context.site_name1 }} {{ site_context.site_name2 }} با یک هدف ساخته شد: اینترنت خصوصی و امن برای همه، با شبکه‌ای سریع و بدون شلوغی.
         </p>
+      </div>
 
-        <div class="mt-8 grid md:grid-cols-3 gap-4">
-            <div class="stat">
-                <div class="stat-number">{{ site_context.established_year_for_about_us }}</div>
-                <div class="stat-label">{% trans "Established Year" %}</div>
+      <div class="form-card">
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="section-kicker">سال راه‌اندازی</div>
+            <div class="stat-value" style="font-size:1.9rem;margin-top:0.25rem;">{{ site_context.established_year_for_about_us }}</div>
+            <p class="muted-copy">یک تیم محصول متمرکز</p>
+          </div>
+          <div class="info-card">
+            <div class="section-kicker">کشورها</div>
+            <div class="stat-value" style="font-size:1.9rem;margin-top:0.25rem;">{{ site_context.countries_count }}+</div>
+            <p class="muted-copy">پوشش در سطح جهانی</p>
+          </div>
+          <div class="info-card">
+            <div class="section-kicker">کاربران</div>
+            <div class="stat-value" style="font-size:1.9rem;margin-top:0.25rem;">{{ site_context.users_count_for_about_us }}+</div>
+            <p class="muted-copy">اعتماد کاربران در حال رشد</p>
+          </div>
+          <div class="info-card">
+            <div class="section-kicker">اصول ما</div>
+            <div class="muted-copy" style="margin-top:0.5rem;">
+              {% if site_context.feature1_for_about_us %}<div class="check-item">{{ site_context.feature1_for_about_us }}</div>{% endif %}
+              {% if site_context.feature2_for_about_us %}<div class="check-item">{{ site_context.feature2_for_about_us }}</div>{% endif %}
+              {% if site_context.feature3_for_about_us %}<div class="check-item">{{ site_context.feature3_for_about_us }}</div>{% endif %}
+              {% if site_context.feature4_for_about_us %}<div class="check-item">{{ site_context.feature4_for_about_us }}</div>{% endif %}
             </div>
-            <div class="stat">
-                <div class="stat-number">{{ site_context.countries_count }}+</div>
-                <div class="stat-label">{% trans "Countries" %}</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">{{ site_context.users_count_for_about_us }}+</div>
-                <div class="stat-label">{% trans "Users" %}</div>
-            </div>
+          </div>
         </div>
-
-        <h2 class="mt-10 text-2xl font-bold">{% trans "Our Principles" %}</h2>
-        <ul class="mt-3 grid md:grid-cols-2 gap-3 text-slate-300">
-            {% if site_context.feature1_for_about_us %}
-            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature1_for_about_us }}</li>
-            {% endif %}
-            {% if site_context.feature2_for_about_us %}
-            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature2_for_about_us }}</li>
-            {% endif %}
-            {% if site_context.feature3_for_about_us %}
-            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature3_for_about_us }}</li>
-            {% endif %}
-            {% if site_context.feature4_for_about_us %}
-            <li class="flex items-center gap-2"><span class="check"></span>{{ site_context.feature4_for_about_us }}</li>
-            {% endif %}
-        </ul>
+      </div>
     </div>
+  </section>
 </main>
 {% endblock %}

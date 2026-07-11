@@ -1,84 +1,107 @@
 {% extends '_base.html' %}
 {% load humanize %}
-{% load i18n %}
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "Checkout" %}{% endblock %}
+
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - تکمیل سفارش{% endblock %}
 
 {% block page_content %}
-
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
-  <h1 class="text-3xl md:text-4xl font-extrabold mb-6">{% trans "Checkout" %}</h1>
-  <div class="grid lg:grid-cols-3 gap-6">
-    <form action="{% url 'checkout' %}" method="post" class="lg:col-span-2 grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5">
-      {% csrf_token %}
-      <div class="grid md:grid-cols-3 gap-4">
-        <div>
-          <label class="label">{% trans "Phone Number" %}</label>
-          <input type="tel" name="{{ form.phone_number.name }}" value="{{ user.phone }}" id="phone" class="input" placeholder="{% trans '09xx xxx xxxx' %}" required />
-        </div>
-        <div class="md:col-span-2">
-          <label class="label">{% trans "Full Name" %}</label>
-          <input type="text" name="{{ form.name.name }}" id="fullName" class="input" placeholder="{% trans 'Your Name' %}" required />
-        </div>
+<main>
+  <section class="section-band">
+    <div class="site-container">
+      <div class="section-head">
+        <div class="section-kicker">تکمیل سفارش</div>
+        <h1 class="section-title">اطلاعات نهایی سفارش</h1>
+        <p class="section-lead">نام کاربری، شماره موبایل و بخش پرداخت از حساب شما خوانده می‌شود و فقط آیدی تلگرام در صورت نیاز قابل ویرایش است.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="md:col-span-2">
-          <label class="label">{% trans "Telegram ID (Optional)" %}</label>
-          <input type="text" name="{{ form.telegram_id.name }}" value="{{ user.telegram_id }}" id="telegram" class="input" placeholder="{% trans '@username' %}" />
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300 text-sm mt-4">
-        {% trans "After confirming your information, you will be redirected to the payment page." %}
-      </div>
-      <button class="btn-primary mt-2 w-full md:w-max" type="submit">{% trans "Continue to Payment" %}</button>
-      <p id="checkoutMsg" class="text-sm text-emerald-400 hidden">{% trans "Redirecting to payment page..." %}</p>
-    </form>
-
-    <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5">
-      <h2 class="font-semibold mb-3">{% trans "Order Summary" %}</h2>
-
-      <div class="space-y-3">
-        {% for item in cart.items.all %}
-        <div class="flex justify-between items-center bg-white/10 rounded-lg p-3">
-          <div>
-            <p class="font-semibold">{{ item.product.name }}</p>
-            <p class="text-sm text-slate-400">{% trans "Quantity" %}: 1</p>
-            {% if item.product.traffic_limit == '0' %}
-            <p class="text-sm text-slate-400">{% trans "Traffic" %}: {% trans "Unlimited" %}</p>
-            {% else %}
-            <p class="text-sm text-slate-400">{% trans "Traffic" %}: {{ item.product.traffic_limit }}</p>
-            {% endif %}
-            {% if item.product.time_limit == '0' %}
-            <p class="text-sm text-slate-400">{% trans "Time" %}: {% trans "Unlimited" %}</p>
-            {% else %}
-            <p class="text-sm text-slate-400">{% trans "Time" %}: {{ item.product.time_limit }}</p>
-            {% endif %}
+      <div class="auth-shell checkout-layout">
+        <section class="form-card checkout-form-card">
+          <div class="surface-card checkout-user-banner">
+            <div>
+              <div class="section-kicker">کاربر سایت</div>
+              <h2 class="section-title" style="margin-top:0.35rem;font-size:1.55rem;">{{ username }}</h2>
+            </div>
+            <div class="checkout-user-meta">
+              <p class="muted-copy">شماره موبایل: {{ phone_number|default:"ثبت نشده" }}</p>
+              <p class="muted-copy">آیدی تلگرام: {{ telegram_id|default:"ثبت نشده" }}</p>
+            </div>
           </div>
-          {% if item.product.discount %}
-          <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-          {% endif %}
-          <p class="font-bold">{{ item.product.get_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-        </div>
-        {% endfor %}
-      </div>
 
-      <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2 mt-4">
-        <p class="font-semibold text-slate-300">{% trans "Total Amount" %}</p>
-        <p class="font-bold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-      </div>
+          <form action="{% url 'checkout' %}" method="post" class="checkout-form">
+            {% csrf_token %}
+            <div class="checkout-field">
+              <label for="{{ form.telegram_id.id_for_label }}">{{ form.telegram_id.label }}</label>
+              {{ form.telegram_id }}
+              {% if form.telegram_id.help_text %}
+              <p class="form-help">{{ form.telegram_id.help_text }}</p>
+              {% endif %}
+              {{ form.telegram_id.errors }}
+            </div>
 
-      <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
-        <p>{% trans "Your Savings" %}</p>
-        <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-      </div>
+            <div class="surface-card checkout-note">
+              <p class="muted-copy">نام سفارش به صورت خودکار از نام کاربری شما ثبت می‌شود.</p>
+              <p class="muted-copy">اگر شماره موبایل در حساب شما ثبت نشده باشد، این مرحله از شما گرفته نمی‌شود.</p>
+            </div>
 
-      <div class="mt-2 border-t border-white/10 pt-3 flex items-center justify-between font-bold text-lg">
-        <p>{% trans "Amount Payable" %}</p>
-        <p>{{ cart.get_cart_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
+            <button class="btn-primary btn-primary--full" type="submit">ادامه به صفحه پرداخت</button>
+          </form>
+        </section>
+
+        <aside class="form-card checkout-summary">
+          <div class="section-kicker">خلاصه سفارش</div>
+          <h2 class="section-title" style="margin-top:0.35rem;font-size:1.55rem;">جزئیات خرید شما</h2>
+
+          <div class="checkout-summary-list">
+            {% for item in cart.items.all %}
+            <article class="surface-card checkout-summary-item">
+              <div class="checkout-summary-item-top">
+                <div>
+                  <p class="review-name">{{ item.product.name }}</p>
+                  <p class="muted-copy" style="margin-top:0.3rem;">تعداد: 1</p>
+                </div>
+                <p class="review-name">{{ item.product.get_final_price|floatformat:0|intcomma }} تومان</p>
+              </div>
+
+              <div class="checkout-summary-grid">
+                <div class="info-card">
+                  <div class="section-kicker">ترافیک</div>
+                  <p class="muted-copy">{% if item.product.traffic_limit == '0' %}نامحدود{% else %}{{ item.product.traffic_limit }} گیگابایت{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">زمان</div>
+                  <p class="muted-copy">{% if item.product.time_limit == '0' %}نامحدود{% else %}{{ item.product.time_limit }}{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">دستگاه</div>
+                  <p class="muted-copy">{% if item.product.device_connections_limit == '0' %}نامحدود{% else %}{{ item.product.device_connections_limit }} اتصال{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">تخفیف</div>
+                  <p class="muted-copy">{% if item.product.discount %}{{ item.product.discount.value }}٪{% else %}ندارد{% endif %}</p>
+                </div>
+              </div>
+            </article>
+            {% empty %}
+            <div class="surface-card">سبد خرید شما خالی است.</div>
+            {% endfor %}
+          </div>
+
+          <div class="surface-card checkout-total-box">
+            <div class="checkout-total-row">
+              <p class="muted-copy">جمع جزء</p>
+              <p class="review-name">{{ cart.get_cart_old_total|floatformat:0|intcomma }} تومان</p>
+            </div>
+            <div class="checkout-total-row">
+              <p class="muted-copy">میزان صرفه‌جویی</p>
+              <p class="review-name" style="color:#86efac;">{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
+            </div>
+            <div class="checkout-total-row checkout-total-row--final">
+              <p class="review-name">مبلغ نهایی</p>
+              <p class="review-name">{{ cart.get_cart_final_price|floatformat:0|intcomma }} تومان</p>
+            </div>
+          </div>
+        </aside>
       </div>
-    </aside>
-  </div>
+    </div>
+  </section>
 </main>
-
 {% endblock %}

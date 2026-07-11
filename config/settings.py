@@ -1,4 +1,5 @@
 import os
+from importlib.util import find_spec
 from pathlib import Path
 
 from environs import Env
@@ -9,7 +10,7 @@ env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = "opksnbvjkosakjbvnadskvjlksdbo*&^T&IU@#$^Y()"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,21 +29,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    "crispy_forms",
-    "crispy_tailwind",
-
     'core',
     'subs',
     'shop',
     'cart',
     'orders',
     'payment',
+    'botapi',
 ]
+
+if find_spec("crispy_forms"):
+    INSTALLED_APPS.append("crispy_forms")
+if find_spec("crispy_tailwind"):
+    INSTALLED_APPS.append("crispy_tailwind")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -85,20 +88,7 @@ DATABASES = {
 
 # Password validation
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # Internationalization
@@ -110,11 +100,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-LANGUAGES = [
-    ('en', 'English'),
-    ('fa', 'Persian'),
-]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -130,6 +115,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "royalvpn-bot-cache",
+    }
+}
+
 
 # Default primary key field type
 
@@ -143,3 +135,9 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'home'
+
+BOT_API_KEY = env.str("BOT_API_KEY", default="")
+BOT_API_SECRET = env.str("BOT_API_SECRET", default="")
+BOT_ALLOWED_IPS = env.str("BOT_ALLOWED_IPS", default="")
+BOT_SESSION_TTL_HOURS = env.int("BOT_SESSION_TTL_HOURS", default=24)
+BOT_SIGNATURE_WINDOW_SECONDS = env.int("BOT_SIGNATURE_WINDOW_SECONDS", default=300)

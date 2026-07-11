@@ -1,178 +1,148 @@
 <!DOCTYPE html>
 {% load static i18n %}
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block page_title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-        <link rel="icon" href="{{ site_context.site_logo.url }}" type="image/x-icon">
+    <link rel="icon" href="{{ site_context.site_logo.url }}" type="image/x-icon">
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col">
-{% if messages %}
-<div id="messages" class="fixed top-5 right-5 space-y-3 z-50">
-    {% for message in messages %}
-        {% if message.tags == 'success' %}
-            <div class="flex items-center bg-green-500 text-white px-4 py-3 rounded-lg shadow-md">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>{{ message }}</span>
+<body class="site-body">
+<div class="site-shell">
+    {% if messages %}
+    <div class="message-stack" aria-live="polite">
+        {% for message in messages %}
+            <div class="message-item message-{{ message.tags|default:'info' }}">
+                <span class="message-dot"></span>
+                <p>{{ message }}</p>
+                <button type="button" class="message-close" data-dismiss-message aria-label="بستن پیام">×</button>
             </div>
-        {% elif message.tags == 'warning' %}
-            <div class="flex items-center bg-yellow-500 text-white px-4 py-3 rounded-lg shadow-md">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
-                </svg>
-                <span>{{ message }}</span>
-            </div>
-        {% elif message.tags == 'error' %}
-            <div class="flex items-center bg-red-500 text-white px-4 py-3 rounded-lg shadow-md">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>{{ message }}</span>
-            </div>
-        {% else %}
-            <div class="flex items-center bg-gray-500 text-white px-4 py-3 rounded-lg shadow-md">
-                <span>{{ message }}</span>
-            </div>
-        {% endif %}
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-<script>
-    // حذف خودکار پیام‌ها بعد از ۳ ثانیه
-    document.querySelectorAll('#messages > div').forEach(msg => {
-        setTimeout(() => {
-            msg.remove();
-        }, 3000);
-    });
-</script>
-{% endif %}
-
-    <!-- Header -->
-<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/70 border-b border-slate-800">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between py-4">
-            <!-- Logo -->
-            <a href="{% url 'home' %}" class="flex items-center gap-2">
-                <img src="{{ site_context.site_logo.url }}" alt="Logo" class="h-9 w-9">
-                <span class="text-xl font-bold tracking-tight">
-                    {{ site_context.site_name1 }}
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">
-                        {{ site_context.site_name2 }}
+    <header class="site-header">
+        <div class="site-container">
+            <div class="header-inner">
+                <a href="{% url 'home' %}" class="brand-mark" aria-label="{{ site_context.site_name1 }} {{ site_context.site_name2 }}">
+                    <span class="brand-logo">
+                        <img src="{{ site_context.site_logo.url }}" alt="{{ site_context.site_name1 }} {{ site_context.site_name2 }}">
                     </span>
-                </span>
-            </a>
+                    <span class="brand-text">
+                        <span class="brand-name">{{ site_context.site_name1 }}</span>
+                        <span class="brand-accent">{{ site_context.site_name2 }}</span>
+                    </span>
+                </a>
 
-            <!-- زبان‌ها -->
-            <div class="hidden md:flex items-center space-x-2">
-                <a href="/fa/" class="flex items-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/State_flag_of_Iran_%281964%E2%80%931980%29.svg/330px-State_flag_of_Iran_%281964%E2%80%931980%29.svg.png"
-                         alt="Iran" class="w-5 h-5 rounded-full mr-2">
-                    <span>فارسی</span>
-                </a>
-                <a href="/en/" class="flex items-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-                         alt="US" class="w-5 h-5 rounded-full mr-2">
-                    <span>English</span>
-                </a>
+                <nav class="desktop-nav" aria-label="ناوبری اصلی">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}is-active{% endif %}" href="{% url 'home' %}">خانه</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'pricing' %}is-active{% endif %}" href="{% url 'pricing' %}">تعرفه‌ها</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'about' %}is-active{% endif %}" href="{% url 'about' %}">درباره ما</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'faq' %}is-active{% endif %}" href="{% url 'faq' %}">سوالات متداول</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}is-active{% endif %}" href="{% url 'contact' %}">تماس با ما</a>
+                    <a class="cart-link" href="{% url 'cart' %}" aria-label="سبد خرید">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M3 4h2l2.2 9.2A2 2 0 0 0 9.1 15H18a2 2 0 0 0 1.9-1.4L22 7H6"></path>
+                            <circle cx="10" cy="20" r="1.4"></circle>
+                            <circle cx="18" cy="20" r="1.4"></circle>
+                        </svg>
+                        <span id="cartCount" class="cart-count">{{ cart.items.count }}</span>
+                    </a>
+                </nav>
+
+                <div class="header-actions">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="btn-primary btn-primary--small">داشبورد</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-primary btn-primary--small">ورود / ثبت‌نام</a>
+                    {% endif %}
+
+                    <button id="navToggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileNav">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span class="sr-only">باز کردن منو</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- دکمه موبایل -->
-            <div class="flex items-center gap-3">
+            <nav id="mobileNav" class="mobile-nav" aria-label="ناوبری موبایل">
+                <a class="nav-link {% if request.resolver_match.url_name == 'home' %}is-active{% endif %}" href="{% url 'home' %}">خانه</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'pricing' %}is-active{% endif %}" href="{% url 'pricing' %}">تعرفه‌ها</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'about' %}is-active{% endif %}" href="{% url 'about' %}">درباره ما</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'faq' %}is-active{% endif %}" href="{% url 'faq' %}">سوالات متداول</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}is-active{% endif %}" href="{% url 'contact' %}">تماس با ما</a>
+                <a class="nav-link" href="{% url 'cart' %}">سبد خرید</a>
                 {% if user.is_authenticated %}
-                <!-- دکمه ورود / ثبت نام (دسکتاپ) -->
-                <a href="{% url 'dashboard' %}" class="hidden md:inline-flex px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-500 transition-colors text-sm font-medium">
-                    {% trans "dashboard" %}
-                </a>
+                    <a href="{% url 'dashboard' %}" class="btn-primary btn-primary--full">داشبورد</a>
                 {% else %}
-                <a href="{% url 'login' %}" class="hidden md:inline-flex px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-500 transition-colors text-sm font-medium">
-                    {% trans "Login / Register" %}
-                </a>
+                    <a href="{% url 'login' %}" class="btn-primary btn-primary--full">ورود / ثبت‌نام</a>
                 {% endif %}
-
-                <!-- منوی موبایل -->
-                <button id="navToggle" class="md:hidden p-2 rounded-lg hover:bg-white/5">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                     d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
-
-            <!-- منوی دسکتاپ -->
-            <nav id="mainNav" class="hidden md:flex items-center gap-6">
-                <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
-                <a class="nav-link" href="{% url 'pricing' %}">{% trans "Pricing" %}</a>
-                <a class="nav-link" href="{% url 'about' %}">{% trans "About us" %}</a>
-                <a class="nav-link" href="{% url 'faq' %}">{% trans "FAQ" %}</a>
-                <a class="nav-link" href="{% url 'contact' %}">{% trans "Contact us" %}</a>
-                <a class="relative group" href="{% url 'cart' %}" aria-label="{% trans 'Cart' %}">
-                    <svg class="h-6 w-6 text-slate-300 group-hover:text-white transition-colors"
-                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                              d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
-                    </svg>
-                    <span class="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full shadow">
-                        {{ cart.items.count }}
-                    </span>
-                </a>
             </nav>
         </div>
+    </header>
 
-        <!-- منوی موبایل -->
-<div id="mobileNav" class="md:hidden hidden pb-4">
-    <div class="grid gap-2 text-sm">
-        <a class="nav-link py-2" href="{% url 'home' %}">{% trans "Home" %}</a>
-        <a class="nav-link py-2" href="{% url 'pricing' %}">{% trans "Pricing" %}</a>
-        <a class="nav-link py-2" href="{% url 'about' %}">{% trans "About us" %}</a>
-        <a class="nav-link py-2" href="{% url 'faq' %}">{% trans "FAQ" %}</a>
-        <a class="nav-link py-2" href="{% url 'contact' %}">{% trans "Contact us" %}</a>
-        <a class="nav-link py-2" href="{% url 'cart' %}">{% trans "Cart" %}</a>
+    <main class="site-main">
+        {% block page_content %}{% endblock %}
+    </main>
 
-        <!-- زبان‌ها (موبایل) -->
-        <div class="flex gap-2 mt-3">
-            <a href="/fa/" class="flex-1 flex items-center justify-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/State_flag_of_Iran_%281964%E2%80%931980%29.svg/330px-State_flag_of_Iran_%281964%E2%80%931980%29.svg.png"
-                     alt="Iran" class="w-5 h-5 rounded-full mr-2">
-                <span>فارسی</span>
-            </a>
-            <a href="/en/" class="flex-1 flex items-center justify-center px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-                     alt="US" class="w-5 h-5 rounded-full mr-2">
-                <span>English</span>
-            </a>
-        </div>
-{% if user.is_authenticated %}
+    <footer class="site-footer">
+        <div class="site-container">
+            <div class="footer-grid">
+                <div>
+                    <a href="{% url 'home' %}" class="footer-brand">
+                        <img src="{{ site_context.site_logo.url }}" alt="{{ site_context.site_name1 }} {{ site_context.site_name2 }}">
+                        <div>
+                            <strong>{{ site_context.site_name1 }} {{ site_context.site_name2 }}</strong>
+                            <span>دسترسی امن برای کاربران شخصی و تیم‌های حرفه‌ای.</span>
+                        </div>
+                    </a>
+                    <p class="footer-copy">{{ site_context.footer_text }}</p>
+                </div>
 
-        <!-- دکمه ورود / ثبت نام (موبایل) -->
-                <a href="{% url 'dashboard' %}" class="w-full text-center py-2 mt-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors font-medium">
-            {% trans "Dashboard" %}
-        </a>
-        {% else %}
-        <a href="{% url 'login' %}" class="w-full text-center py-2 mt-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors font-medium">
-            {% trans "Login / Register" %}
-        </a>
-        {% endif %}
-    </div>
-</div>
-    </div>
-</header>
+                <div>
+                    <h3 class="footer-title">محصول</h3>
+                    <a href="{% url 'pricing' %}" class="footer-link">تعرفه‌ها</a>
+                    <a href="{% url 'get-test' %}" class="footer-link">دسترسی تست رایگان</a>
+                    <a href="{% url 'cart' %}" class="footer-link">سبد خرید</a>
+                </div>
 
-    {% block page_content %}{% endblock %}
+                <div>
+                    <h3 class="footer-title">شرکت</h3>
+                    <a href="{% url 'about' %}" class="footer-link">درباره ما</a>
+                    <a href="{% url 'faq' %}" class="footer-link">سوالات متداول</a>
+                    <a href="{% url 'contact' %}" class="footer-link">تماس با ما</a>
+                </div>
 
-    <!-- Footer -->
-    <footer class="mt-10 border-t border-slate-800">
-        <div class="container mx-auto px-4 py-10">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-slate-400 text-sm"><span id="year"></span>{{ site_context.footer_text }}</p>
-                <p class="text-slate-500 text-sm">{% trans "Developed with ❤️ and lots of ☕️ by" %} <a class="text-slate-300 hover:text-white" href="https://t.me/Pokerjoon">@X ƤƠƘЄƦ</a></p>
+                <div>
+                    <h3 class="footer-title">ارتباط</h3>
+                    <a href="{{ site_context.telegram_support_id_link }}" target="_blank" rel="noopener" class="footer-link">پشتیبانی</a>
+                    <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" rel="noopener" class="footer-link">کانال</a>
+                    <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" rel="noopener" class="footer-link">بات</a>
+                    <div class="footer-social">
+                        <a href="{{ site_context.telegram_support_id_link }}" target="_blank" rel="noopener" class="social-link" aria-label="پشتیبانی تلگرام">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 4.6 18.9 20c-.2.9-.8 1.1-1.6.7l-4.3-3.2-2.1 2c-.2.2-.4.4-.8.4l.3-4.5L18.6 7c.3-.3-.1-.5-.5-.2L7.5 13.5 3 12c-.9-.3-.9-1 .2-1.4l17.2-6.6c.8-.3 1.5.2 1.4.6z"/></svg>
+                        </a>
+                        <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" rel="noopener" class="social-link" aria-label="کانال تلگرام">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.6 6.5-1.8 8.5c-.1.5-.4.7-.9.5l-2.6-1.9-1.2 1.2c-.2.2-.4.4-.8.4l.2-3 5.7-5.2c.2-.2-.1-.3-.3-.2l-6.8 4.3-2.9-.9c-.6-.2-.6-.6.1-.9l11-4.2c.5-.2 1 .1.9.4Z"/></svg>
+                        </a>
+                        <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" rel="noopener" class="social-link" aria-label="بات تلگرام">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm3.8 6.9-1.3 6.2c-.1.5-.5.7-1 .4l-2.6-1.9-1.3 1.2c-.2.2-.4.3-.7.3l.2-2.8 5.3-4.9c.2-.2-.1-.3-.2-.2l-6 3.8-2.2-.7c-.6-.2-.6-.6.1-.9l9.4-3.6c.4-.2.8.1.7.4Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p><span id="year"></span> {{ site_context.footer_text }}</p>
+                <p>ساخته‌شده برای حریم خصوصی، سرعت و اعتماد.</p>
             </div>
         </div>
     </footer>
+</div>
 
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

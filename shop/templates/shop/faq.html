@@ -1,21 +1,28 @@
 {% extends '_base.html' %}
-{% load i18n %}
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "FAQ" %}{% endblock %}
+
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - سوالات متداول{% endblock %}
 
 {% block page_content %}
+<main>
+  <section class="section-band">
+    <div class="site-container">
+      <div class="section-head">
+        <div class="section-kicker">سوالات متداول</div>
+        <h1 class="section-title">پرسش‌های پرتکرار</h1>
+        <p class="section-lead">پاسخ‌ها در قالب آکاردئون تمیز و هماهنگ با تم تاریک پریمیوم نمایش داده می‌شوند.</p>
+      </div>
 
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16 max-w-3xl">
-    <h1 class="text-3xl md:text-5xl font-extrabold">{% trans "Frequently Asked Questions" %}</h1>
-    <div class="mt-6 divide-y divide-white/10 border border-white/10 rounded-xl overflow-hidden bg-white/5">
-      {% for q in faqs %}
-      <details class="faq">
-        <summary>{{ q.question }}</summary>
-        {% for answer in q.answers.all %}
-        <p>{{ answer.answer }}</p>
+      <div class="faq-list">
+        {% for q in faqs %}
+        <details class="faq-card faq-item">
+          <summary class="faq-question">{{ q.question }}</summary>
+          {% for answer in q.answers.all %}
+          <p class="faq-answer">{{ answer.answer }}</p>
+          {% endfor %}
+        </details>
         {% endfor %}
-      </details>
-      {% endfor %}
+      </div>
     </div>
+  </section>
 </main>
-
 {% endblock %}

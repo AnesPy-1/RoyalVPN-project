@@ -1,29 +1,36 @@
 {% extends '_base.html' %}
-{% load i18n %}
 
 {% block page_title %}
-{% blocktrans %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - Contact Us{% endblocktrans %}
+تماس با {{ site_context.site_name1 }} {{ site_context.site_name2 }}
 {% endblock %}
 
 {% block page_content %}
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16">
-  <div class="max-w-xl mx-auto text-center">
-    <h1 class="text-3xl md:text-5xl font-extrabold">{% trans "Contact Us" %}</h1>
-    <p class="mt-2 text-slate-300">{% trans "For support or more information, please use the options below." %}</p>
+<main>
+  <section class="auth-section">
+    <div class="site-container auth-shell">
+      <div class="auth-copy">
+        <div class="section-kicker">تماس با ما</div>
+        <h1>تماس با ما</h1>
+        <p>برای پشتیبانی، اطلاع‌رسانی و دسترسی‌های خودکار از مسیرهای رسمی زیر استفاده کنید.</p>
+      </div>
 
-    <div class="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
-      <a href="{{ site_context.telegram_support_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
-        {% trans "Telegram Support" %}
-      </a>
-
-      <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition">
-        {% trans "Our Channel" %}
-      </a>
-
-      <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" class="btn-primary px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
-        {% trans "Our Bot" %}
-      </a>
+      <div class="form-card">
+        <div class="contact-grid">
+          <a href="{{ site_context.telegram_support_id_link }}" target="_blank" rel="noopener" class="contact-card">
+            <h2 class="contact-title">پشتیبانی تلگرام</h2>
+            <p class="contact-text">پشتیبانی مستقیم برای راه‌اندازی و سوالات مربوط به حساب کاربری.</p>
+          </a>
+          <a href="{{ site_context.telegram_Channel_id_link }}" target="_blank" rel="noopener" class="contact-card">
+            <h2 class="contact-title">کانال ما</h2>
+            <p class="contact-text">اطلاعیه‌ها، به‌روزرسانی‌ها و خبرهای محصول.</p>
+          </a>
+          <a href="{{ site_context.telegram_bot_id_link }}" target="_blank" rel="noopener" class="contact-card">
+            <h2 class="contact-title">بات ما</h2>
+            <p class="contact-text">دسترسی سریع و هدایت‌شده از طریق اتوماسیون تلگرام.</p>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </main>
 {% endblock %}

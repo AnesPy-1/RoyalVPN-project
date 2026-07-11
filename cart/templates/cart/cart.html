@@ -1,100 +1,91 @@
 {% extends '_base.html' %}
-{% load humanize i18n %}
+{% load humanize %}
 
-{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - {% trans "Cart" %}{% endblock %}
+{% block page_title %}{{ site_context.site_name1 }} {{ site_context.site_name2 }} - سبد خرید{% endblock %}
 
 {% block page_content %}
-<main class="flex-1 container mx-auto px-4 pt-10 pb-16" dir="rtl">
-  <!-- Page Title -->
-  <h1 class="text-3xl md:text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-400">
-    {% trans "Your Shopping Cart" %}
-  </h1>
-
-  <div class="lg:flex lg:space-x-6 lg:space-x-reverse">
-    <!-- Items Column -->
-    <div class="lg:flex-1 space-y-4">
-      {% for item in cart.items.all %}
-      <div class="bg-white/5 rounded-xl p-5 shadow hover:shadow-lg transition relative">
-        <form method="POST" action="{% url 'cart-remove' item.id %}" class="absolute top-3 left-3">
-          {% csrf_token %}
-          <button type="submit" class="text-red-500 hover:text-red-700 text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full transition" title="{% trans 'Remove item' %}">
-              ×
-          </button>
-        </form>
-        <br>
-        <!-- Name & Price -->
-        <div class="flex items-center justify-between mb-3">
-          <p class="font-semibold text-lg">{{ item.product.name }}</p>
-          <div class="text-right">
-            {% if item.product.discount %}
-            <p class="text-gray-400 line-through text-sm">{{ item.product.price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-            {% endif %}
-            <p class="font-bold text-green-500 text-lg">{{ item.product.get_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-          </div>
-        </div>
-
-        <!-- More Details -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300 mt-3 border-t border-gray-700 pt-3">
-          <div class="flex flex-col">
-            <p class="font-semibold mb-1">{% trans "Traffic:" %}</p>
-            {% if item.product.traffic_limit == '0' %}
-            <p>{% trans "Unlimited" %}</p>
-            {% else %}
-            <p>{{ item.product.traffic_limit }} {% trans "GB" %}</p>
-            {% endif %}
-          </div>
-          <div class="flex flex-col">
-            <p class="font-semibold mb-1">{% trans "Time:" %}</p>
-            {% if item.product.time_limit == '0' %}
-            <p>{% trans "Unlimited" %}</p>
-            {% else %}
-            <p>{{ item.product.time_limit }}</p>
-            {% endif %}
-          </div>
-          <div class="flex flex-col">
-            <p class="font-semibold mb-1">{% trans "Users:" %}</p>
-            {% if item.product.device_connections_limit %}
-            <p>{% trans "Unlimited users" %}</p>
-            {% else %}
-            <p>{{ item.product.device_connections_limit }} {% trans "user(s)" %}</p>
-            {% endif %}
-          </div>
-          <div class="flex flex-col">
-            <p class="font-semibold mb-1">{% trans "Dedicated Admin Panel?" %}</p>
-            <p>{% trans "Yes" %}</p>
-          </div>
-        </div>
+<main>
+  <section class="section-band">
+    <div class="site-container">
+      <div class="section-head">
+        <div class="section-kicker">پرداخت</div>
+        <h1 class="section-title">سبد خرید شما</h1>
+        <p class="section-lead">خلاصه سفارش به شکل خواناتر و واکنش‌گرا نمایش داده شده تا بتوانید سریع‌تر به صفحه تکمیل سفارش بروید.</p>
       </div>
-      {% empty %}
-      <div class="flex flex-col items-center justify-center rounded-xl bg-white/5 p-8 text-center space-y-4">
-        <p class="font-semibold text-lg">{% trans "Your cart is empty!" %}</p>
-        <a href="{% url 'pricing' %}" class="text-blue-500 hover:text-blue-700 underline font-semibold">
-          {% trans "Go shopping" %}
-        </a>
+
+      <div class="auth-shell checkout-layout">
+        <section class="form-card checkout-form-card">
+          <div class="review-grid">
+            {% for item in cart.items.all %}
+            <article class="surface-card cart-item-card">
+              <div class="cart-item-head">
+                <div>
+                  <h2 class="review-name">{{ item.product.name }}</h2>
+                  <p class="muted-copy" style="margin-top:0.35rem;">
+                    {% if item.product.discount %}
+                    <span style="text-decoration:line-through;color:var(--muted);">{{ item.product.price|floatformat:0|intcomma }} تومان</span>
+                    {% endif %}
+                  </p>
+                </div>
+                <form method="POST" action="{% url 'cart-remove' item.id %}" class="cart-remove-form">
+                  {% csrf_token %}
+                  <button type="submit" class="message-close" title="حذف آیتم">×</button>
+                </form>
+              </div>
+
+              <div class="checkout-summary-grid">
+                <div class="info-card">
+                  <div class="section-kicker">ترافیک</div>
+                  <p class="muted-copy">{% if item.product.traffic_limit == '0' %}نامحدود{% else %}{{ item.product.traffic_limit }} گیگابایت{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">زمان</div>
+                  <p class="muted-copy">{% if item.product.time_limit == '0' %}نامحدود{% else %}{{ item.product.time_limit }}{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">دستگاه</div>
+                  <p class="muted-copy">{% if item.product.device_connections_limit == '0' %}نامحدود{% else %}{{ item.product.device_connections_limit }} اتصال{% endif %}</p>
+                </div>
+                <div class="info-card">
+                  <div class="section-kicker">قیمت نهایی</div>
+                  <p class="muted-copy">{{ item.product.get_final_price|floatformat:0|intcomma }} تومان</p>
+                </div>
+              </div>
+            </article>
+            {% empty %}
+            <div class="surface-card">
+              <p class="review-name">سبد خرید شما خالی است.</p>
+              <a href="{% url 'pricing' %}" class="auth-link">رفتن به تعرفه‌ها</a>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        {% if cart.items.all %}
+        <aside class="form-card checkout-summary">
+          <div class="section-kicker">خلاصه سفارش</div>
+          <h2 class="section-title" style="margin-top:0.35rem;font-size:1.55rem;">جمع‌بندی خرید</h2>
+
+          <div class="surface-card checkout-total-box">
+            <div class="checkout-total-row">
+              <p class="muted-copy">جمع جزء</p>
+              <p class="review-name">{{ cart.get_cart_old_total|floatformat:0|intcomma }} تومان</p>
+            </div>
+            <div class="checkout-total-row">
+              <p class="muted-copy">میزان صرفه‌جویی</p>
+              <p class="review-name" style="color:#86efac;">{{ cart.cart_total_discount|floatformat:0|intcomma }} تومان</p>
+            </div>
+            <div class="checkout-total-row checkout-total-row--final">
+              <p class="review-name">مبلغ نهایی</p>
+              <p class="review-name">{{ cart.get_cart_final_price|floatformat:0|intcomma }} تومان</p>
+            </div>
+          </div>
+
+          <a href="{% url 'checkout' %}" class="btn-primary btn-primary--full">ادامه فرایند پرداخت</a>
+        </aside>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
-
-    <!-- Summary & Checkout Column -->
-    {% if cart.items.all %}
-    <aside class="h-max rounded-xl border border-white/10 bg-white/5 p-5 mt-6 lg:mt-0 lg:w-80 lg:sticky lg:top-20">
-      <div class="flex items-center justify-between mb-2">
-        <p class="text-slate-300">{% trans "Subtotal" %}</p>
-        <p class="font-semibold">{{ cart.get_cart_old_total|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-      </div>
-      <div class="mt-3 flex items-center justify-between text-green-400 font-semibold">
-        <p>{% trans "Your savings" %}</p>
-        <p>{{ cart.cart_total_discount|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-      </div>
-      <div class="border-t border-white/10 pt-3 flex items-center justify-between mb-4">
-        <p class="font-semibold">{% trans "Total" %}</p>
-        <p class="font-bold">{{ cart.get_cart_final_price|floatformat:0|intcomma }} {% trans "Toman" %}</p>
-      </div>
-      <a href="{% url 'checkout' %}" class="block text-center w-full px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white font-semibold hover:scale-105 transition transform">
-        {% trans "Proceed to Checkout" %}
-      </a>
-    </aside>
-    {% endif %}
-  </div>
+  </section>
 </main>
 {% endblock %}

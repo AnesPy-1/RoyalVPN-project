@@ -18,8 +18,8 @@ class Order(models.Model):
         related_name='user_orders',
         verbose_name=_("user"),
     )
-    phone_number = models.CharField(_("phone number"), max_length=55)
-    name = models.CharField(_("name"), max_length=155)
+    phone_number = models.CharField(_("phone number"), max_length=55, blank=True, default="")
+    name = models.CharField(_("name"), max_length=155, default="")
     telegram_id = models.CharField(_("telegram_id"), max_length=55, blank=True)
     final_price = models.PositiveIntegerField(_("final_price"))
     status = models.CharField(_("status"), max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING_PAYMENT)

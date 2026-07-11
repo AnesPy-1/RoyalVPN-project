@@ -6,9 +6,10 @@ import random
 
 
 class CustomUser(AbstractUser):
-    phone = models.CharField(_("phone"), max_length=32, unique=True)
+    phone = models.CharField(_("phone"), max_length=32, unique=True, blank=True, null=True)
     full_name = models.CharField(_("full name"), max_length=150, blank=True)
     telegram_id = models.CharField(_("telegram id"), max_length=55, blank=True)
+    wallet_balance = models.PositiveIntegerField(_("wallet balance"), default=0)
 
     class Meta:
         verbose_name = _("User")

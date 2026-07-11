@@ -18,7 +18,7 @@ class Payment(models.Model):
         related_name='user_payments',
         verbose_name=_("user"),
     )
-    payment_picture = models.ImageField(_("payment picture"), upload_to='payment/')
+    payment_picture = models.ImageField(_("payment picture"), upload_to='payment/', blank=True, null=True)
     total_price = models.PositiveIntegerField(_("total price"))
     subs = models.ManyToManyField(
         Subscriptions,

@@ -11,7 +11,8 @@ from .models import Product, Comment
 
 def home_view(request):
     comments = Comment.objects.all()[:9]
-    return render(request, 'shop/home.html', context={'comments':comments})
+    products = Product.objects.all()[:3]
+    return render(request, 'shop/home.html', context={'comments': comments, 'products': products})
 
 @login_required
 def get_test(request):

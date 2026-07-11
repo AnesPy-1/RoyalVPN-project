@@ -12,4 +12,7 @@ def site_context(request):
         if not request.session.session_key:
             request.session.create()
         cart, _ = Cart.objects.get_or_create(session_key=request.session.session_key)
-    return {'site_context':site_settings, 'cart':cart}
+    context = {'site_context':site_settings, 'cart':cart}
+    if request.user.is_authenticated:
+        context["wallet_balance"] = getattr(request.user, "wallet_balance", 0)
+    return context
